@@ -1,0 +1,83 @@
+% !TEX root = main.tex
+
+\documentclass[12pt, a4paper]{report}
+
+% Import the global style
+\input{preamble}
+
+\begin{document}
+
+% =============================================================
+% TITLE PAGE
+% =============================================================
+\begin{titlepage}
+    \begin{center}
+        \includegraphics[width=4cm]{logo.png} \\[1cm]
+        
+        \textsc{\LARGE AUC}\\[0.5cm]
+        \textsc{\Large Department of Mathematics}\\[0.5cm]
+        \textsc{\large Spring Term 2026}\\[2.5cm]
+        
+        { \huge \bfseries Graph Theory \\[0.5cm] \Large Lecture Notes }\\[2.5cm]
+        
+        % Graph Placeholder (Sierpinski triangle was in orig, we put a graph here)
+        \begin{tikzpicture}[scale=1.5, auto, swap]
+            % A simple nice Petersen graph or similar schematic to match style
+            \foreach \i in {1,...,5}
+            \coordinate (o\i) at (90+72*\i:2);
+            \foreach \i in {1,...,5}
+            \coordinate (i\i) at (90+72*\i:1);
+            
+            \draw[thick] (o1) -- (o2) -- (o3) -- (o4) -- (o5) -- cycle;
+            \draw[thick] (i1) -- (i3) -- (i5) -- (i2) -- (i4) -- cycle;
+            \foreach \i in {1,...,5} \draw[thick] (o\i) -- (i\i);
+            
+            \foreach \i in {1,...,5} \fill (o\i) circle (2pt);
+            \foreach \i in {1,...,5} \fill (i\i) circle (2pt);
+        \end{tikzpicture}
+        \\[2.5cm]
+        
+        \begin{minipage}{0.4\textwidth}
+            \begin{flushleft} \large
+                \emph{Lecturer:}\\
+                Isabel Müller
+            \end{flushleft}
+        \end{minipage}
+        \begin{minipage}{0.4\textwidth}
+            \begin{flushright} \large
+                \emph{Term:} \\
+                Spring 2026
+            \end{flushright}
+        \end{minipage}
+        
+    \end{center}
+\end{titlepage}
+
+% =============================================================
+% DEDICATION (German)
+% =============================================================
+\newpage
+\thispagestyle{empty}
+\vspace*{\fill}
+\begin{center}
+    \textit{\Large "An die Professorin, der ich meine Wertschätzung nicht zeigen konnte,\\ und an die Professorin, der ich es niemals vergelten kann."}
+\end{center}
+\vspace*{\fill}
+\newpage
+
+% =============================================================
+% TABLE OF CONTENTS
+% =============================================================
+\tableofcontents
+\newpage
+
+% =============================================================
+% CHAPTERS
+% =============================================================
+
+% We will uncomment these as we create them
+\input{chapters/chapter1.tex}
+% \input{chapters/chapter2.tex}
+% \input{chapters/chapter3.tex}
+
+\end{document}

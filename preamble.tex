@@ -1,0 +1,128 @@
+% !TEX root = main.tex
+
+% =============================================================
+% PREAMBLE.TEX - GLOBAL STYLE DEFINITIONS
+% =============================================================
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{lmodern} % Matches the font style (Latin Modern)
+
+% --- Page Layout ---
+\usepackage[a4paper, margin=2.5cm, headheight=15pt]{geometry}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+% --- Math Packages ---
+\usepackage{amsmath, amssymb, amsthm, amsfonts}
+\usepackage{mathtools}
+\usepackage{stmaryrd} % For specific symbols if needed
+
+% --- Graphics & Colors ---
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz} % Essential for Graph Theory drawings
+\usetikzlibrary{positioning, arrows.meta, shapes}
+
+% --- Color Definitions (Extracted from Real Analysis PDF) ---
+\definecolor{aucred}{RGB}{140, 0, 50}   % Dark Red for Definitions
+\definecolor{aucteal}{RGB}{0, 96, 96}   % Teal for Theorems/Lemmas
+\definecolor{aucblue}{RGB}{0, 0, 100}   % Dark Blue for Headers (approx)
+
+% --- Hyperlinks ---
+\usepackage[colorlinks=true, linkcolor=aucblue, urlcolor=aucblue, citecolor=aucblue]{hyperref}
+
+% --- Header & Footer Style ---
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter\ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+
+% Header layout matching PDF style
+\fancyhead[L]{\nouppercase{\leftmark}} % Chapter on Left
+\fancyhead[R]{\nouppercase{\rightmark}} % Section on Right
+\fancyfoot[C]{\thepage}
+
+% Double line in header
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% --- Box Environments (The Core Style) ---
+\usepackage[most]{tcolorbox}
+
+% 1. Definition Box (Red Style)
+\newtcolorbox[auto counter, number within=chapter]{definition}[2][]{%
+    colback=aucred!5!white,      % Light red background
+    colframe=aucred,             % Dark red frame
+    colbacktitle=aucred,         % Dark red title background
+    coltitle=white,              % White title text
+    fonttitle=\bfseries,         % Bold title
+    title=Definition~\thetcbcounter\ #2,
+    sharp corners=downhill,      % Style nuance
+    enhanced,
+    attach boxed title to top left={yshift=-2mm, xshift=2mm},
+    boxed title style={boxrule=0pt, sharp corners},
+    #1
+}
+
+% 2. Theorem Box (Teal Style)
+\newtcolorbox[auto counter, number within=chapter]{theorem}[2][]{%
+    colback=aucteal!5!white,     % Light teal background
+    colframe=aucteal,            % Dark teal frame
+    colbacktitle=aucteal,        % Dark teal title background
+    coltitle=white,              % White title text
+    fonttitle=\bfseries,
+    title=Theorem~\thetcbcounter\ #2,
+    sharp corners=downhill,
+    enhanced,
+    attach boxed title to top left={yshift=-2mm, xshift=2mm},
+    boxed title style={boxrule=0pt, sharp corners},
+    #1
+}
+
+% 3. Lemma Box (Teal Style - Same as Theorem)
+\newtcolorbox[auto counter, number within=chapter, use counter from=theorem]{lemma}[2][]{%
+    colback=aucteal!5!white,
+    colframe=aucteal,
+    colbacktitle=aucteal,
+    coltitle=white,
+    fonttitle=\bfseries,
+    title=Lemma~\thetcbcounter\ #2,
+    sharp corners=downhill,
+    enhanced,
+    attach boxed title to top left={yshift=-2mm, xshift=2mm},
+    boxed title style={boxrule=0pt, sharp corners},
+    #1
+}
+
+% 4. Corollary Box (Teal Style - Same as Theorem)
+\newtcolorbox[auto counter, number within=chapter, use counter from=theorem]{corollary}[2][]{%
+    colback=aucteal!5!white,
+    colframe=aucteal,
+    colbacktitle=aucteal,
+    coltitle=white,
+    fonttitle=\bfseries,
+    title=Corollary~\thetcbcounter\ #2,
+    sharp corners=downhill,
+    enhanced,
+    attach boxed title to top left={yshift=-2mm, xshift=2mm},
+    boxed title style={boxrule=0pt, sharp corners},
+    #1
+}
+
+% 5. Example Environment (Simple text style)
+\newenvironment{example}[1][]{\par\vspace{0.5cm}\noindent\textbf{\color{aucblue}Example \thechapter.\thetheorem.} \textit{#1} \par}{\par\vspace{0.5cm}}
+
+% 6. Proof Environment (Standard)
+% We use standard amsthm proof but ensure spacing is nice
+\let\oldproof\proof
+\let\endoldproof\endproof
+\renewenvironment{proof}{\oldproof}{\endoldproof}
+
+% --- Graph Theory Macros ---
+\newcommand{\V}[1]{V(#1)}
+\newcommand{\E}[1]{E(#1)}
+\newcommand{\degv}[1]{\text{deg}(#1)}
+\newcommand{\deltaG}{\delta(G)}
+\newcommand{\DeltaG}{\Delta(G)}
