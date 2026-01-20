@@ -1,35 +1,32 @@
-% !TEX root = main.tex
-
 \chapter{Graphs}
 \section{The Basics}
 
-\subsection{Recall}
+% 1.1 Recall (Text Block)
+\topic{Recall}
 
-\begin{definition}{Set}
-A \textbf{set} is merely an accumulation of objects. These objects are called \textbf{elements} of the set. If an object $x$ is an element of $S$, we write $x \in S$. The set of all elements with a certain property $P$ is denoted via $\{x \mid x \text{ has property } P\}$.
-\end{definition}
+\begin{enumerate}
+    \item A \textbf{set} is merely an accumulation of objects. These objects are called \textbf{elements} of the set. If an object $x$ is an element of $S$, we write $x \in S$. The set of all elements with a certain property $P$ is denoted via $\{x \mid x \text{ has property } P\}$.
+    
+    \item An \textbf{$n$-ary relation} $R$ on a set $A$ is a subset of the power set of $A^n$, i.e., $R \subseteq \mathcal{P}(A^n)$. If $n=2$, we call the relation \textbf{binary}.
+    
+    A binary relation $R$ on a set $A$ is called:
+    \begin{itemize}
+        \item[(i)] \textbf{symmetric} if $R(a,b)$ implies $R(b,a)$ for all $a,b \in A$.
+        \item[(ii)] \textbf{asymmetric} if $R(a,b)$ implies $\neg R(b,a)$ for all $a,b \in A$.
+        \item[(iii)] \textbf{antisymmetric} if $R(a,b) \land R(b,a)$ implies $a=b$ for all $a,b \in A$.
+        \item[(iv)] \textbf{reflexive} if $R(a,a)$ for all $a \in A$.
+        \item[(v)] \textbf{irreflexive} if $\neg R(a,a)$ for all $a \in A$.
+        \item[(vi)] \textbf{transitive} if $R(a,b) \land R(b,c)$ implies $R(a,c)$ for all $a,b,c \in A$.
+    \end{itemize}
+\end{enumerate}
 
-\begin{definition}{Relation}
-An \textbf{$n$-ary relation} $R$ on a set $A$ is a subset of the power set of $A^n$, i.e., $R \subseteq \mathcal{P}(A^n)$. If $n=2$, we call the relation \textbf{binary}.
-\end{definition}
-
-A binary relation $R$ on a set $A$ is called:
-\begin{itemize}
-    \item[(i)] \textbf{symmetric} if $R(a,b)$ implies $R(b,a)$ for all $a,b \in A$.
-    \item[(ii)] \textbf{asymmetric} if $R(a,b)$ implies $\neg R(b,a)$ for all $a,b \in A$.
-    \item[(iii)] \textbf{antisymmetric} if $R(a,b) \land R(b,a)$ implies $a=b$ for all $a,b \in A$.
-    \item[(iv)] \textbf{reflexive} if $R(a,a)$ for all $a \in A$.
-    \item[(v)] \textbf{irreflexive} if $\neg R(a,a)$ for all $a \in A$.
-    \item[(vi)] \textbf{transitive} if $R(a,b) \land R(b,c)$ implies $R(a,c)$ for all $a,b,c \in A$.
-\end{itemize}
-
-\subsection{Definition of a Graph}
-
-\begin{definition}{Graph}
+% 1.2 Definition (Red Box)
+\begin{definition}
 A \textbf{graph} $G=(V,E)$ is a pair of sets $V$ and $E$ s.t. $E$ consists of subsets of $V$ of size two. $V$ is called the set of \textbf{vertices} and $E$ the set of \textbf{edges}. A graph $G$ is called \textbf{finite} if $V$ is a finite set. The \textbf{order} $|G|$ of a graph $G=(V,E)$ is the cardinality of its vertex set, so $|G|=|V|$. The \textbf{size} $\|G\|$ of $G$ is the cardinality of its edge set, $\|G\|=|E|$.
 \end{definition}
 
-\subsection{Visualisation}
+% 1.3 Visualisation (Text Block)
+\topic{Visualisation}
 
 Let $G=(V,E)$ be a graph. We visualise vertices $u,v \dots \in V$ by dots and edges $e=\{u,v\} \in E$ by the diagram:
 
@@ -37,10 +34,11 @@ Let $G=(V,E)$ be a graph. We visualise vertices $u,v \dots \in V$ by dots and ed
 \begin{tikzpicture}
     \filldraw (0,0) circle (2pt) node[below=2pt] {$u$};
     \filldraw (2,0) circle (2pt) node[below=2pt] {$v$};
-    \draw (0,0) -- (2,0) node[midway, above] {$e$};
+    \draw[cyan!80!black, thick] (0,0) -- (2,0) node[midway, above, black] {$e$};
 \end{tikzpicture}
 \end{center}
 
+% 1.4 Example (Text Block)
 \begin{example}[Bowtie Graph]
 Let $G=(V,E)$ be the graph with $V=\{a,b,c,d,e\}$ and
 \[ E = \{\{a,b\}, \{a,c\}, \{a,d\}, \{a,e\}, \{b,c\}, \{d,e\}\}. \]
@@ -53,8 +51,8 @@ The graph $G$ has order 5 and size 6. It can be visualized via:
     \coordinate (d) at (1,1);
     \coordinate (e) at (1,-1);
 
-    \draw (b) -- (a) -- (c) -- (b);
-    \draw (d) -- (a) -- (e) -- (d);
+    \draw[cyan!80!black] (b) -- (a) -- (c) -- (b);
+    \draw[cyan!80!black] (d) -- (a) -- (e) -- (d);
 
     \filldraw (a) circle (2pt) node[below=5pt] {$a$};
     \filldraw (b) circle (2pt) node[left] {$b$};
@@ -66,7 +64,8 @@ The graph $G$ has order 5 and size 6. It can be visualized via:
 This visualisation motivates its name: \textbf{bowtie graph}.
 \end{example}
 
-\subsection{Notation}
+% 1.5 Notation
+\topic{Notation}
 
 \begin{enumerate}
     \item For a graph $G=(V,E)$ we may denote its vertex set by $V(G)$ or $V_G$ for clarity.
@@ -75,9 +74,8 @@ This visualisation motivates its name: \textbf{bowtie graph}.
     \item Edges are often called $e, e_1, e_2, f \dots$, while vertices are called $u, v, x, y, \dots$.
 \end{enumerate}
 
-\subsection{Terminology}
-
-\begin{definition}{Adjacency and Incidence}
+% 1.6 Definition
+\begin{definition}
 Let $G=(V,E)$ be a graph.
 \begin{enumerate}
     \item If $uv \in E$ is an edge, then we say that $u$ and $v$ are \textbf{adjacent} or \textbf{neighbours}. If $uv \notin E$, we call $u$ and $v$ \textbf{nonadjacent}.
@@ -92,6 +90,7 @@ Let $G=(V,E)$ be a graph.
 \end{enumerate}
 \end{definition}
 
+% 1.7 Example
 \begin{example}
 Consider $G$ given by:
 \begin{center}
@@ -104,35 +103,73 @@ Consider $G$ given by:
     \coordinate (f) at (1.5,0);
     \coordinate (g) at (2.5,0.5);
 
-    \draw (a) -- (d) -- (b) -- (a) -- (e) -- (d) -- (f) -- (e);
-    \draw (d) -- (g) -- (c) -- (d);
-    \draw (f) -- (g);
+    \draw[cyan!80!black] (a) -- (d) -- (b) -- (a) -- (e) -- (d) -- (f) -- (e);
+    \draw[cyan!80!black] (d) -- (g) -- (c) -- (d);
+    \draw[cyan!80!black] (f) -- (g);
 
     \foreach \point in {a,b,c,d,e,f,g} \filldraw (\point) circle (2pt);
     \node[above] at (a) {$a$}; \node[above] at (b) {$b$}; \node[above] at (c) {$c$};
     \node[below] at (d) {$d$}; \node[below] at (e) {$e$}; \node[below] at (f) {$f$}; \node[right] at (g) {$g$};
-    
-    % Degree annotations (small)
-    \node[left, blue, scale=0.7] at (a) {2};
-    \node[above, blue, scale=0.7] at (b) {1};
-    \node[above, blue, scale=0.7] at (c) {2};
-    \node[right, blue, scale=0.7] at (g) {2};
-    \node[below, blue, scale=0.7] at (f) {3};
-    \node[below, blue, scale=0.7] at (e) {3};
-    \node[right, blue, scale=0.7] at (d) {5};
 \end{tikzpicture}
 \end{center}
-Then $\Delta(G)=5$, $\delta(G)=1$. $N(e)=\{a,d,f\}$, $N[b]=\{b,d\}$, $N[\{a,g\}]=\{a,c,d,e,f,g\}$.
-Order of $G$ is 7, size of $G$ is 9. Degree sequence is $(5,3,3,2,2,2,1)$.
+Then $\Delta(G)=5$, $\delta(G)=1$. $N(e)=\{a,d,f\}$, $N[b]=\{b,d\}$.
 \end{example}
 
+% 1.8 Example
+\begin{example}
+Consider $G$ given via the diagram:
+\begin{center}
+\begin{tikzpicture}
+    \coordinate (a) at (0,1); \node[left] at (a) {$a$};
+    \coordinate (b) at (1,1); \node[above] at (b) {$b$};
+    \coordinate (c) at (2,1); \node[above] at (c) {$c$};
+    \coordinate (d) at (3,1); \node[right] at (d) {$d$};
+    
+    \coordinate (e) at (0,0); \node[left] at (e) {$e$};
+    \coordinate (f) at (1,0); \node[below] at (f) {$f$};
+    \coordinate (g) at (2,0); \node[below] at (g) {$g$};
+    \coordinate (h) at (3,0); \node[right] at (h) {$h$};
+    
+    \draw[cyan!80!black] (a)--(b)--(c)--(d);
+    \draw[cyan!80!black] (e)--(f)--(g)--(h);
+    \draw[cyan!80!black] (a)--(e); \draw[cyan!80!black] (b)--(f); \draw[cyan!80!black] (c)--(g); \draw[cyan!80!black] (d)--(h);
+    \draw[cyan!80!black] (b)--(e); \draw[cyan!80!black] (c)--(f);
+    
+    \foreach \p in {a,b,c,d,e,f,g,h} \filldraw (\p) circle (2pt);
+\end{tikzpicture}
+\end{center}
+$|G|=9$, size of $G$ is 9. Degree sequence $(3,3,3,2,2,2,2,1,0)$.
+\end{example}
+
+% 1.9 Remark
 \begin{remark}
 A graph can be considered as a set $V$ together with a binary relation $E$ on $V$ which is symmetric and irreflexive.
 \end{remark}
 
-\subsection{Handshaking Lemma}
+% 1.10 Definition
+\topic{Definition (Variants of Graphs)}
 
-\begin{theorem}{The Handshaking Lemma}
+\begin{enumerate}
+    \item If $G=(V,E)$ and we replace $E$ with a set of ordered pairs, then we call $G$ a \textbf{directed graph} or \textbf{digraph}.
+    \item If $E$ is a multiset (iterations of the same elements are distinguished), then we call $G$ a \textbf{multigraph}.
+    \item If we extend $E$ by allowing loops, we call $G$ a \textbf{pseudograph}.
+    \item If we allow edges to be arbitrary sets of vertices instead of 2-elementary ones, we call $G$ a \textbf{hypergraph}.
+\end{enumerate}
+
+% 1.11 Setting
+\topic{Setting}
+In this lecture, unless otherwise stated, by a graph we mean a finite, simple graph with $|V| \ge 1$.
+
+% 1.12 Definition
+\begin{definition}
+\begin{itemize}
+    \item The \textbf{complete graph} $K_n$ for $n \ge 1$ is the graph consisting of $n$ vertices such that any two vertices are adjacent.
+    \item The \textbf{empty graph} $E_n$ is the graph consisting of $n$ vertices and no edges.
+\end{itemize}
+\end{definition}
+
+% 1.13 The Handshaking Lemma
+\begin{theorem}[The Handshaking Lemma]
 If $G=(V,E)$ is a graph, then
 \[ \sum_{v \in V} \deg(v) = 2|E|. \]
 \end{theorem}
@@ -149,14 +186,16 @@ whence
 \[ = \sum_{w \in V} \deg_G(w), \text{ as desired.} \qedhere \]
 \end{proof}
 
-\begin{corollary}{Odd Degrees}
+% 1.14 Corollary
+\begin{corollary}
 Any graph $G$ has an even number of vertices of odd degree.
 \end{corollary}
 \begin{proof}
 Exercise.
 \end{proof}
 
-\begin{corollary}{Bounds}
+% 1.15 Corollary
+\begin{corollary}
 For any graph $G=(V,E)$ we have
 \[ \delta(G) \le 2 \frac{|E|}{|V|} \le \Delta(G). \]
 \end{corollary}
@@ -165,20 +204,21 @@ For any graph $G=(V,E)$ we have
 Using Theorem 1.13, $\sum \deg(v) = 2|E|$. Dividing by $|V|$ yields the result.
 \end{proof}
 
-\begin{lemma}{Pigeon Hole Principle for Graphs}
+% 1.16 Lemma
+\begin{lemma}
 If $|G| \ge 2$, then $G$ contains at least two vertices of the same degree.
 \end{lemma}
 \begin{proof}
 If $G$ has two vertices of degree 0, then we are done. Otherwise, we may assume that $G$ has none. If $|V|=n$, and $v \in V$, then $1 \le \deg(v) \le n-1$. Note that this leaves us with $n-1$ choices of degrees for $n$ many different vertices. Hence, at least two vertices must have the same degree.
 \end{proof}
 
+% 1.17 Remark
 \begin{remark}
 The above line of thought is called the \textbf{pigeon hole principle}. If there are $n$ many pigeons wanting to fit into $n-1$ many holes, then at least two of them have to cuddle up in the same hole.
 \end{remark}
 
-\subsection{Special Graphs}
-
-\begin{definition}{Paths, Cycles, Complements}
+% 1.18 Definition
+\begin{definition}
 \begin{enumerate}
     \item The \textbf{path} $P_n$ is the graph on $n$ vertices $v_1, \dots, v_n$ with the edge set $E(P_n) = \{v_i v_{i+1} \mid 1 \le i < n\}$.
     \item The \textbf{cycle} $C_n$ is the graph on $n$ vertices with edge set $E(C_n) = \{v_i v_{i+1} \mid 1 \le i < n\} \cup \{v_n v_1\}$.
@@ -186,34 +226,72 @@ The above line of thought is called the \textbf{pigeon hole principle}. If there
 \end{enumerate}
 \end{definition}
 
-\begin{definition}{Regularity}
+% 1.19 Definition
+\begin{definition}
 We call a graph $G$ \textbf{regular} if any of its vertices has the same degree. If this degree is $r$, we say that $G$ is \textbf{$r$-regular}.
 \end{definition}
 
-\begin{definition}{Complete Graph}
-The \textbf{complete graph} $K_n$ for $n \ge 1$ is the graph consisting of $n$ vertices such that any two vertices are adjacent. The \textbf{empty graph} $E_n$ is the graph consisting of $n$ vertices and no edges.
-\end{definition}
-
-\subsection{Subgraphs}
-
-\begin{definition}{Subgraphs}
+% 1.20 Remarks
+\begin{remark}
 \begin{enumerate}
-    \item A graph $H$ is called a \textbf{subgraph} of some graph $G$, written $H \subseteq G$, if $V(H) \subseteq V(G)$ and $E(H) \subseteq E(G)$.
+    \item A graph $G$ is regular iff $\delta(G)=\Delta(G)$.
+    \item $K_n$ is $(n-1)$-regular and $E_n$ is $0$-regular.
+    \item An $r$-regular graph of order $n$ has $\frac{1}{2}nr$ many edges.
+\end{enumerate}
+\end{remark}
+
+% 1.21 Example
+\begin{example}
+The graph below is 4-regular of order 6.
+\begin{center}
+\begin{tikzpicture}
+    % Octahedron graph projection
+    \foreach \i in {1,...,6}
+        \coordinate (v\i) at (60*\i:1.5);
+    
+    \foreach \i in {1,...,6} \filldraw (v\i) circle (2pt);
+    
+    \draw[cyan!80!black] (v1)--(v2)--(v3)--(v4)--(v5)--(v6)--(v1);
+    \draw[cyan!80!black] (v1)--(v3); \draw[cyan!80!black] (v1)--(v5);
+    \draw[cyan!80!black] (v2)--(v4); \draw[cyan!80!black] (v2)--(v6);
+    \draw[cyan!80!black] (v3)--(v5); \draw[cyan!80!black] (v4)--(v6);
+\end{tikzpicture}
+\end{center}
+\end{example}
+
+\section{Subgraphs}
+
+% 1.22 Definition
+\begin{definition}
+\begin{enumerate}
+    \item A graph $H$ is called a \textbf{subgraph} of some graph $G$, written $H \subseteq G$, if $V(H) \subseteq V(G)$ and $E(H) \subseteq E(G)$. We also say $G$ \textbf{contains} $H$.
     \item If $H \subseteq G$, we say that $H$ is an \textbf{induced subgraph} of $G$, written $H \sqsubseteq G$, if $E(H) = \{uv \in E(G) \mid u,v \in V(H)\}$.
 \end{enumerate}
 \end{definition}
 
+% 1.23 Remark
 \begin{remark}
-If $G$ is a graph and $S \subseteq V(G)$, then there is only one induced subgraph $H \sqsubseteq G$ with vertex set $S$. We denote this graph by $\langle S \rangle$ and call it the subgraph of $G$ induced by $S$.
+\begin{enumerate}
+    \item $H \subseteq G$ is induced if for any two vertices in $H$ we have: If they are adjacent in $G$, then they are adjacent in $H$.
+    \item Every induced subgraph is a subgraph but not vice versa.
+    \item If $G$ is a graph and $S \subseteq V(G)$, then there is only one induced subgraph $H \sqsubseteq G$ with vertex set $S$, i.e. $V(H)=S$. We denote this graph by $\langle S \rangle$ and call it the subgraph of $G$ induced by $S$.
+\end{enumerate}
 \end{remark}
 
-\subsection{Walks in Graphs}
+% 1.24 Example
+\begin{example}
+Consider $G$ given as... (Graph illustrations of subgraphs vs induced subgraphs).
+\end{example}
 
-\begin{definition}{Walk}
+\section{Walks in Graphs}
+
+% 1.25 Definition
+\begin{definition}
 A $(v_0, v_k)$-\textbf{walk} in a graph is a sequence of vertices $(v_0, v_1, \dots, v_k)$ s.t. any two consecutive vertices $v_i$ and $v_{i+1}$ are adjacent. We call the edges $\{v_0v_1, v_1v_2, \dots, v_{k-1}v_k\}$ the \textbf{edges of the walk}. We say that the walk is \textbf{closed} if $v_0=v_k$. The \textbf{length} of a walk is the number of edges in it (counting repetition).
 \end{definition}
 
-\begin{definition}{Types of Walks}
+% 1.26 Definition
+\begin{definition}
 We distinguish the following types of walks:
 \begin{itemize}
     \item A \textbf{trail} is a walk whose edges are pairwise distinct.
@@ -223,14 +301,26 @@ We distinguish the following types of walks:
 \end{itemize}
 \end{definition}
 
-\begin{lemma}{Cycle Existence}
+% 1.27 Example
+\begin{example}
+Consider $G$ via... (Examples of walks, trails, paths).
+\end{example}
+
+% 1.28 Lemma
+\begin{lemma}
 If $\delta(G) \ge 2$, then $G$ contains a cycle as a subgraph.
 \end{lemma}
 \begin{proof}
 Let $P = (v_0, \dots, v_k)$ be a path in $G$ of maximal length. This exists, as $G$ is finite. Further, as $\delta(G) \ge 2$, we get $k \ge 2$. As $\deg(v_0) \ge \delta(G) \ge 2$, $v_0$ has at least two neighbors. One of them is $v_1$. Let us denote the other one by $u$. If $u \ne v_i$ for all $1 \le i \le k$, then $\tilde{P} = (u, v_0, v_1, \dots, v_k)$ is still a path and of greater length than $P$, contradicting our assumptions. Hence, $u=v_i$ for some $1 \le i \le k$. But then the sequence $(v_0, v_1, \dots, v_i=u, v_0)$ is the desired cycle subgraph of $G$.
 \end{proof}
 
-\begin{theorem}{Walk-Path Theorem}
+% 1.29 Corollary
+\begin{corollary}[Contrapositive]
+If $G$ does not contain any cycles, then $\delta(G) \le 1$.
+\end{corollary}
+
+% 1.30 Theorem
+\begin{theorem}
 Every $uv$-walk in a graph contains a $uv$-path.
 \end{theorem}
 \begin{proof}
@@ -239,21 +329,25 @@ We proceed by strong induction on the length $n \ge 1$ of the walk.
 \textbf{I.S.} Assume every $uv$-walk of length at most $n \ge 1$ contains a $uv$-path (I.H.). Assume there is a $uv$-walk $W=(u=w_0, w_1, \dots, w_n, w_{n+1}=v)$ of length $n+1$. If $W$ is already a path, we are done. Otherwise there are $i,j$ s.t. $0 \le i < j \le n+1$ and $w_i = w_j$. But then the walk $\tilde{W}$ which arises from $W$ by deleting the vertices $w_{i+1}, \dots, w_{j-1}, w_j$, i.e. $\tilde{W} = (u=w_0, \dots, w_i, w_{j+1}, \dots, w_{n+1}=v)$ is still a $uv$-walk, but of length at most $n$. Using I.H., we know that $\tilde{W}$ contains a $uv$-path, whence also $W$ contains (the same) $uv$-path.
 \end{proof}
 
-\subsection{Connectivity}
+\section{Connectivity}
 
-\begin{definition}{Connected}
+% 1.31 Definition
+\begin{definition}
 A graph is \textbf{connected} if there exists an $uv$-path in $G$ for any vertices $u,v \in V(G)$. Otherwise, it is called \textbf{disconnected}.
 \end{definition}
 
-\begin{definition}{Connected Component}
+% 1.32 Definition
+\begin{definition}
 A \textbf{connected component} of $G$ is a maximal connected induced subgraph of $G$. i.e. $C \sqsubseteq G$ is a connected component iff (i) $C$ is connected and (ii) for any $v \in V(G) \setminus V(C)$ the induced subgraph on $V(C) \cup \{v\}$ is \textbf{not} connected.
 \end{definition}
 
+% 1.33 Remark
 \begin{remark}
-$G$ is connected iff it has exactly one connected component. Even among connected graphs, there are different levels of being connected. E.g. the graph $K_5$ "feels" more connected than the graph consisting of two triangles joined by a single edge.
+$G$ is connected iff it has exactly one connected component.
 \end{remark}
 
-\begin{definition}{Deletion}
+% 1.34 Definition
+\begin{definition}[Vertex and Edge Deletion]
 Let $G$ be a graph, $S \subseteq V_G$ and $T \subseteq E_G$.
 \begin{enumerate}
     \item By $G-S$ we denote the graph arising from $G$ by removing from $V_G$ all vertices in $S$ and their incident edges.
@@ -263,7 +357,13 @@ Let $G$ be a graph, $S \subseteq V_G$ and $T \subseteq E_G$.
 \end{enumerate}
 \end{definition}
 
-\begin{definition}{Cut Vertex and Bridge}
+% 1.35 Example
+\begin{example}
+Consider $G$ as given below... (Examples of cut vertices and bridges).
+\end{example}
+
+% 1.36 Definition
+\begin{definition}
 Let $G$ be a graph.
 \begin{enumerate}
     \item We call $v \in V_G$ a \textbf{cut vertex} if $G-v$ has more connected components than $G$ itself.
@@ -273,40 +373,78 @@ Let $G$ be a graph.
 \end{enumerate}
 \end{definition}
 
-\begin{definition}{Connectivity}
+% 1.37 Observation
+\topic{Observation}
+\begin{enumerate}
+    \item If $G$ is connected then $v$ is a cut vertex of $G$ iff $\{v\}$ is a cut set.
+    \item The vertex $v$ is a cut vertex iff there are vertices $u$ and $w$, different from $v$ s.t. every $uw$-path uses $v$.
+    \item A graph has no cut sets iff it is a complete graph.
+\end{enumerate}
+
+% 1.38 Definition
+\begin{definition}
 For a non-complete graph $G$, we define its \textbf{connectivity} $\kappa(G)$ as the minimal size of a cut set. For $K_n$, we set $\kappa(K_n) = n-1$.
-We say that $G$ is \textbf{$k$-connected} if $\kappa(G) \ge k$, i.e. if $G$ is connected and $G-S$ is still connected for any $S \subseteq V_G$ with $|S| < k$.
 \end{definition}
 
-\begin{lemma}{Properties of Connectivity}
+% 1.39 Lemma
+\begin{lemma}
+If $G$ is a non-separable graph of order at least 3, then $\delta(G) \ge 2$ and every vertex of $G$ is contained in a cycle.
+\end{lemma}
+\begin{proof}
+Consider $G$ non-separable with $|G| \ge 3$. By definition, $G$ is connected, i.e. $\delta(G) \ge 1$. First we show that $\delta(G) \ge 2$. Otherwise, we have $\delta(G)=1$, i.e. there is some vertex $v$ s.t. $\deg(v)=1$. Let $u$ be the unique neighbor of $v$ and $w$ any other vertex of $G$ (which exists as $|G| \ge 3$). Then clearly any $vw$-path must use the unique neighbor $u$ of $v$, whence $u$ is a cut vertex. This contradicts the fact that $G$ is inseparable. Hence, $\delta(G) \ge 2$, as desired.
+\end{proof}
+
+% 1.40 Definition
+\begin{definition}
+We say that $G$ is \textbf{$k$-connected} if $\kappa(G) \ge k$.
+\end{definition}
+
+% 1.41 Lemma
+\begin{lemma}
 The following hold:
 \begin{enumerate}
     \item $G$ is connected iff $\kappa(G) \ge 1$.
+    \item $G$ is 1-connected iff $G$ is connected.
     \item $G$ is 2-connected iff $G$ is connected and has no cut vertices.
+    \item $G$ is 2-connected iff $G$ is non-separable.
     \item $|G| > \kappa(G)$.
     \item $\kappa(G) \le \delta(G)$.
 \end{enumerate}
 \end{lemma}
 
 \begin{proof}
-4) Assume $\kappa(G) > \delta(G)$ and let $v \in V_G$ s.t. $\deg(v)=\delta(G)$. Note that $|G| > \kappa(G) > \delta(G) = |N(v)|$, whence $G-N(v)$ contains at least one vertex besides $v$. But clearly, $G-N(v)$ is disconnected (as $\deg_{G-N(v)}(v)=0$). Hence, $N(v)$ is a cut set and $\kappa(G) \le |N(v)| = \delta(G)$, contradicting the assumptions.
+8) Assume $\kappa(G) > \delta(G)$ and let $v \in V_G$ s.t. $\deg(v)=\delta(G)$. Note that $|G| > \kappa(G) > \delta(G) = |N(v)|$, whence $G-N(v)$ contains at least one vertex besides $v$. But clearly, $G-N(v)$ is disconnected (as $\deg_{G-N(v)}(v)=0$). Hence, $N(v)$ is a cut set and $\kappa(G) \le |N(v)| = \delta(G)$, contradicting the assumptions.
 \end{proof}
 
 \section{Bipartite Graphs}
 
-\begin{definition}{Bipartite}
+% 1.42 Definition
+\begin{definition}
 A graph $G$ is called \textbf{bipartite} if we can partition the vertex set $V_G$ into two disjoint sets $V_G = X \cup Y$ s.t. every edge of $G$ has one end vertex in $X$ and the other in $Y$.
 \end{definition}
 
+% 1.43 Example
+\begin{example}
+Consider... (Bipartite graph example).
+\end{example}
+
+% 1.44 Remark
 \begin{remark}
 A graph $G$ is bipartite if and only if we can color the vertices of $G$ with two colors s.t. the end vertices of each edge have different colors.
 \end{remark}
 
-\begin{definition}{Complete Bipartite}
+% 1.45 Definition
+\begin{definition}
 Let $m,n \in \mathbb{Z}_+$. The \textbf{complete bipartite graph} $K_{m,n}$ is the bipartite graph with $X=\{x_1, \dots, x_m\}$, $Y=\{y_1, \dots, y_n\}$, $V_G=X \cup Y$ and $E_G = \{xy \mid x \in X, y \in Y\}$.
 \end{definition}
 
-\begin{theorem}{Characterization of Bipartite Graphs}
+% 1.46 Example
+\begin{example}
+$K_{1,3}$, $K_{4,2}$, $K_{3,3}$.
+\end{example}
+
+% 1.47 Theorem
+\begin{theorem}
 A graph is bipartite iff it does not contain odd cycles.
 \end{theorem}
 
@@ -324,14 +462,16 @@ We construct a cycle using $P_1$, the edge $w_1w_2$, and $P_2$. The length of th
 
 \section{Graph Isomorphisms}
 
-\begin{definition}{Isomorphism}
+% 1.48 Definition
+\begin{definition}
 We say that a graph $G$ is \textbf{isomorphic} to a graph $H$ if there exists a bijection $\varphi: V_G \to V_H$ s.t. for any $u,v \in V_G$ we have that $\{u,v\} \in E_G$ if and only if $\{\varphi(u), \varphi(v)\} \in E_H$. Then, the map $\varphi$ is called an \textbf{isomorphism} and we write $G \cong H$.
 \end{definition}
 
+% 1.49 Remark
 \begin{remark}
 Let $G \cong H$ via $\varphi: V_G \to V_H$. Then:
 \begin{enumerate}
-    \item $|V_G|=|V_H|$ and $|E_G|=|E_H|$.
+    \item $|V_G|=|V_H|$ and $|E_G|=|E_H|$ and $\overline{G} \cong \overline{H}$.
     \item The degree sequence of $G$ equals the degree sequence of $H$.
     \item $G$ is connected iff $H$ is connected.
     \item $\deg_G(v) = \deg_H(\varphi(v))$ for all $v \in V_G$.
