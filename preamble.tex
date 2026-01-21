@@ -11,6 +11,7 @@
 \usepackage[a4paper, margin=2.5cm, headheight=15pt]{geometry}
 \usepackage{fancyhdr}
 \usepackage{lastpage}
+\usepackage{needspace}
 
 % --- Math & Symbols ---
 \usepackage{amsmath, amssymb, amsthm, amsfonts}
@@ -71,7 +72,7 @@
 % Global Box Style: Full Header, Thin Border, Rounded
 \tcbset{
     auccommon/.style={
-        enhanced,
+        enhanced jigsaw,
         fonttitle=\bfseries,
         coltitle=white,
         boxrule=1pt,        % Thin border (Matches screenshot)
@@ -85,6 +86,8 @@
 % 1. Definition Box (Red Header, Light Red Body)
 \newtcolorbox{definition}[1][]{%
     auccommon,
+    breakable,
+    lines before break=5,
     colback=aucred!5!white, 
     colframe=aucred, 
     colbacktitle=aucred,
@@ -94,6 +97,8 @@
 % 2. Theorem Box (Teal Header, Light Teal Body)
 \newtcolorbox{theorem}[1][]{%
     auccommon,
+    breakable,
+    lines before break=5,
     colback=aucteal!5!white, 
     colframe=aucteal, 
     colbacktitle=aucteal,
@@ -103,6 +108,8 @@
 % 3. Lemma Box (Teal Header)
 \newtcolorbox{lemma}[1][]{%
     auccommon,
+    breakable,
+    lines before break=5,
     colback=aucteal!5!white, 
     colframe=aucteal, 
     colbacktitle=aucteal,
@@ -112,6 +119,8 @@
 % 4. Corollary Box (Teal Header)
 \newtcolorbox{corollary}[1][]{%
     auccommon,
+    breakable,
+    lines before break=5,
     colback=aucteal!5!white, 
     colframe=aucteal, 
     colbacktitle=aucteal,

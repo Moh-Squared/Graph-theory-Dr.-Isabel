@@ -22,7 +22,7 @@
 
 % 1.2 Definition (Red Box)
 \begin{definition}
-A \textbf{graph} $G=(V,E)$ is a pair of sets $V$ and $E$ s.t. $E$ consists of subsets of $V$ of size two. $V$ is called the set of \textbf{vertices} and $E$ the set of \textbf{edges}. A graph $G$ is called \textbf{finite} if $V$ is a finite set. The \textbf{order} $|G|$ of a graph $G=(V,E)$ is the cardinality of its vertex set, so $|G|=|V|$. The \textbf{size} $\|G\|$ of $G$ is the cardinality of its edge set, $\|G\|=|E|$.
+A \textbf{graph} $G=(V,E)$ is a pair of sets $V$ and $E$ such that $E$ consists of subsets of $V$ of size two. $V$ is called the set of \textbf{vertices} and $E$ the set of \textbf{edges}. A graph $G$ is called \textbf{finite} if $V$ is a finite set. The \textbf{order} $|G|$ of a graph $G=(V,E)$ is the cardinality of its vertex set, so $|G|=|V|$. The \textbf{size} $\|G\|$ of $G$ is the cardinality of its edge set, $\|G\|=|E|$.
 \end{definition}
 
 % 1.3 Visualisation (Text Block)
@@ -94,7 +94,7 @@ Let $G=(V,E)$ be a graph.
 \begin{example}
 Consider $G$ given by:
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=2]
     \coordinate (a) at (0,1);
     \coordinate (b) at (1,1);
     \coordinate (c) at (2,1);
@@ -103,23 +103,28 @@ Consider $G$ given by:
     \coordinate (f) at (1.5,0);
     \coordinate (g) at (2.5,0.5);
 
-    \draw[cyan!80!black] (a) -- (d) -- (b) -- (a) -- (e) -- (d) -- (f) -- (e);
-    \draw[cyan!80!black] (d) -- (g) -- (c) -- (d);
-    \draw[cyan!80!black] (f) -- (g);
+    % Edges (Cyan color to match notes)
+    \draw[cyan, thick] (a) -- (d) -- (c) -- (g) -- (f) -- (e) -- (a); % Outer cycle
+    \draw[cyan, thick] (a) -- (d);
+    \draw[cyan, thick] (b) -- (d);
+    \draw[cyan, thick] (c) -- (d);
+    \draw[cyan, thick] (e) -- (d);
+    \draw[cyan, thick] (f) -- (d);
 
     \foreach \point in {a,b,c,d,e,f,g} \filldraw (\point) circle (2pt);
     \node[above] at (a) {$a$}; \node[above] at (b) {$b$}; \node[above] at (c) {$c$};
     \node[below] at (d) {$d$}; \node[below] at (e) {$e$}; \node[below] at (f) {$f$}; \node[right] at (g) {$g$};
 \end{tikzpicture}
 \end{center}
-Then $\Delta(G)=5$, $\delta(G)=1$. $N(e)=\{a,d,f\}$, $N[b]=\{b,d\}$.
+Then $\Delta(G)=5$, $\delta(G)=1$. $N(e)=\{a,d,f\}$, $N[b]=\{b,d\}$. $N[a,g]=\{a,c,d,e,f,g\}$
+Order of $G$, size of $G$ is 9. Degree sequence $(5,3,3,2,2,2,1)$.
 \end{example}
 
 % 1.8 Example
 \begin{example}
 Consider $G$ given via the diagram:
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=2]
     \coordinate (a) at (0,1); \node[left] at (a) {$a$};
     \coordinate (b) at (1,1); \node[above] at (b) {$b$};
     \coordinate (c) at (2,1); \node[above] at (c) {$c$};
@@ -129,16 +134,22 @@ Consider $G$ given via the diagram:
     \coordinate (f) at (1,0); \node[below] at (f) {$f$};
     \coordinate (g) at (2,0); \node[below] at (g) {$g$};
     \coordinate (h) at (3,0); \node[right] at (h) {$h$};
+    \coordinate (i) at (4,0.5); \node[right] at (i) {$i$};
     
-    \draw[cyan!80!black] (a)--(b)--(c)--(d);
-    \draw[cyan!80!black] (e)--(f)--(g)--(h);
-    \draw[cyan!80!black] (a)--(e); \draw[cyan!80!black] (b)--(f); \draw[cyan!80!black] (c)--(g); \draw[cyan!80!black] (d)--(h);
-    \draw[cyan!80!black] (b)--(e); \draw[cyan!80!black] (c)--(f);
+    % Edges (Cyan color to match notes)
+    \draw[cyan, thick] (h) -- (g) -- (d) -- (f) -- (c) -- (b) -- (e) -- (a); % Outer cycle
+    \draw[cyan, thick] (b) -- (g);
+    \draw[cyan, thick] (a) to[bend left=25] (d); % {a,d} curved top
     
-    \foreach \p in {a,b,c,d,e,f,g,h} \filldraw (\p) circle (2pt);
+    \foreach \p in {a,b,c,d,e,f,g,h,i} \filldraw (\p) circle (2pt);
 \end{tikzpicture}
 \end{center}
-$|G|=9$, size of $G$ is 9. Degree sequence $(3,3,3,2,2,2,2,1,0)$.
+
+Then $V(G)=\{a,b,c,d,e,f,g,h,i\}$ \\
+$E(G)=\{\{a,d\}, \{a,e\}, \{b,c\}, \{b,e\}, \{b,g\}, \{c,f\}, \{d,f\}, \{d,g\}, \{g,h\}\}$
+
+Order $|G|=9$, size of $G$ is 9, degree sequence $(3,3,3,2,2,2,2,1,0)$. \\
+$N(f)=\{c,d\}$, $N[d,e]=\{a,b,c,d,e,f\}$, $\Delta(G)=3$, $\delta(G)=0$. 
 \end{example}
 
 % 1.9 Remark
@@ -147,14 +158,112 @@ A graph can be considered as a set $V$ together with a binary relation $E$ on $V
 \end{remark}
 
 % 1.10 Definition
-\topic{Definition (Variants of Graphs)}
-
+\begin{definition}[Variants of Graphs]
 \begin{enumerate}
-    \item If $G=(V,E)$ and we replace $E$ with a set of ordered pairs, then we call $G$ a \textbf{directed graph} or \textbf{digraph}.
-    \item If $E$ is a multiset (iterations of the same elements are distinguished), then we call $G$ a \textbf{multigraph}.
-    \item If we extend $E$ by allowing loops, we call $G$ a \textbf{pseudograph}.
-    \item If we allow edges to be arbitrary sets of vertices instead of 2-elementary ones, we call $G$ a \textbf{hypergraph}.
+    \item If $G=(V,E)$ and we replace $E$ with a set of ordered pairs, then we call $G$ a \textbf{\color{red}directed graph} or \textbf{\color{red}digraph}.
+    \\[0.2cm]
+    \textbf{Ex:} $V(G)=\{a,b,c,d\}$, $E(G)=\{(a,b), (a,c), (a,d), (d,a), (d,c)\}$
+    \begin{center}
+    \begin{tikzpicture}[scale=1.2]
+        \coordinate (a) at (0,0);
+        \coordinate (b) at (1,1.5);
+        \coordinate (c) at (1,-0.5);
+        \coordinate (d) at (2,0.5);
+
+        % Edges with LARGE arrows
+        % {Stealth[scale=1.5]} makes the arrowhead 50% bigger
+        \tikzset{arrowstyle/.style={-{Stealth[scale=1]}, very thick, cyan!80!black}}
+
+        \draw[arrowstyle] (a) -- (b);
+        \draw[arrowstyle] (a) -- (c);
+        \draw[arrowstyle] (d) -- (c);
+        
+        % Curved edges for a <-> d
+        \draw[arrowstyle] (a) to[bend left=15] (d);
+        \draw[arrowstyle] (d) to[bend left=15] (a);
+
+        % Nodes
+        \foreach \p/\pos/\label in {a/below left/a, b/above/b, c/below/c, d/right/d}
+            \filldraw (\p) circle (2pt) node[\pos] {$\label$};
+    \end{tikzpicture}
+    \end{center}
+
+    \item If $G=(V,E)$ and we replace $E$ by a multiset (iterations of the same elements are distinguished), then we call $G$ a \textbf{\color{red}multigraph}.
+    \\[0.2cm]
+    \textbf{Ex:} $E = [\{a,c\}, \{b,c\}, \{b,c\}, \{b,c\}]$
+    \begin{center}
+    \begin{tikzpicture}[scale=1.2]
+        \coordinate (a) at (0,0);
+        \coordinate (b) at (1,1.5);
+        \coordinate (c) at (1,-0.5);
+        \coordinate (d) at (2,0.5); % Isolated node d in drawing
+
+        % Edges
+        \draw[thick, cyan!80!black] (a) -- (c);
+        \draw[thick, cyan!80!black] (b) -- (c); % Middle edge
+        \draw[thick, cyan!80!black] (b) to[bend right=30] (c);
+        \draw[thick, cyan!80!black] (b) to[bend left=30] (c);
+
+        % Nodes
+        \foreach \p/\pos/\label in {a/below left/a, b/above/b, c/below/c, d/right/d}
+            \filldraw (\p) circle (2pt) node[\pos] {$\label$};
+    \end{tikzpicture}
+    \end{center}
+
+    \item If $G=(V,E)$ and we extend $E$ by allowing loops, we call $G$ a \textbf{\color{red}pseudograph}.
+    \\[0.2cm]
+    \textbf{Ex:} $E=\{\{a,b\}, \{b,d\}, \{c,c\}, \{d,d\}\}$
+    \begin{center}
+    \begin{tikzpicture}[scale=1.2]
+        \coordinate (a) at (0,0);
+        \coordinate (b) at (1,1);
+        \coordinate (c) at (1.5,-0.5);
+        \coordinate (d) at (2,0.5);
+
+        % Edges
+        \draw[thick, cyan!80!black] (a) -- (b);
+        \draw[thick, cyan!80!black] (b) -- (d);
+        
+        % Loops
+        \draw[thick, cyan!80!black] (d) to[out=-45,in=45,loop, min distance=10mm] (d);
+        \draw[thick, cyan!80!black] (c) to[out=45,in=135,loop, min distance=10mm] (c);
+
+        % Nodes
+        \foreach \p/\pos/\label in {a/below left/a, b/above/b, c/below/c, d/above left/d}
+            \filldraw (\p) circle (2pt) node[\pos] {$\label$};
+    \end{tikzpicture}
+    \end{center}
+
+    \item If we allow edges to be arbitrary sets of vertices instead of 2-elementary ones, we call $G$ a \textbf{\color{red}hypergraph}.
+    \\[0.2cm]
+    \textbf{Ex:} $E=\{\{a\}, \{a,b,d\}, \{b,c,d\}, \{c,d\}\}$
+    \begin{center}
+    \begin{tikzpicture}[scale=1.5]
+        \coordinate (a) at (0,0.5);
+        \coordinate (b) at (1.5,1.5);
+        \coordinate (c) at (1.5,-0.5);
+        \coordinate (d) at (2.5,0.5);
+
+        % Hyperedges (Blobs)
+        % {a}
+        \draw[thick, cyan!80!black] (a) circle (0.3cm);
+        
+        % {c,d}
+        \draw[thick, cyan!80!black] plot [smooth cycle, tension=0.8] coordinates { (1.5,-0.8) (2.8,0.5) (2.2,0.8) (1.2,-0.2) };
+        
+        % {a,b,d} - Large curvy shape
+        \draw[thick, cyan!80!black] plot [smooth cycle, tension=0.8] coordinates { (-0.3,0.5) (1.5,1.8) (2.8,0.5) (1.5,0.2) };
+        
+        % {b,c,d} - Vertical curvy shape
+        \draw[thick, cyan!80!black] plot [smooth cycle, tension=0.8] coordinates { (1.5,1.8) (2.8,0.5) (1.5,-0.8) (1.2,0.5) };
+
+        % Nodes
+        \foreach \p/\pos/\label in {a/left/a, b/above/b, c/below/c, d/right/d}
+            \filldraw (\p) circle (2pt) node[\pos] {$\label$};
+    \end{tikzpicture}
+    \end{center}
 \end{enumerate}
+\end{definition}
 
 % 1.11 Setting
 \topic{Setting}
@@ -163,27 +272,120 @@ In this lecture, unless otherwise stated, by a graph we mean a finite, simple gr
 % 1.12 Definition
 \begin{definition}
 \begin{itemize}
-    \item The \textbf{complete graph} $K_n$ for $n \ge 1$ is the graph consisting of $n$ vertices such that any two vertices are adjacent.
-    \item The \textbf{empty graph} $E_n$ is the graph consisting of $n$ vertices and no edges.
+    \item The \textbf{\color{red}complete graph $K_n$} for $n \ge 1$ is the graph consisting of $n$ vertices such that any two vertices are adjacent.
+    \\[0.2cm]
+    \textbf{e.g.}
+    \begin{center}
+    \begin{tikzpicture}[scale=0.8]
+        % K1
+        \node at (0, 1.2) {$K_1$};
+        \filldraw (0,0) circle (3pt);
+
+        % K2
+        \begin{scope}[xshift=2cm]
+            \node at (0.5, 1.2) {$K_2$};
+            \draw[cyan!80!black, thick] (0,0) -- (1,0);
+            \filldraw (0,0) circle (3pt);
+            \filldraw (1,0) circle (3pt);
+        \end{scope}
+
+        % K3
+        \begin{scope}[xshift=5cm]
+            \node at (0.5, 1.2) {$K_3$};
+            \coordinate (a) at (0,0); 
+            \coordinate (b) at (1,0); 
+            \coordinate (c) at (0.5, 0.866);
+            \draw[cyan!80!black, thick] (a)--(b)--(c)--(a);
+            \foreach \p in {a,b,c} \filldraw (\p) circle (3pt);
+        \end{scope}
+
+        % K4
+        \begin{scope}[xshift=8cm]
+            \node at (0, 1.2) {$K_4$};
+            \foreach \i in {1,...,4} \coordinate (v\i) at (90*\i+45:0.7); 
+            \foreach \i in {1,...,4}
+                \foreach \j in {\i,...,4}
+                    \draw[cyan!80!black, thick] (v\i) -- (v\j);
+            \foreach \i in {1,...,4} \filldraw (v\i) circle (3pt);
+        \end{scope}
+
+        % K5
+        \begin{scope}[xshift=11cm]
+            \node at (0, 1.2) {$K_5$};
+            \foreach \i in {1,...,5} \coordinate (v\i) at (90+72*\i:0.7);
+            \foreach \i in {1,...,5}
+                \foreach \j in {\i,...,5}
+                    \draw[cyan!80!black, thick] (v\i) -- (v\j);
+            \foreach \i in {1,...,5} \filldraw (v\i) circle (3pt);
+            
+            \node at (1.5,0) {$\dots$};
+        \end{scope}
+    \end{tikzpicture}
+    \end{center}
+
+    \item The \textbf{\color{red}empty graph $E_n$} is the graph consisting of $n$ vertices and no edges.
+    \\[0.2cm]
+    \textbf{e.g.}
+    \begin{center}
+    \begin{tikzpicture}[scale=0.8]
+        % E1
+        \node at (0, 1.2) {$E_1$};
+        \filldraw (0,0) circle (3pt);
+
+        % E2
+        \begin{scope}[xshift=2cm]
+            \node at (0.5, 1.2) {$E_2$};
+            \filldraw (0,0) circle (3pt);
+            \filldraw (1,0) circle (3pt);
+        \end{scope}
+
+        % E3
+        \begin{scope}[xshift=5cm]
+            \node at (0.5, 1.2) {$E_3$};
+            \coordinate (a) at (0,0); 
+            \coordinate (b) at (1,0); 
+            \coordinate (c) at (0.5, 0.866);
+            \foreach \p in {a,b,c} \filldraw (\p) circle (3pt);
+        \end{scope}
+
+        % E4
+        \begin{scope}[xshift=8cm]
+            \node at (0, 1.2) {$E_4$};
+            \foreach \i in {1,...,4} \coordinate (v\i) at (90*\i+45:0.7); 
+            \foreach \i in {1,...,4} \filldraw (v\i) circle (3pt);
+            
+            \node at (1.5,0) {$\dots$};
+        \end{scope}
+    \end{tikzpicture}
+    \end{center}
 \end{itemize}
 \end{definition}
 
 % 1.13 The Handshaking Lemma
+% 1.13 The Handshaking Lemma
 \begin{theorem}[The Handshaking Lemma]
 If $G=(V,E)$ is a graph, then
-\[ \sum_{v \in V} \deg(v) = 2|E|. \]
+\[ \sum_{v \in V} \deg(v) = 2|E|. \quad (*) \]
 \end{theorem}
 
 \begin{proof}
 We proceed by induction on $n := |E|$.
-\textbf{n=0:} If $|E|=0$, then $\deg(v)=0$ for any $v \in V$, whence clearly $0 = \sum \deg(v) = 2|E| = 0$.
 
-\textbf{n $\to$ n+1:} Assume $(*)$ holds for any $G'=(V',E')$ with $|E'|=n$ (I.H.) and consider $G=(V,E)$ with $|E|=n+1 (\ge 1)$ arbitrary. Let $e \in E$ arbitrary and consider $G'=(V, E \setminus \{e\})$. Then, if $e=uv$, we get $|E(G)| = |E(G')|+1$ and
-\[ \deg_G(u) = \deg_{G'}(u) + 1 \quad \text{and} \quad \deg_G(v) = \deg_{G'}(v) + 1, \]
-whence
-\[ 2|E(G)| = 2|E(G')| + 2 \overset{\text{I.H.}}{=} \sum_{w \in V} \deg_{G'}(w) + 2 \]
-\[ = \sum_{w \in V \setminus \{u,v\}} \deg_{G'}(w) + \deg_{G'}(u) + 1 + \deg_{G'}(v) + 1 \]
-\[ = \sum_{w \in V} \deg_G(w), \text{ as desired.} \qedhere \]
+\vspace{0.3cm}
+\noindent \underline{\textbf{n=0:}} If $|E|=0$, then $\deg(v)=0$ for any $v \in V$, whence clearly
+\[ 0 = \sum_{v \in V} \deg(v) = 2|E| = 0. \]
+
+\vspace{0.3cm}
+\noindent \underline{\textbf{n $\to$ n+1:}} Assume $(*)$ holds for any $G'=(V',E')$ with $|E'|=n$ (I.H.) and consider $G=(V,E)$ with $|E|=n+1 (\ge 1)$ arbitrary. Let $e \in E$ arbitrary and consider $G'=(V, E \setminus \{e\})$. Then, if $e=uv$, we get $|E(G)| = |E(G')|+1$ and
+\[ \deg_G(u) = \deg_{G'}(u) + 1 \quad \text{and} \quad \deg_G(v) = \deg_{G'}(v) + 1, \text{ whence} \]
+
+\vspace{-0.2cm}
+\begin{align*}
+    2|E(G)| &= 2|E(G')| + 2 \\
+    &\overset{\text{I.H.}}{=} \sum_{w \in V} \deg_{G'}(w) + 2 \\
+    &= \sum_{w \in V \setminus \{u,v\}} \deg_{G'}(w) + \deg_{G'}(u) + 1 + \deg_{G'}(v) + 1 \\
+    &= \sum_{w \in V} \deg_G(w), \quad \text{as desired.} \qedhere
+\end{align*}
 \end{proof}
 
 % 1.14 Corollary
@@ -209,7 +411,7 @@ Using Theorem 1.13, $\sum \deg(v) = 2|E|$. Dividing by $|V|$ yields the result.
 If $|G| \ge 2$, then $G$ contains at least two vertices of the same degree.
 \end{lemma}
 \begin{proof}
-If $G$ has two vertices of degree 0, then we are done. Otherwise, we may assume that $G$ has none. If $|V|=n$, and $v \in V$, then $1 \le \deg(v) \le n-1$. Note that this leaves us with $n-1$ choices of degrees for $n$ many different vertices. Hence, at least two vertices must have the same degree.
+If $G$ has two vertices of degree 0, then we are done. Otherwise, we may assume that $G$ has none. If $|G|=n$, and $v \in V$, then $1 \le \deg(v) \le n-1$. Note that this leaves us with $n-1$ choices of degrees for $n$ many different vertices. Hence, at least two vertices must have the same degree.
 \end{proof}
 
 % 1.17 Remark
@@ -220,9 +422,78 @@ The above line of thought is called the \textbf{pigeon hole principle}. If there
 % 1.18 Definition
 \begin{definition}
 \begin{enumerate}
-    \item The \textbf{path} $P_n$ is the graph on $n$ vertices $v_1, \dots, v_n$ with the edge set $E(P_n) = \{v_i v_{i+1} \mid 1 \le i < n\}$.
-    \item The \textbf{cycle} $C_n$ is the graph on $n$ vertices with edge set $E(C_n) = \{v_i v_{i+1} \mid 1 \le i < n\} \cup \{v_n v_1\}$.
-    \item Let $G=(V,E)$ be an arbitrary graph. The \textbf{complement} $\overline{G}$ of $G$ is the graph $\overline{G}=(V, \overline{E})$, where $\overline{E} = \{uv \mid u,v \in V, uv \notin E\}$.
+    \item[1)] The \textbf{\color{red}path $P_n$} is the graph on $n$ vertices $v_1, \dots, v_n$ with the edge set $E(P_n) = \{v_i v_{i+1} \mid 1 \le i < n\}$, i.e. $P_n$ is represented by the diagram
+    \begin{center}
+    \begin{tikzpicture}[scale=1.2]
+        \draw[cyan!80!black, thick] (0,0) -- (3,0);
+        \foreach \x/\l in {0/v_1, 1/v_2, 2/v_3, 3/v_4}
+            \filldraw (\x,0) circle (2pt) node[below=5pt] {$\l$};
+        
+        \node at (4,0) {$\dots$};
+        
+        \draw[cyan!80!black, thick] (5,0) -- (6,0);
+        \filldraw (5,0) circle (2pt) node[below=5pt] {$v_{n-1}$};
+        \filldraw (6,0) circle (2pt) node[below=5pt] {$v_n$};
+    \end{tikzpicture}
+    \end{center}
+
+    \item[2)] The \textbf{\color{red}cycle $C_n$} is the graph on $n$ vertices with edge set $E(C_n) = \{v_i v_{i+1} \mid 1 \le i < n\} \cup \{v_n v_1\}$. E.g.
+    \begin{center}
+    \begin{tikzpicture}[scale=1.2]
+        \node at (-2, 0) {\large $C_6$ is};
+        
+        % Define coordinates first
+        \foreach \i in {1,...,6} {
+            % Angle: Start at 90 (v1), rotate clockwise by 60 degrees
+            \pgfmathsetmacro{\ang}{90 - (\i-1)*60}
+            \coordinate (v\i) at (\ang:1);
+        }
+        
+        % Draw edges
+        \draw[cyan!80!black, thick] (v1)--(v2)--(v3)--(v4)--(v5)--(v6)--(v1);
+        
+        % Draw nodes and labels
+        \foreach \i in {1,...,6} {
+            \pgfmathsetmacro{\ang}{90 - (\i-1)*60}
+            % shift={(\ang:0.4)} moves the label 0.4cm away from the node in the direction of the angle
+            \filldraw (v\i) circle (2pt) node[shift={(\ang:0.4)}] {$v_{\i}$};
+        }
+    \end{tikzpicture}
+    \end{center}
+
+    \item[3)] Let $G=(V,E)$ be an arbitrary graph. The \textbf{\color{red}complement $\overline{G}$} of $G$ is the graph $\overline{G}=(V, \overline{E})$, where $\overline{E} = \{uv \mid u,v \in V, uv \notin E\}$.
+    \begin{center}
+    \begin{tikzpicture}[scale=1]
+        \node at (-1, 0.5) {e.g. If $G$ is};
+        
+        % Graph G
+        \begin{scope}[xshift=0cm]
+            \coordinate (v1) at (0,1); \node[left] at (v1) {$v_1$};
+            \coordinate (v2) at (1,1.5); \node[above] at (v2) {$v_2$};
+            \coordinate (v3) at (0.5,-0.5); \node[below] at (v3) {$v_3$};
+            \coordinate (v4) at (2,0); \node[right] at (v4) {$v_4$};
+            
+            \draw[cyan!80!black, thick] (v1)--(v2)--(v4)--(v3)--(v1)--(v4);
+            
+            \foreach \p in {v1,v2,v3,v4} \filldraw (\p) circle (2pt);
+        \end{scope}
+        
+        \node at (4, 0.5) {, then $\overline{G}$ is};
+        
+        % Graph G_bar (Complement)
+        \begin{scope}[xshift=6cm]
+            \coordinate (u1) at (0,1); \node[left] at (u1) {$v_1$};
+            \coordinate (u2) at (1,1.5); \node[above] at (u2) {$v_2$};
+            \coordinate (u3) at (0.5,-0.5); \node[below] at (u3) {$v_3$};
+            \coordinate (u4) at (2,0); \node[right] at (u4) {$v_4$};
+            
+            % Edges NOT in G: v2-v3 is the only missing edge in K4-e
+            \draw[cyan!80!black, thick] (u2)--(u3);
+            
+            \foreach \p in {u1,u2,u3,u4} \filldraw (\p) circle (2pt);
+        \end{scope}
+    \end{tikzpicture}
+    \end{center}
 \end{enumerate}
 \end{definition}
 

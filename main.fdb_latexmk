@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1768952573.45041 "c:/Users/pc/Desktop/Graph theory Dr. Isabel/main.tex" "main.pdf" "main" 1768952576.12772 0
-  "C:/Users/pc/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1768949913 355436 054cd8a765e2d1b9fbaa542e24968760 ""
+["pdflatex"] 1768999136.15669 "c:/Users/pc/Desktop/Graph theory Dr. Isabel/main.tex" "main.pdf" "main" 1768999145.96144 0
+  "C:/Users/pc/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1768999141 355436 054cd8a765e2d1b9fbaa542e24968760 ""
   "C:/Users/pc/AppData/Local/MiKTeX/fonts/tfm/public/stmaryrd/stmary10.tfm" 1768949916 848 f478e0761563bbc369eca609a1741348 ""
   "C:/Users/pc/AppData/Local/MiKTeX/fonts/tfm/public/stmaryrd/stmary6.tfm" 1768949918 848 068dd119e13b75777e62821af7d4f2a6 ""
   "C:/Users/pc/AppData/Local/MiKTeX/fonts/tfm/public/stmaryrd/stmary7.tfm" 1768951652 848 26631fcb3e4cb6757598b9cda7967b63 ""
@@ -47,6 +47,7 @@
   "C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb" 1256929440 23055 2e5b42921de910eaa97b85df04ca4891 ""
   "C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb" 1256929440 30696 3da7e46ecf5615eedebd9f27dab4d9d7 ""
   "C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi8.pfb" 1256929440 30635 833ec815d446ec453a4913fc26d24cbc ""
+  "C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb" 1256929440 119235 05e5c8d6d60439433e50047898c2c0e0 ""
   "C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb" 1256929440 113634 9384aebdf26f9881e046a4b5574566db ""
   "C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb" 1256929440 122174 a2d5e73f396ddbeb3bdf5c79aea0993d ""
   "C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb" 1256929440 109265 e6c7d377db6dfccd4a123fb26da8cffb ""
@@ -204,6 +205,7 @@
   "C:/Users/pc/AppData/Local/Programs/MiKTeX/tex/latex/lm/ts1lmr.fd" 1430474546 1914 884882d7ebb0fd65cea93fca77ff6f5a ""
   "C:/Users/pc/AppData/Local/Programs/MiKTeX/tex/latex/mathtools/mathtools.sty" 1728300125 62711 3b0ed1d68b598a75677c10d16646d5e5 ""
   "C:/Users/pc/AppData/Local/Programs/MiKTeX/tex/latex/mathtools/mhsetup.sty" 1728300125 5582 a43dedf8e5ec418356f1e9dfe5d29fc3 ""
+  "C:/Users/pc/AppData/Local/Programs/MiKTeX/tex/latex/needspace/needspace.sty" 1742730683 1297 95e05b694b6d7375c39c5145fe24b731 ""
   "C:/Users/pc/AppData/Local/Programs/MiKTeX/tex/latex/pdfcol/pdfcol.sty" 1663942424 8086 ac143843b6ea88d172677dc3ed532925 ""
   "C:/Users/pc/AppData/Local/Programs/MiKTeX/tex/latex/pgf/basiclayer/pgf.sty" 1673775190 1090 bae35ef70b3168089ef166db3e66f5b2 ""
   "C:/Users/pc/AppData/Local/Programs/MiKTeX/tex/latex/pgf/basiclayer/pgfcore.sty" 1673775190 373 00b204b1d7d095b892ad31a7494b0373 ""
@@ -246,13 +248,13 @@
   "C:/Users/pc/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/pc/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1656236890 56148 51a9a8571c07b9921892ae11063ae853 ""
   "c:/Users/pc/Desktop/Graph theory Dr. Isabel/main.tex" 1768950974 2788 a9dbb56486c49fc0f3e4a933d82c6402 ""
-  "chapters/chapter1.tex" 1768952074 23134 c430ee986b286fcd17057011075f8269 ""
+  "chapters/chapter1.tex" 1768998205 33174 954c83078532bd022fc1fa799f879ac5 ""
   "logo.png" 1768843890 16091 4bde6fa1bbc729528ad5620efd65a284 ""
-  "main.aux" 1768952575 1590 e92d1293e0d9bf63b9331be570c5a959 "pdflatex"
-  "main.out" 1768952575 812 c47628fbd5b6a1df970a9c13098f4efe "pdflatex"
+  "main.aux" 1768999145 1592 1f650d2868cd181c1751a8535bf70084 "pdflatex"
+  "main.out" 1768999145 812 c47628fbd5b6a1df970a9c13098f4efe "pdflatex"
   "main.tex" 1768950974 2788 a9dbb56486c49fc0f3e4a933d82c6402 ""
-  "main.toc" 1768952575 523 eb9d3c7f1752329cc87d3cee98aa3657 "pdflatex"
-  "preamble.tex" 1768952572 4305 56627eb95f3ae048bf529e79b2531f90 ""
+  "main.toc" 1768999145 525 5b2552efbe64182ba094c0ae77493f80 "pdflatex"
+  "preamble.tex" 1768999135 4508 cb323a383edfb08815f1d8c758aa21f8 ""
   (generated)
   "main.aux"
   "main.log"
