@@ -1,5 +1,5 @@
 % =============================================================
-% PREAMBLE.TEX - VISUAL STYLE MATCHED TO REAL ANALYSIS
+% PREAMBLE.TEX - NO INDENTS, RUN-IN HEADERS
 % =============================================================
 
 \usepackage[utf8]{inputenc}
@@ -12,6 +12,15 @@
 \usepackage{fancyhdr}
 \usepackage{lastpage}
 \usepackage{needspace}
+\usepackage{etoolbox} % For conditional logic
+
+% --- Paragraph Styling (Real Analysis Style) ---
+% No indentation, space between paragraphs
+\usepackage[parfill]{parskip} 
+
+% --- Typographic Penalties ---
+\widowpenalty=10000
+\clubpenalty=10000
 
 % --- Math & Symbols ---
 \usepackage{amsmath, amssymb, amsthm, amsfonts}
@@ -24,7 +33,7 @@
 \usepackage{tikz} 
 \usetikzlibrary{positioning, arrows.meta, shapes, calc}
 
-% --- Color Definitions (Exact Match) ---
+% --- Color Definitions ---
 \definecolor{aucred}{RGB}{140, 0, 50}   
 \definecolor{aucteal}{RGB}{0, 96, 96}   
 \definecolor{aucblue}{RGB}{0, 0, 60}    
@@ -35,10 +44,10 @@
 % --- CUSTOM HEADER STYLING ---
 \usepackage{titlesec}
 
-% 1. Section Numbering: "1." instead of "1.1"
+% 1. Section Numbering
 \renewcommand{\thesection}{\arabic{section}}
 
-% 2. Chapter Heading Style (Double Rules, Small Caps)
+% 2. Chapter Heading Style
 \titleformat{\chapter}[display]
   {\normalfont\centering\color{aucblue}}
   {\titlerule[2.5pt]\vspace{2pt}\titlerule[1pt] \vspace{1ex} \huge\scshape\chaptertitlename\ \thechapter}
@@ -46,7 +55,7 @@
   {\titlerule[1pt]\vspace{2pt}\titlerule[2.5pt] \vspace{4ex} \Huge\scshape}
   []
 
-% 3. Section Heading Style (Centered, Large, Small Caps)
+% 3. Section Heading Style
 \titleformat{\section}
   {\normalfont\Large\scshape\centering\color{aucblue}} 
   {\thesection.} 
@@ -54,91 +63,94 @@
   {}
 
 % --- UNIFIED COUNTER SYSTEM ---
-% A single counter 'seq' for EVERYTHING (Recall, Defs, Theorems)
 \newcounter{seq}[chapter]
 \renewcommand{\theseq}{\thechapter.\arabic{seq}}
 
-% --- Custom Command for Text Topics (Recall, Visualisation, etc.) ---
+% --- Custom Command for Text Topics ---
 \newcommand{\topic}[1]{%
     \par\vspace{0.5cm}\noindent%
+    \needspace{3\baselineskip}% 
     \refstepcounter{seq}%
     {\large \underline{\textbf{\theseq~#1}}}%
     \par\vspace{0.2cm}%
 }
 
-% --- BOX ENVIRONMENTS (FIXED VISUALS) ---
+% --- BOX ENVIRONMENTS ---
 \usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable, skins}
 
-% Global Box Style: Full Header, Thin Border, Rounded
+% Global Box Style
 \tcbset{
     auccommon/.style={
-        enhanced jigsaw,
+        enhanced jigsaw,      
+        breakable,            
+        lines before break=4, 
         fonttitle=\bfseries,
         coltitle=white,
-        boxrule=1pt,        % Thin border (Matches screenshot)
-        arc=2mm,              % Rounded corners
-        left=2mm, right=2mm, top=2mm, bottom=2mm, % Inner padding
-        toptitle=0.5mm, bottomtitle=0.5mm, % Header padding
-        oversize=0pt,         % Prevents box from spilling into margins
+        boxrule=0.5pt,        
+        arc=2mm,              
+        left=2mm, right=2mm, top=2mm, bottom=2mm, 
+        toptitle=1.5mm, bottomtitle=1.5mm,
+        oversize=0pt,
     }
 }
 
-% 1. Definition Box (Red Header, Light Red Body)
+% 1. Definition Box
 \newtcolorbox{definition}[1][]{%
     auccommon,
-    breakable,
-    lines before break=5,
     colback=aucred!5!white, 
     colframe=aucred, 
     colbacktitle=aucred,
     title=Definition~\refstepcounter{seq}\theseq~#1
 }
 
-% 2. Theorem Box (Teal Header, Light Teal Body)
+% 2. Theorem Box
 \newtcolorbox{theorem}[1][]{%
     auccommon,
-    breakable,
-    lines before break=5,
     colback=aucteal!5!white, 
     colframe=aucteal, 
     colbacktitle=aucteal,
     title=Theorem~\refstepcounter{seq}\theseq~#1
 }
 
-% 3. Lemma Box (Teal Header)
+% 3. Lemma Box
 \newtcolorbox{lemma}[1][]{%
     auccommon,
-    breakable,
-    lines before break=5,
     colback=aucteal!5!white, 
     colframe=aucteal, 
     colbacktitle=aucteal,
     title=Lemma~\refstepcounter{seq}\theseq~#1
 }
 
-% 4. Corollary Box (Teal Header)
+% 4. Corollary Box
 \newtcolorbox{corollary}[1][]{%
     auccommon,
-    breakable,
-    lines before break=5,
     colback=aucteal!5!white, 
     colframe=aucteal, 
     colbacktitle=aucteal,
     title=Corollary~\refstepcounter{seq}\theseq~#1
 }
 
-% 5. Example Environment (Text Only, Blue Label)
+% 5. Example Environment (Run-in Style)
 \newenvironment{example}[1][]{%
     \par\vspace{0.5cm}\noindent
+    \needspace{3\baselineskip}% 
     \refstepcounter{seq}%
-    \textbf{\color{aucblue}Example \theseq.} \textit{#1} \par
+    \textbf{\color{aucblue}Example \theseq.}%
+    \ifstrempty{#1}{}{ \textit{#1}}% Optional title
+    \hspace{0.5em}% Space before text starts
+    \ignorespaces
 }{\par\vspace{0.5cm}}
 
-% 6. Remark Environment (Text Only, Blue Label)
+% 6. Remark Environment (Run-in Style)
 \newenvironment{remark}[1][]{%
     \par\vspace{0.5cm}\noindent
+    \needspace{3\baselineskip}% 
     \refstepcounter{seq}%
-    \textbf{\color{aucblue}Remark \theseq.} \textit{#1} \par
+    \textbf{\color{aucblue}Remark \theseq.}%
+    \ifstrempty{#1}{}{ \textit{#1}}% Optional title
+    \hspace{0.5em}% Space before text starts
+    \ignorespaces
 }{\par\vspace{0.5cm}}
 
 % Proof Environment
