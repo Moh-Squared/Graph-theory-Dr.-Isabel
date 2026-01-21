@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1769003865.46778 "c:/Users/pc/Desktop/Graph theory Dr. Isabel/main.tex" "main.pdf" "main" 1769003869.57836 0
+["pdflatex"] 1769004179.51007 "c:/Users/pc/Desktop/Graph theory Dr. Isabel/main.tex" "main.pdf" "main" 1769004184.73215 0
   "C:/Users/pc/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1769001635 355436 054cd8a765e2d1b9fbaa542e24968760 ""
   "C:/Users/pc/AppData/Local/MiKTeX/fonts/tfm/public/stmaryrd/stmary10.tfm" 1768949916 848 f478e0761563bbc369eca609a1741348 ""
   "C:/Users/pc/AppData/Local/MiKTeX/fonts/tfm/public/stmaryrd/stmary6.tfm" 1768949918 848 068dd119e13b75777e62821af7d4f2a6 ""
@@ -49,6 +49,7 @@
   "C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmcsc10.pfb" 1256929440 116427 4909e80035dae5d5a4ec2b5ddd9649dd ""
   "C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb" 1256929440 23055 2e5b42921de910eaa97b85df04ca4891 ""
   "C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb" 1256929440 30696 3da7e46ecf5615eedebd9f27dab4d9d7 ""
+  "C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi6.pfb" 1256929440 31113 04b711c9a4c7f8cb4ed784c6fc4cc1c5 ""
   "C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi8.pfb" 1256929440 30635 833ec815d446ec453a4913fc26d24cbc ""
   "C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb" 1256929440 119235 05e5c8d6d60439433e50047898c2c0e0 ""
   "C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb" 1256929440 113634 9384aebdf26f9881e046a4b5574566db ""
@@ -254,13 +255,14 @@
   "C:/Users/pc/AppData/Local/Programs/MiKTeX/tex/latex/trimspaces/trimspaces.sty" 1253169183 1380 971a51b00a14503ddf754cab24c3f209 ""
   "C:/Users/pc/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/pc/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1656236890 56148 51a9a8571c07b9921892ae11063ae853 ""
-  "c:/Users/pc/Desktop/Graph theory Dr. Isabel/main.tex" 1768950974 2788 a9dbb56486c49fc0f3e4a933d82c6402 ""
+  "c:/Users/pc/Desktop/Graph theory Dr. Isabel/main.tex" 1769004089 2786 2854448fc47003560cd29932505f4c24 ""
   "chapters/chapter1.tex" 1769003864 59306 51b61a7ce780d9e36ebf57bacc036981 ""
+  "chapters/chapter2.tex" 1769004177 19048 d4d013b502a58313fff0deb193d19298 ""
   "logo.png" 1768843890 16091 4bde6fa1bbc729528ad5620efd65a284 ""
-  "main.aux" 1769003869 1591 4d4278c3da447568b7818b5c9ad7ba4d "pdflatex"
-  "main.out" 1769003869 812 c47628fbd5b6a1df970a9c13098f4efe "pdflatex"
-  "main.tex" 1768950974 2788 a9dbb56486c49fc0f3e4a933d82c6402 ""
-  "main.toc" 1769003869 524 2096e44a1c9d03b2702a6cd1a6aaa857 "pdflatex"
+  "main.aux" 1769004184 2013 4c8b10903a5d34f07d48c3bc6b7efbd5 "pdflatex"
+  "main.out" 1769004184 1213 ec039fbe48449b56447f3bc7bcb37bf5 "pdflatex"
+  "main.tex" 1769004089 2786 2854448fc47003560cd29932505f4c24 ""
+  "main.toc" 1769004184 747 7d12f8c75c92c2f39b50e7d6e0d1a970 "pdflatex"
   "preamble.tex" 1769001629 4509 91819749d692a520459f3dc785dcbd68 ""
   (generated)
   "main.aux"
