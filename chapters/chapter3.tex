@@ -830,7 +830,7 @@ We apply the algorithm on the following weighted graph:
 
 \begin{center}
 \begin{tikzpicture}[
-    scale=1.2, % Slightly smaller than 1.5 to save space
+    scale=1.2,
     node_style/.style={circle, fill=black, inner sep=1.5pt},
     edge_style/.style={cyan, thick},
     weight_style/.style={cyan, font=\small}
@@ -880,18 +880,18 @@ Let us mark edges we add to $F$ green and the ones we disregard, red.
     % Common TikZ settings for the small graphs
     \tikzset{
         tiny_graph/.style={
-            scale=0.7, % SCALED DOWN TO FIT PAGE
+            scale=0.85, % INCREASED SCALE FOR 2 COLUMNS
             baseline=(current bounding box.center),
             node_style/.style={circle, fill=black, inner sep=1.5pt},
             edge_style/.style={cyan, thick},
-            weight_style/.style={cyan, font=\tiny}, % Smaller font
+            weight_style/.style={cyan, font=\tiny}, 
             highlight/.style={draw=green!50!black, opacity=0.4, line width=4pt, line cap=round},
             highlightred/.style={draw=red!100!black, opacity=1, line width=4pt, line cap=round}
         }
     }
 
-    % --- ROW 1 ---
-    \begin{minipage}[t]{0.32\textwidth}
+    % --- ROW 1 (Steps 1 & 2) ---
+    \begin{minipage}[t]{0.48\textwidth}
         \textbf{1)} $E=E_G, E_F=\emptyset$ \\
         \begin{tikzpicture}[tiny_graph]
             \coordinate (a) at (0,0); \coordinate (b) at (2.5,0); \coordinate (c) at (2,1.2);
@@ -902,7 +902,7 @@ Let us mark edges we add to $F$ green and the ones we disregard, red.
         \end{tikzpicture}
     \end{minipage}%
     \hfill
-    \begin{minipage}[t]{0.32\textwidth}
+    \begin{minipage}[t]{0.48\textwidth}
         \textbf{2)} $E=E-\{ab\}, E_F=\{ab\}$ \\
         \begin{tikzpicture}[tiny_graph]
             \coordinate (a) at (0,0); \coordinate (b) at (2.5,0); \coordinate (c) at (2,1.2);
@@ -912,9 +912,12 @@ Let us mark edges we add to $F$ green and the ones we disregard, red.
             \draw[edge_style] (a)--(b) (a)--(d) (a)--(c) (b)--(c) (c)--(d) (c)--(e) (d)--(e) (d)--(g) (d)--(f) (g)--(e) (g)--(h);
             \foreach \p in {a,b,c,d,e,g,f,h} \node[node_style] at (\p) {};
         \end{tikzpicture}
-    \end{minipage}%
-    \hfill
-    \begin{minipage}[t]{0.32\textwidth}
+    \end{minipage}
+    
+    \vspace{1.5em}
+
+    % --- ROW 2 (Steps 3 & 4) ---
+    \begin{minipage}[t]{0.48\textwidth}
         \textbf{3)} $E=E-\{ac\}, E_F=E_F \cup \{ac\}$ \\
         \begin{tikzpicture}[tiny_graph]
             \coordinate (a) at (0,0); \coordinate (b) at (2.5,0); \coordinate (c) at (2,1.2);
@@ -924,12 +927,9 @@ Let us mark edges we add to $F$ green and the ones we disregard, red.
             \draw[edge_style] (a)--(b) (a)--(d) (a)--(c) (b)--(c) (c)--(d) (c)--(e) (d)--(e) (d)--(g) (d)--(f) (g)--(e) (g)--(h);
             \foreach \p in {a,b,c,d,e,g,f,h} \node[node_style] at (\p) {};
         \end{tikzpicture}
-    \end{minipage}
-
-    \vspace{1em} % Small gap between rows
-
-    % --- ROW 2 ---
-    \begin{minipage}[t]{0.32\textwidth}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
         \textbf{4)} $E=E-\{bc\}, E_F=E_F$ \\
         \begin{tikzpicture}[tiny_graph]
             \coordinate (a) at (0,0); \coordinate (b) at (2.5,0); \coordinate (c) at (2,1.2);
@@ -940,9 +940,12 @@ Let us mark edges we add to $F$ green and the ones we disregard, red.
             \draw[edge_style] (a)--(b) (a)--(d) (a)--(c) (b)--(c) (c)--(d) (c)--(e) (d)--(e) (d)--(g) (d)--(f) (g)--(e) (g)--(h);
             \foreach \p in {a,b,c,d,e,g,f,h} \node[node_style] at (\p) {};
         \end{tikzpicture}
-    \end{minipage}%
-    \hfill
-    \begin{minipage}[t]{0.32\textwidth}
+    \end{minipage}
+
+    \vspace{1.5em}
+
+    % --- ROW 3 (Steps 5 & 6) ---
+    \begin{minipage}[t]{0.48\textwidth}
         \textbf{5)} $E=E-\{gh\}, E_F=E_F \cup \{gh\}$ \\
         \begin{tikzpicture}[tiny_graph]
             \coordinate (a) at (0,0); \coordinate (b) at (2.5,0); \coordinate (c) at (2,1.2);
@@ -955,7 +958,7 @@ Let us mark edges we add to $F$ green and the ones we disregard, red.
         \end{tikzpicture}
     \end{minipage}%
     \hfill
-    \begin{minipage}[t]{0.32\textwidth}
+    \begin{minipage}[t]{0.48\textwidth}
         \textbf{6)} $E=E-\{ge\}, E_F=E_F \cup \{ge\}$ \\
         \begin{tikzpicture}[tiny_graph]
             \coordinate (a) at (0,0); \coordinate (b) at (2.5,0); \coordinate (c) at (2,1.2);
@@ -968,11 +971,11 @@ Let us mark edges we add to $F$ green and the ones we disregard, red.
         \end{tikzpicture}
     \end{minipage}
 
-    \vspace{1em}
+    \vspace{1.5em}
 
-    % --- ROW 3 ---
-    \begin{minipage}[t]{0.32\textwidth}
-        \textbf{7)} $E=E-\{gd\}, E_F=E_F \ cup \{gd\}$ \\
+    % --- ROW 4 (Steps 7 & 8) ---
+    \begin{minipage}[t]{0.48\textwidth}
+        \textbf{7)} $E=E-\{gd\}, E_F=E_F \cup \{gd\}$ \\
         \begin{tikzpicture}[tiny_graph]
             \coordinate (a) at (0,0); \coordinate (b) at (2.5,0); \coordinate (c) at (2,1.2);
             \coordinate (d) at (0.5,1.2); \coordinate (e) at (1.8,2); \coordinate (g) at (0.7,2.5);
@@ -984,8 +987,8 @@ Let us mark edges we add to $F$ green and the ones we disregard, red.
         \end{tikzpicture}
     \end{minipage}%
     \hfill
-    \begin{minipage}[t]{0.32\textwidth}
-        \textbf{8)} $E=E-\{gd\}, E_F=E_F \ cup \{gd\}$ \\
+    \begin{minipage}[t]{0.48\textwidth}
+        \textbf{8)} $E=E-\{cd\}, E_F=E_F \cup \{cd\}$ \\
         \begin{tikzpicture}[tiny_graph]
             \coordinate (a) at (0,0); \coordinate (b) at (2.5,0); \coordinate (c) at (2,1.2);
             \coordinate (d) at (0.5,1.2); \coordinate (e) at (1.8,2); \coordinate (g) at (0.7,2.5);
@@ -995,9 +998,12 @@ Let us mark edges we add to $F$ green and the ones we disregard, red.
             \draw[edge_style] (a)--(b) (a)--(d) (a)--(c) (b)--(c) (c)--(d) (c)--(e) (d)--(e) (d)--(g) (d)--(f) (g)--(e) (g)--(h);
             \foreach \p in {a,b,c,d,e,g,f,h} \node[node_style] at (\p) {};
         \end{tikzpicture}
-    \end{minipage}%
-    \hfill
-    \begin{minipage}[t]{0.32\textwidth}
+    \end{minipage}
+
+    \vspace{1.5em}
+
+    % --- ROW 5 (Steps 9 & 10) ---
+    \begin{minipage}[t]{0.48\textwidth}
         \textbf{9)} $E=E-\{ce\}, E_F=E_F$ \\
         \begin{tikzpicture}[tiny_graph]
             \coordinate (a) at (0,0); \coordinate (b) at (2.5,0); \coordinate (c) at (2,1.2);
@@ -1008,12 +1014,9 @@ Let us mark edges we add to $F$ green and the ones we disregard, red.
             \draw[edge_style] (a)--(b) (a)--(d) (a)--(c) (b)--(c) (c)--(d) (c)--(e) (d)--(e) (d)--(g) (d)--(f) (g)--(e) (g)--(h);
             \foreach \p in {a,b,c,d,e,g,f,h} \node[node_style] at (\p) {};
         \end{tikzpicture}
-    \end{minipage}
-
-    \vspace{1em}
-
-    % --- ROW 4 ---
-    \begin{minipage}[t]{0.32\textwidth}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
         \textbf{10)} $E=E-\{df\}, E_F=E_F \cup \{df\}$ \\
         \begin{tikzpicture}[tiny_graph]
             \coordinate (a) at (0,0); \coordinate (b) at (2.5,0); \coordinate (c) at (2,1.2);
@@ -1025,7 +1028,7 @@ Let us mark edges we add to $F$ green and the ones we disregard, red.
             \foreach \p in {a,b,c,d,e,g,f,h} \node[node_style] at (\p) {};
         \end{tikzpicture}
     \end{minipage}
-    \hfill
+    
 \end{minipage}
 
 \vspace{1em}
