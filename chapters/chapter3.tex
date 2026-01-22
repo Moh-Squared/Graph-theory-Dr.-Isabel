@@ -826,10 +826,11 @@ This algorithm stops after at most $|E_G|$ many repetitions.
 
 % 3.29 Example
 \begin{example}
-We apply the algorithm on
+We apply the algorithm on the following weighted graph:
+
 \begin{center}
 \begin{tikzpicture}[
-    scale=1.5,
+    scale=1.2, % Slightly smaller than 1.5 to save space
     node_style/.style={circle, fill=black, inner sep=1.5pt},
     edge_style/.style={cyan, thick},
     weight_style/.style={cyan, font=\small}
@@ -871,547 +872,168 @@ We apply the algorithm on
 
 Let us mark edges we add to $F$ green and the ones we disregard, red.
 
-\vspace{0.5cm}
+\vspace{1em}
 
-
-% --- Algorithm Steps ---
+% --- The Algorithm Steps (Wrapped in a minipage to keep them together) ---
 \noindent
-\begin{minipage}[t]{0.32\textwidth}
-    \textbf{1)} $E=E_G, E_F=\emptyset$ 
-    \begin{tikzpicture}[
-        scale=1,
-        node_style/.style={circle, fill=black, inner sep=1.5pt},
-        edge_style/.style={cyan, thick},
-        weight_style/.style={cyan, font=\small},
-        highlight/.style={draw=green!50!black, opacity=0.4, line width=6pt, line cap=round}
-    ]
-        % Coordinates
-        \coordinate (a) at (0,0);
-        \coordinate (b) at (2.5,0);
-        \coordinate (c) at (2,1.2);
-        \coordinate (d) at (0.5,1.2);
-        \coordinate (e) at (1.8,2);
-        \coordinate (g) at (0.7,2.5);
-        \coordinate (f) at (-0.8,1.8);
-        \coordinate (h) at (3.0,2.5);
+\begin{minipage}{\textwidth}
+    % Common TikZ settings for the small graphs
+    \tikzset{
+        tiny_graph/.style={
+            scale=0.7, % SCALED DOWN TO FIT PAGE
+            baseline=(current bounding box.center),
+            node_style/.style={circle, fill=black, inner sep=1.5pt},
+            edge_style/.style={cyan, thick},
+            weight_style/.style={cyan, font=\tiny}, % Smaller font
+            highlight/.style={draw=green!50!black, opacity=0.4, line width=4pt, line cap=round},
+            highlightred/.style={draw=red!100!black, opacity=1, line width=4pt, line cap=round}
+        }
+    }
 
-        % Standard Edges
-        \draw[edge_style] (a) -- (b) node[midway, below, weight_style] {10};
-        \draw[edge_style] (a) -- (d) node[midway, left, weight_style] {60};
-        \draw[edge_style] (a) -- (c) node[midway, above left=-2pt, weight_style] {20};
-        \draw[edge_style] (b) -- (c) node[midway, right, weight_style] {20};
-        \draw[edge_style] (c) -- (d) node[midway, above=-2pt, weight_style] {40};
-        \draw[edge_style] (c) -- (e) node[midway, right, weight_style] {45};
-        \draw[edge_style] (d) -- (e) node[midway, above left=-2pt, weight_style] {95};
-        \draw[edge_style] (d) -- (g) node[midway, left, weight_style] {35};
-        \draw[edge_style] (d) -- (f) node[midway, below, weight_style] {50};
-        \draw[edge_style] (g) -- (e) node[midway, above=-2pt, weight_style] {30};
-        \draw[edge_style] (g) -- (h) node[midway, above, weight_style] {25};
+    % --- ROW 1 ---
+    \begin{minipage}[t]{0.32\textwidth}
+        \textbf{1)} $E=E_G, E_F=\emptyset$ \\
+        \begin{tikzpicture}[tiny_graph]
+            \coordinate (a) at (0,0); \coordinate (b) at (2.5,0); \coordinate (c) at (2,1.2);
+            \coordinate (d) at (0.5,1.2); \coordinate (e) at (1.8,2); \coordinate (g) at (0.7,2.5);
+            \coordinate (f) at (-0.8,1.8); \coordinate (h) at (3.0,2.5);
+            \draw[edge_style] (a)--(b) (a)--(d) (a)--(c) (b)--(c) (c)--(d) (c)--(e) (d)--(e) (d)--(g) (d)--(f) (g)--(e) (g)--(h);
+            \foreach \p in {a,b,c,d,e,g,f,h} \node[node_style] at (\p) {};
+        \end{tikzpicture}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[t]{0.32\textwidth}
+        \textbf{2)} $E=E-\{ab\}, E_F=\{ab\}$ \\
+        \begin{tikzpicture}[tiny_graph]
+            \coordinate (a) at (0,0); \coordinate (b) at (2.5,0); \coordinate (c) at (2,1.2);
+            \coordinate (d) at (0.5,1.2); \coordinate (e) at (1.8,2); \coordinate (g) at (0.7,2.5);
+            \coordinate (f) at (-0.8,1.8); \coordinate (h) at (3.0,2.5);
+            \draw[highlight] (a)--(b);
+            \draw[edge_style] (a)--(b) (a)--(d) (a)--(c) (b)--(c) (c)--(d) (c)--(e) (d)--(e) (d)--(g) (d)--(f) (g)--(e) (g)--(h);
+            \foreach \p in {a,b,c,d,e,g,f,h} \node[node_style] at (\p) {};
+        \end{tikzpicture}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[t]{0.32\textwidth}
+        \textbf{3)} $E=E-\{ac\}, E_F=E_F \cup \{ac\}$ \\
+        \begin{tikzpicture}[tiny_graph]
+            \coordinate (a) at (0,0); \coordinate (b) at (2.5,0); \coordinate (c) at (2,1.2);
+            \coordinate (d) at (0.5,1.2); \coordinate (e) at (1.8,2); \coordinate (g) at (0.7,2.5);
+            \coordinate (f) at (-0.8,1.8); \coordinate (h) at (3.0,2.5);
+            \draw[highlight] (a)--(b) (a)--(c);
+            \draw[edge_style] (a)--(b) (a)--(d) (a)--(c) (b)--(c) (c)--(d) (c)--(e) (d)--(e) (d)--(g) (d)--(f) (g)--(e) (g)--(h);
+            \foreach \p in {a,b,c,d,e,g,f,h} \node[node_style] at (\p) {};
+        \end{tikzpicture}
+    \end{minipage}
 
-        % Nodes
-        \node[node_style, label=below left:$a$] at (a) {};
-        \node[node_style, label=below right:$b$] at (b) {};
-        \node[node_style, label=right:$c$] at (c) {};
-        \node[node_style, label=left:$d$] at (d) {};
-        \node[node_style, label=right:$e$] at (e) {};
-        \node[node_style, label=above:$g$] at (g) {};
-        \node[node_style, label=left:$f$] at (f) {};
-        \node[node_style, label=right:$h$] at (h) {};
-    \end{tikzpicture}
-\end{minipage}
-\hfill
-\begin{minipage}[t]{0.32\textwidth}
-    \textbf{2)} $E=E-\{ab\}, E_F=\{ab\}$  
-    \begin{tikzpicture}[
-        scale=1,
-        node_style/.style={circle, fill=black, inner sep=1.5pt},
-        edge_style/.style={cyan, thick},
-        weight_style/.style={cyan, font=\small},
-        highlight/.style={draw=green!50!black, opacity=0.4, line width=6pt, line cap=round}
-    ]
-        % Coordinates
-        \coordinate (a) at (0,0);
-        \coordinate (b) at (2.5,0);
-        \coordinate (c) at (2,1.2);
-        \coordinate (d) at (0.5,1.2);
-        \coordinate (e) at (1.8,2);
-        \coordinate (g) at (0.7,2.5);
-        \coordinate (f) at (-0.8,1.8);
-        \coordinate (h) at (3.0,2.5);
+    \vspace{1em} % Small gap between rows
 
-        % Green Highlights 
-        \draw[highlight] (a) -- (b);
+    % --- ROW 2 ---
+    \begin{minipage}[t]{0.32\textwidth}
+        \textbf{4)} $E=E-\{bc\}, E_F=E_F$ \\
+        \begin{tikzpicture}[tiny_graph]
+            \coordinate (a) at (0,0); \coordinate (b) at (2.5,0); \coordinate (c) at (2,1.2);
+            \coordinate (d) at (0.5,1.2); \coordinate (e) at (1.8,2); \coordinate (g) at (0.7,2.5);
+            \coordinate (f) at (-0.8,1.8); \coordinate (h) at (3.0,2.5);
+            \draw[highlight] (a)--(b) (a)--(c);
+            \draw[highlightred] (b)--(c);
+            \draw[edge_style] (a)--(b) (a)--(d) (a)--(c) (b)--(c) (c)--(d) (c)--(e) (d)--(e) (d)--(g) (d)--(f) (g)--(e) (g)--(h);
+            \foreach \p in {a,b,c,d,e,g,f,h} \node[node_style] at (\p) {};
+        \end{tikzpicture}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[t]{0.32\textwidth}
+        \textbf{5)} $E=E-\{gh\}, E_F=E_F \cup \{gh\}$ \\
+        \begin{tikzpicture}[tiny_graph]
+            \coordinate (a) at (0,0); \coordinate (b) at (2.5,0); \coordinate (c) at (2,1.2);
+            \coordinate (d) at (0.5,1.2); \coordinate (e) at (1.8,2); \coordinate (g) at (0.7,2.5);
+            \coordinate (f) at (-0.8,1.8); \coordinate (h) at (3.0,2.5);
+            \draw[highlight] (a)--(b) (a)--(c) (g)--(h);
+            \draw[highlightred] (b)--(c);
+            \draw[edge_style] (a)--(b) (a)--(d) (a)--(c) (b)--(c) (c)--(d) (c)--(e) (d)--(e) (d)--(g) (d)--(f) (g)--(e) (g)--(h);
+            \foreach \p in {a,b,c,d,e,g,f,h} \node[node_style] at (\p) {};
+        \end{tikzpicture}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[t]{0.32\textwidth}
+        \textbf{6)} $E=E-\{ge\}, E_F=E_F \cup \{ge\}$ \\
+        \begin{tikzpicture}[tiny_graph]
+            \coordinate (a) at (0,0); \coordinate (b) at (2.5,0); \coordinate (c) at (2,1.2);
+            \coordinate (d) at (0.5,1.2); \coordinate (e) at (1.8,2); \coordinate (g) at (0.7,2.5);
+            \coordinate (f) at (-0.8,1.8); \coordinate (h) at (3.0,2.5);
+            \draw[highlight] (a)--(b) (a)--(c) (g)--(h) (g)--(e);
+            \draw[highlightred] (b)--(c);
+            \draw[edge_style] (a)--(b) (a)--(d) (a)--(c) (b)--(c) (c)--(d) (c)--(e) (d)--(e) (d)--(g) (d)--(f) (g)--(e) (g)--(h);
+            \foreach \p in {a,b,c,d,e,g,f,h} \node[node_style] at (\p) {};
+        \end{tikzpicture}
+    \end{minipage}
 
-        % Standard Edges
-        \draw[edge_style] (a) -- (b) node[midway, below, weight_style] {10};
-        \draw[edge_style] (a) -- (d) node[midway, left, weight_style] {60};
-        \draw[edge_style] (a) -- (c) node[midway, above left=-2pt, weight_style] {20};
-        \draw[edge_style] (b) -- (c) node[midway, right, weight_style] {20};
-        \draw[edge_style] (c) -- (d) node[midway, above=-2pt, weight_style] {40};
-        \draw[edge_style] (c) -- (e) node[midway, right, weight_style] {45};
-        \draw[edge_style] (d) -- (e) node[midway, above left=-2pt, weight_style] {95};
-        \draw[edge_style] (d) -- (g) node[midway, left, weight_style] {35};
-        \draw[edge_style] (d) -- (f) node[midway, below, weight_style] {50};
-        \draw[edge_style] (g) -- (e) node[midway, above=-2pt, weight_style] {30};
-        \draw[edge_style] (g) -- (h) node[midway, above, weight_style] {25};
+    \vspace{1em}
 
-        % Nodes
-        \node[node_style, label=below left:$a$] at (a) {};
-        \node[node_style, label=below right:$b$] at (b) {};
-        \node[node_style, label=right:$c$] at (c) {};
-        \node[node_style, label=left:$d$] at (d) {};
-        \node[node_style, label=right:$e$] at (e) {};
-        \node[node_style, label=above:$g$] at (g) {};
-        \node[node_style, label=left:$f$] at (f) {};
-        \node[node_style, label=right:$h$] at (h) {};
-    \end{tikzpicture}
-\end{minipage}
-\hfill
-\begin{minipage}[t]{0.32\textwidth}
-    \textbf{3)} $E=E-\{ac\}, E_F=E_F \cup \{ac\}$
-    \begin{tikzpicture}[
-        scale=1,
-        node_style/.style={circle, fill=black, inner sep=1.5pt},
-        edge_style/.style={cyan, thick},
-        weight_style/.style={cyan, font=\small},
-        highlight/.style={draw=green!50!black, opacity=0.4, line width=6pt, line cap=round}
-    ]
-        % Coordinates
-        \coordinate (a) at (0,0);
-        \coordinate (b) at (2.5,0);
-        \coordinate (c) at (2,1.2);
-        \coordinate (d) at (0.5,1.2);
-        \coordinate (e) at (1.8,2);
-        \coordinate (g) at (0.7,2.5);
-        \coordinate (f) at (-0.8,1.8);
-        \coordinate (h) at (3.0,2.5);
+    % --- ROW 3 ---
+    \begin{minipage}[t]{0.32\textwidth}
+        \textbf{7)} $E=E-\{gd\}, E_F=E_F \ cup \{gd\}$ \\
+        \begin{tikzpicture}[tiny_graph]
+            \coordinate (a) at (0,0); \coordinate (b) at (2.5,0); \coordinate (c) at (2,1.2);
+            \coordinate (d) at (0.5,1.2); \coordinate (e) at (1.8,2); \coordinate (g) at (0.7,2.5);
+            \coordinate (f) at (-0.8,1.8); \coordinate (h) at (3.0,2.5);
+            \draw[highlight] (a)--(b) (a)--(c) (g)--(h) (g)--(e) (g)--(d);
+            \draw[highlightred] (b)--(c);
+            \draw[edge_style] (a)--(b) (a)--(d) (a)--(c) (b)--(c) (c)--(d) (c)--(e) (d)--(e) (d)--(g) (d)--(f) (g)--(e) (g)--(h);
+            \foreach \p in {a,b,c,d,e,g,f,h} \node[node_style] at (\p) {};
+        \end{tikzpicture}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[t]{0.32\textwidth}
+        \textbf{8)} $E=E-\{gd\}, E_F=E_F \ cup \{gd\}$ \\
+        \begin{tikzpicture}[tiny_graph]
+            \coordinate (a) at (0,0); \coordinate (b) at (2.5,0); \coordinate (c) at (2,1.2);
+            \coordinate (d) at (0.5,1.2); \coordinate (e) at (1.8,2); \coordinate (g) at (0.7,2.5);
+            \coordinate (f) at (-0.8,1.8); \coordinate (h) at (3.0,2.5);
+            \draw[highlight] (a)--(b) (a)--(c) (g)--(h) (g)--(e) (g)--(d) (c)--(d);
+            \draw[highlightred] (b)--(c);
+            \draw[edge_style] (a)--(b) (a)--(d) (a)--(c) (b)--(c) (c)--(d) (c)--(e) (d)--(e) (d)--(g) (d)--(f) (g)--(e) (g)--(h);
+            \foreach \p in {a,b,c,d,e,g,f,h} \node[node_style] at (\p) {};
+        \end{tikzpicture}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[t]{0.32\textwidth}
+        \textbf{9)} $E=E-\{ce\}, E_F=E_F$ \\
+        \begin{tikzpicture}[tiny_graph]
+            \coordinate (a) at (0,0); \coordinate (b) at (2.5,0); \coordinate (c) at (2,1.2);
+            \coordinate (d) at (0.5,1.2); \coordinate (e) at (1.8,2); \coordinate (g) at (0.7,2.5);
+            \coordinate (f) at (-0.8,1.8); \coordinate (h) at (3.0,2.5);
+            \draw[highlight] (a)--(b) (a)--(c) (g)--(h) (g)--(e) (g)--(d) (c)--(d);
+            \draw[highlightred] (b)--(c) (e)--(c);
+            \draw[edge_style] (a)--(b) (a)--(d) (a)--(c) (b)--(c) (c)--(d) (c)--(e) (d)--(e) (d)--(g) (d)--(f) (g)--(e) (g)--(h);
+            \foreach \p in {a,b,c,d,e,g,f,h} \node[node_style] at (\p) {};
+        \end{tikzpicture}
+    \end{minipage}
 
-        % Green Highlights 
-        \draw[highlight] (a) -- (b);
-        \draw[highlight] (a) -- (c);
-    
-        % Standard Edges
-        \draw[edge_style] (a) -- (b) node[midway, below, weight_style] {10};
-        \draw[edge_style] (a) -- (d) node[midway, left, weight_style] {60};
-        \draw[edge_style] (a) -- (c) node[midway, above left=-2pt, weight_style] {20};
-        \draw[edge_style] (b) -- (c) node[midway, right, weight_style] {20};
-        \draw[edge_style] (c) -- (d) node[midway, above=-2pt, weight_style] {40};
-        \draw[edge_style] (c) -- (e) node[midway, right, weight_style] {45};
-        \draw[edge_style] (d) -- (e) node[midway, above left=-2pt, weight_style] {95};
-        \draw[edge_style] (d) -- (g) node[midway, left, weight_style] {35};
-        \draw[edge_style] (d) -- (f) node[midway, below, weight_style] {50};
-        \draw[edge_style] (g) -- (e) node[midway, above=-2pt, weight_style] {30};
-        \draw[edge_style] (g) -- (h) node[midway, above, weight_style] {25};
+    \vspace{1em}
 
-        % Nodes
-        \node[node_style, label=below left:$a$] at (a) {};
-        \node[node_style, label=below right:$b$] at (b) {};
-        \node[node_style, label=right:$c$] at (c) {};
-        \node[node_style, label=left:$d$] at (d) {};
-        \node[node_style, label=right:$e$] at (e) {};
-        \node[node_style, label=above:$g$] at (g) {};
-        \node[node_style, label=left:$f$] at (f) {};
-        \node[node_style, label=right:$h$] at (h) {};
-    \end{tikzpicture}
-\end{minipage}
-
-\vspace{0.5cm}
-
-\begin{minipage}[t]{0.32\textwidth}
-    \textbf{4)} $E=E-\{bc\}, E_F=E_F$
-    \begin{tikzpicture}[
-        scale=1,
-        node_style/.style={circle, fill=black, inner sep=1.5pt},
-        edge_style/.style={cyan, thick},
-        weight_style/.style={cyan, font=\small},
-        highlight/.style={draw=green!50!black, opacity=0.4, line width=6pt, line cap=round},
-        highlightred/.style={draw=red!100!black, opacity=1, line width=6pt, line cap=round}
-    ]
-        % Coordinates
-        \coordinate (a) at (0,0);
-        \coordinate (b) at (2.5,0);
-        \coordinate (c) at (2,1.2);
-        \coordinate (d) at (0.5,1.2);
-        \coordinate (e) at (1.8,2);
-        \coordinate (g) at (0.7,2.5);
-        \coordinate (f) at (-0.8,1.8);
-        \coordinate (h) at (3.0,2.5);
-
-        % Green Highlights 
-        \draw[highlight] (a) -- (b);
-        \draw[highlight] (a) -- (c);
-
-        % Red Highlights
-        \draw[highlightred] (b) -- (c);
-
-
-        % Standard Edges
-        \draw[edge_style] (a) -- (b) node[midway, below, weight_style] {10};
-        \draw[edge_style] (a) -- (d) node[midway, left, weight_style] {60};
-        \draw[edge_style] (a) -- (c) node[midway, above left=-2pt, weight_style] {20};
-        \draw[edge_style] (b) -- (c) node[midway, right, weight_style] {20};
-        \draw[edge_style] (c) -- (d) node[midway, above=-2pt, weight_style] {40};
-        \draw[edge_style] (c) -- (e) node[midway, right, weight_style] {45};
-        \draw[edge_style] (d) -- (e) node[midway, above left=-2pt, weight_style] {95};
-        \draw[edge_style] (d) -- (g) node[midway, left, weight_style] {35};
-        \draw[edge_style] (d) -- (f) node[midway, below, weight_style] {50};
-        \draw[edge_style] (g) -- (e) node[midway, above=-2pt, weight_style] {30};
-        \draw[edge_style] (g) -- (h) node[midway, above, weight_style] {25};
-
-        % Nodes
-        \node[node_style, label=below left:$a$] at (a) {};
-        \node[node_style, label=below right:$b$] at (b) {};
-        \node[node_style, label=right:$c$] at (c) {};
-        \node[node_style, label=left:$d$] at (d) {};
-        \node[node_style, label=right:$e$] at (e) {};
-        \node[node_style, label=above:$g$] at (g) {};
-        \node[node_style, label=left:$f$] at (f) {};
-        \node[node_style, label=right:$h$] at (h) {};
-    \end{tikzpicture}
-\end{minipage}
-\hfill
-\begin{minipage}[t]{0.32\textwidth}
-    \textbf{5)} $E=E-\{gh\}, E_F=E_F \cup \{gh\}$
-    \begin{tikzpicture}[
-        scale=1,
-        node_style/.style={circle, fill=black, inner sep=1.5pt},
-        edge_style/.style={cyan, thick},
-        weight_style/.style={cyan, font=\small},
-        highlight/.style={draw=green!50!black, opacity=0.4, line width=6pt, line cap=round},
-        highlightred/.style={draw=red!100!black, opacity=1, line width=6pt, line cap=round}
-    ]
-        % Coordinates
-        \coordinate (a) at (0,0);
-        \coordinate (b) at (2.5,0);
-        \coordinate (c) at (2,1.2);
-        \coordinate (d) at (0.5,1.2);
-        \coordinate (e) at (1.8,2);
-        \coordinate (g) at (0.7,2.5);
-        \coordinate (f) at (-0.8,1.8);
-        \coordinate (h) at (3.0,2.5);
-
-        % Green Highlights 
-        \draw[highlight] (a) -- (b);
-        \draw[highlight] (a) -- (c);
-        \draw[highlight] (g) -- (h);
-
-        % Red Highlights
-        \draw[highlightred] (b) -- (c);
-
-        % Standard Edges
-        \draw[edge_style] (a) -- (b) node[midway, below, weight_style] {10};
-        \draw[edge_style] (a) -- (d) node[midway, left, weight_style] {60};
-        \draw[edge_style] (a) -- (c) node[midway, above left=-2pt, weight_style] {20};
-        \draw[edge_style] (b) -- (c) node[midway, right, weight_style] {20};
-        \draw[edge_style] (c) -- (d) node[midway, above=-2pt, weight_style] {40};
-        \draw[edge_style] (c) -- (e) node[midway, right, weight_style] {45};
-        \draw[edge_style] (d) -- (e) node[midway, above left=-2pt, weight_style] {95};
-        \draw[edge_style] (d) -- (g) node[midway, left, weight_style] {35};
-        \draw[edge_style] (d) -- (f) node[midway, below, weight_style] {50};
-        \draw[edge_style] (g) -- (e) node[midway, above=-2pt, weight_style] {30};
-        \draw[edge_style] (g) -- (h) node[midway, above, weight_style] {25};
-
-        % Nodes
-        \node[node_style, label=below left:$a$] at (a) {};
-        \node[node_style, label=below right:$b$] at (b) {};
-        \node[node_style, label=right:$c$] at (c) {};
-        \node[node_style, label=left:$d$] at (d) {};
-        \node[node_style, label=right:$e$] at (e) {};
-        \node[node_style, label=above:$g$] at (g) {};
-        \node[node_style, label=left:$f$] at (f) {};
-        \node[node_style, label=right:$h$] at (h) {};
-    \end{tikzpicture}
-\end{minipage}
-\hfill
-\begin{minipage}[t]{0.32\textwidth}
-    \textbf{6)} $E=E-\{ge\}, E_F=E_F \cup \{ge\}$
-    \begin{tikzpicture}[
-        scale=1,
-        node_style/.style={circle, fill=black, inner sep=1.5pt},
-        edge_style/.style={cyan, thick},
-        weight_style/.style={cyan, font=\small},
-        highlight/.style={draw=green!50!black, opacity=0.4, line width=6pt, line cap=round},
-        highlightred/.style={draw=red!100!black, opacity=1, line width=6pt, line cap=round}
-    ]
-        % Coordinates
-        \coordinate (a) at (0,0);
-        \coordinate (b) at (2.5,0);
-        \coordinate (c) at (2,1.2);
-        \coordinate (d) at (0.5,1.2);
-        \coordinate (e) at (1.8,2);
-        \coordinate (g) at (0.7,2.5);
-        \coordinate (f) at (-0.8,1.8);
-        \coordinate (h) at (3.0,2.5);
-
-        % Green Highlights 
-        \draw[highlight] (a) -- (b);
-        \draw[highlight] (a) -- (c);
-        \draw[highlight] (g) -- (h);
-        \draw[highlight] (g) -- (e);
-
-        % Red Highlights
-        \draw[highlightred] (b) -- (c);
-
-        % Standard Edges
-        \draw[edge_style] (a) -- (b) node[midway, below, weight_style] {10};
-        \draw[edge_style] (a) -- (d) node[midway, left, weight_style] {60};
-        \draw[edge_style] (a) -- (c) node[midway, above left=-2pt, weight_style] {20};
-        \draw[edge_style] (b) -- (c) node[midway, right, weight_style] {20};
-        \draw[edge_style] (c) -- (d) node[midway, above=-2pt, weight_style] {40};
-        \draw[edge_style] (c) -- (e) node[midway, right, weight_style] {45};
-        \draw[edge_style] (d) -- (e) node[midway, above left=-2pt, weight_style] {95};
-        \draw[edge_style] (d) -- (g) node[midway, left, weight_style] {35};
-        \draw[edge_style] (d) -- (f) node[midway, below, weight_style] {50};
-        \draw[edge_style] (g) -- (e) node[midway, above=-2pt, weight_style] {30};
-        \draw[edge_style] (g) -- (h) node[midway, above, weight_style] {25};
-
-        % Nodes
-        \node[node_style, label=below left:$a$] at (a) {};
-        \node[node_style, label=below right:$b$] at (b) {};
-        \node[node_style, label=right:$c$] at (c) {};
-        \node[node_style, label=left:$d$] at (d) {};
-        \node[node_style, label=right:$e$] at (e) {};
-        \node[node_style, label=above:$g$] at (g) {};
-        \node[node_style, label=left:$f$] at (f) {};
-        \node[node_style, label=right:$h$] at (h) {};
-    \end{tikzpicture}
+    % --- ROW 4 ---
+    \begin{minipage}[t]{0.32\textwidth}
+        \textbf{10)} $E=E-\{df\}, E_F=E_F \cup \{df\}$ \\
+        \begin{tikzpicture}[tiny_graph]
+            \coordinate (a) at (0,0); \coordinate (b) at (2.5,0); \coordinate (c) at (2,1.2);
+            \coordinate (d) at (0.5,1.2); \coordinate (e) at (1.8,2); \coordinate (g) at (0.7,2.5);
+            \coordinate (f) at (-0.8,1.8); \coordinate (h) at (3.0,2.5);
+            \draw[highlight] (a)--(b) (a)--(c) (g)--(h) (g)--(e) (g)--(d) (c)--(d) (f)--(d);
+            \draw[highlightred] (b)--(c) (e)--(c);
+            \draw[edge_style] (a)--(b) (a)--(d) (a)--(c) (b)--(c) (c)--(d) (c)--(e) (d)--(e) (d)--(g) (d)--(f) (g)--(e) (g)--(h);
+            \foreach \p in {a,b,c,d,e,g,f,h} \node[node_style] at (\p) {};
+        \end{tikzpicture}
+    \end{minipage}
+    \hfill
 \end{minipage}
 
-\vspace{0.5cm}
-
-\begin{minipage}[t]{0.32\textwidth}
-    \textbf{7)} $E=E-\{gd\}, E_F=E_F \ cup \{gd\}$
-    \begin{tikzpicture}[
-        scale=1,
-        node_style/.style={circle, fill=black, inner sep=1.5pt},
-        edge_style/.style={cyan, thick},
-        weight_style/.style={cyan, font=\small},
-        highlight/.style={draw=green!50!black, opacity=0.4, line width=6pt, line cap=round},
-        highlightred/.style={draw=red!100!black, opacity=1, line width=6pt, line cap=round}
-    ]
-        % Coordinates
-        \coordinate (a) at (0,0);
-        \coordinate (b) at (2.5,0);
-        \coordinate (c) at (2,1.2);
-        \coordinate (d) at (0.5,1.2);
-        \coordinate (e) at (1.8,2);
-        \coordinate (g) at (0.7,2.5);
-        \coordinate (f) at (-0.8,1.8);
-        \coordinate (h) at (3.0,2.5);
-
-        % Green Highlights 
-        \draw[highlight] (a) -- (b);
-        \draw[highlight] (a) -- (c);
-        \draw[highlight] (g) -- (h);
-        \draw[highlight] (g) -- (e);
-        \draw[highlight] (g) -- (d);
-
-        % Red Highlights
-        \draw[highlightred] (b) -- (c);
-
-        % Standard Edges
-        \draw[edge_style] (a) -- (b) node[midway, below, weight_style] {10};
-        \draw[edge_style] (a) -- (d) node[midway, left, weight_style] {60};
-        \draw[edge_style] (a) -- (c) node[midway, above left=-2pt, weight_style] {20};
-        \draw[edge_style] (b) -- (c) node[midway, right, weight_style] {20};
-        \draw[edge_style] (c) -- (d) node[midway, above=-2pt, weight_style] {40};
-        \draw[edge_style] (c) -- (e) node[midway, right, weight_style] {45};
-        \draw[edge_style] (d) -- (e) node[midway, above left=-2pt, weight_style] {95};
-        \draw[edge_style] (d) -- (g) node[midway, left, weight_style] {35};
-        \draw[edge_style] (d) -- (f) node[midway, below, weight_style] {50};
-        \draw[edge_style] (g) -- (e) node[midway, above=-2pt, weight_style] {30};
-        \draw[edge_style] (g) -- (h) node[midway, above, weight_style] {25};
-
-        % Nodes
-        \node[node_style, label=below left:$a$] at (a) {};
-        \node[node_style, label=below right:$b$] at (b) {};
-        \node[node_style, label=right:$c$] at (c) {};
-        \node[node_style, label=left:$d$] at (d) {};
-        \node[node_style, label=right:$e$] at (e) {};
-        \node[node_style, label=above:$g$] at (g) {};
-        \node[node_style, label=left:$f$] at (f) {};
-        \node[node_style, label=right:$h$] at (h) {};
-    \end{tikzpicture}
-\end{minipage}
-\hfill
-\begin{minipage}[t]{0.32\textwidth}
-    \textbf{8)} $E=E-\{gd\}, E_F=E_F \ cup \{gd\}$
-    \begin{tikzpicture}[
-        scale=1,
-        node_style/.style={circle, fill=black, inner sep=1.5pt},
-        edge_style/.style={cyan, thick},
-        weight_style/.style={cyan, font=\small},
-        highlight/.style={draw=green!50!black, opacity=0.4, line width=6pt, line cap=round},
-        highlightred/.style={draw=red!100!black, opacity=1, line width=6pt, line cap=round}
-    ]
-        % Coordinates
-        \coordinate (a) at (0,0);
-        \coordinate (b) at (2.5,0);
-        \coordinate (c) at (2,1.2);
-        \coordinate (d) at (0.5,1.2);
-        \coordinate (e) at (1.8,2);
-        \coordinate (g) at (0.7,2.5);
-        \coordinate (f) at (-0.8,1.8);
-        \coordinate (h) at (3.0,2.5);
-
-        % Green Highlights 
-        \draw[highlight] (a) -- (b);
-        \draw[highlight] (a) -- (c);
-        \draw[highlight] (g) -- (h);
-        \draw[highlight] (g) -- (e);
-        \draw[highlight] (g) -- (d);
-        \draw[highlight] (c) -- (d);
-
-        % Red Highlights
-        \draw[highlightred] (b) -- (c);
-
-        % Standard Edges
-        \draw[edge_style] (a) -- (b) node[midway, below, weight_style] {10};
-        \draw[edge_style] (a) -- (d) node[midway, left, weight_style] {60};
-        \draw[edge_style] (a) -- (c) node[midway, above left=-2pt, weight_style] {20};
-        \draw[edge_style] (b) -- (c) node[midway, right, weight_style] {20};
-        \draw[edge_style] (c) -- (d) node[midway, above=-2pt, weight_style] {40};
-        \draw[edge_style] (c) -- (e) node[midway, right, weight_style] {45};
-        \draw[edge_style] (d) -- (e) node[midway, above left=-2pt, weight_style] {95};
-        \draw[edge_style] (d) -- (g) node[midway, left, weight_style] {35};
-        \draw[edge_style] (d) -- (f) node[midway, below, weight_style] {50};
-        \draw[edge_style] (g) -- (e) node[midway, above=-2pt, weight_style] {30};
-        \draw[edge_style] (g) -- (h) node[midway, above, weight_style] {25};
-
-        % Nodes
-        \node[node_style, label=below left:$a$] at (a) {};
-        \node[node_style, label=below right:$b$] at (b) {};
-        \node[node_style, label=right:$c$] at (c) {};
-        \node[node_style, label=left:$d$] at (d) {};
-        \node[node_style, label=right:$e$] at (e) {};
-        \node[node_style, label=above:$g$] at (g) {};
-        \node[node_style, label=left:$f$] at (f) {};
-        \node[node_style, label=right:$h$] at (h) {};
-    \end{tikzpicture}
-\end{minipage}
-\hfill
-\begin{minipage}[t]{0.32\textwidth}
-    \textbf{9)} $E=E-\{ce\}, E_F=E_F$
-    \begin{tikzpicture}[
-        scale=1,
-        node_style/.style={circle, fill=black, inner sep=1.5pt},
-        edge_style/.style={cyan, thick},
-        weight_style/.style={cyan, font=\small},
-        highlight/.style={draw=green!50!black, opacity=0.4, line width=6pt, line cap=round},
-        highlightred/.style={draw=red!100!black, opacity=1, line width=6pt, line cap=round}
-    ]
-        % Coordinates
-        \coordinate (a) at (0,0);
-        \coordinate (b) at (2.5,0);
-        \coordinate (c) at (2,1.2);
-        \coordinate (d) at (0.5,1.2);
-        \coordinate (e) at (1.8,2);
-        \coordinate (g) at (0.7,2.5);
-        \coordinate (f) at (-0.8,1.8);
-        \coordinate (h) at (3.0,2.5);
-
-        % Green Highlights 
-        \draw[highlight] (a) -- (b);
-        \draw[highlight] (a) -- (c);
-        \draw[highlight] (g) -- (h);
-        \draw[highlight] (g) -- (e);
-        \draw[highlight] (g) -- (d);
-        \draw[highlight] (c) -- (d);
-
-        % Red Highlights
-        \draw[highlightred] (b) -- (c);
-        \draw[highlightred] (e) -- (c);
-
-        % Standard Edges
-        \draw[edge_style] (a) -- (b) node[midway, below, weight_style] {10};
-        \draw[edge_style] (a) -- (d) node[midway, left, weight_style] {60};
-        \draw[edge_style] (a) -- (c) node[midway, above left=-2pt, weight_style] {20};
-        \draw[edge_style] (b) -- (c) node[midway, right, weight_style] {20};
-        \draw[edge_style] (c) -- (d) node[midway, above=-2pt, weight_style] {40};
-        \draw[edge_style] (c) -- (e) node[midway, right, weight_style] {45};
-        \draw[edge_style] (d) -- (e) node[midway, above left=-2pt, weight_style] {95};
-        \draw[edge_style] (d) -- (g) node[midway, left, weight_style] {35};
-        \draw[edge_style] (d) -- (f) node[midway, below, weight_style] {50};
-        \draw[edge_style] (g) -- (e) node[midway, above=-2pt, weight_style] {30};
-        \draw[edge_style] (g) -- (h) node[midway, above, weight_style] {25};
-
-        % Nodes
-        \node[node_style, label=below left:$a$] at (a) {};
-        \node[node_style, label=below right:$b$] at (b) {};
-        \node[node_style, label=right:$c$] at (c) {};
-        \node[node_style, label=left:$d$] at (d) {};
-        \node[node_style, label=right:$e$] at (e) {};
-        \node[node_style, label=above:$g$] at (g) {};
-        \node[node_style, label=left:$f$] at (f) {};
-        \node[node_style, label=right:$h$] at (h) {};
-    \end{tikzpicture}
-\end{minipage}
-
-\begin{minipage}[t]{0.32\textwidth}
-    \textbf{10)} $E=E-\{df\}, E_F=E_F \cup \{df\}$
-    \begin{tikzpicture}[
-        scale=1,
-        node_style/.style={circle, fill=black, inner sep=1.5pt},
-        edge_style/.style={cyan, thick},
-        weight_style/.style={cyan, font=\small},
-        highlight/.style={draw=green!50!black, opacity=0.4, line width=6pt, line cap=round},
-        highlightred/.style={draw=red!100!black, opacity=1, line width=6pt, line cap=round}
-    ]
-        % Coordinates
-        \coordinate (a) at (0,0);
-        \coordinate (b) at (2.5,0);
-        \coordinate (c) at (2,1.2);
-        \coordinate (d) at (0.5,1.2);
-        \coordinate (e) at (1.8,2);
-        \coordinate (g) at (0.7,2.5);
-        \coordinate (f) at (-0.8,1.8);
-        \coordinate (h) at (3.0,2.5);
-
-        % Green Highlights 
-        \draw[highlight] (a) -- (b);
-        \draw[highlight] (a) -- (c);
-        \draw[highlight] (g) -- (h);
-        \draw[highlight] (g) -- (e);
-        \draw[highlight] (g) -- (d);
-        \draw[highlight] (c) -- (d);
-        \draw[highlight] (f) -- (d);
-
-        % Red Highlights
-        \draw[highlightred] (b) -- (c);
-        \draw[highlightred] (e) -- (c);
-
-        % Standard Edges
-        \draw[edge_style] (a) -- (b) node[midway, below, weight_style] {10};
-        \draw[edge_style] (a) -- (d) node[midway, left, weight_style] {60};
-        \draw[edge_style] (a) -- (c) node[midway, above left=-2pt, weight_style] {20};
-        \draw[edge_style] (b) -- (c) node[midway, right, weight_style] {20};
-        \draw[edge_style] (c) -- (d) node[midway, above=-2pt, weight_style] {40};
-        \draw[edge_style] (c) -- (e) node[midway, right, weight_style] {45};
-        \draw[edge_style] (d) -- (e) node[midway, above left=-2pt, weight_style] {95};
-        \draw[edge_style] (d) -- (g) node[midway, left, weight_style] {35};
-        \draw[edge_style] (d) -- (f) node[midway, below, weight_style] {50};
-        \draw[edge_style] (g) -- (e) node[midway, above=-2pt, weight_style] {30};
-        \draw[edge_style] (g) -- (h) node[midway, above, weight_style] {25};
-
-        % Nodes
-        \node[node_style, label=below left:$a$] at (a) {};
-        \node[node_style, label=below right:$b$] at (b) {};
-        \node[node_style, label=right:$c$] at (c) {};
-        \node[node_style, label=left:$d$] at (d) {};
-        \node[node_style, label=right:$e$] at (e) {};
-        \node[node_style, label=above:$g$] at (g) {};
-        \node[node_style, label=left:$f$] at (f) {};
-        \node[node_style, label=right:$h$] at (h) {};
-    \end{tikzpicture}
-\end{minipage}
-
-\vspace{0.5cm}
+\vspace{1em}
 
 Here the algorithm stops, as 
 $F = (V_G, E_F)$ with $E_F = \{ab, ac, gh, eg, dg, cd, df\}$ 
 is a single tree whence the conditions in 
-the while loop are violated.
-
+the while loop are violated.\\
 (The output is the spanning tree $F$. Note that the second condition 
 in the while loop was still valid, as $E = \{ad, de\} \neq \emptyset$).
 \end{example}

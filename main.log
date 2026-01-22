@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2025.12.2)  22 JAN 2026 16:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2025.12.2)  22 JAN 2026 16:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -756,24 +756,239 @@ Library (tcolorbox): 'tcbvignette.code.tex' version '6.1.0'
 File: tikzlibraryfadings.code.tex 2023-01-15 v3.1.10 (3.1.10)
  (C:\Users\pc\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibraryfadings.code.tex
 File: pgflibraryfadings.code.tex 2023-01-15 v3.1.10 (3.1.10)
+))) (C:\Users\pc\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcbposter.code.tex
+Library (tcolorbox): 'tcbposter.code.tex' version '6.1.0'
+)))
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 8.
+ (C:\Users\pc\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmr.fd
+File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+) (C:\Users\pc\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
+File: l3backend-pdftex.def 2023-04-19 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count332
+\l__pdf_internal_box=\box102
+) (main.aux)
+\openout1 = `main.aux'.
 
-C:\Users\pc\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibraryfadings.code.tex:17: I can't write on file `main.pdf'.
-(Press Enter to retry, or Control-C to exit; default file extension is `.pdf')
-Please type another file name for output
-C:\Users\pc\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibraryfadings.code.tex:17: Emergency stop.
-\pgfsys@horishading ...e] >> >>}\pgfutil@tempboxa 
-                                                  \xdef \pgfutil@tempa {\hbo...
-l.17 ...t!100); color(100bp)=(pgftransparent!100)}
-                                                  %
-*** (job aborted, file error in nonstop mode)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+ (C:\Users\pc\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count333
+\scratchdimen=\dimen297
+\scratchbox=\box103
+\nofMPsegments=\count334
+\nofMParguments=\count335
+\everyMPshowfont=\toks49
+\MPscratchCnt=\count336
+\MPscratchDim=\dimen298
+\MPnumerator=\count337
+\makeMPintoPDFobject=\count338
+\everyMPtoPDFconversion=\toks50
+) (C:\Users\pc\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+ (C:\Users\pc\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
+))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(71.13188pt, 455.24411pt, 71.13188pt)
+* v-part:(T,H,B)=(71.13188pt, 702.78308pt, 71.13188pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=455.24411pt
+* \textheight=702.78308pt
+* \oddsidemargin=-1.1381pt
+* \evensidemargin=-1.1381pt
+* \topmargin=-41.1381pt
+* \headheight=15.0pt
+* \headsep=25.0pt
+* \topskip=12.0pt
+* \footskip=30.0pt
+* \marginparwidth=35.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
- 
+Package hyperref Info: Link coloring ON on input line 8.
+(main.out) (main.out)
+\@outlinefile=\write4
+\openout4 = `main.out'.
+
+\c@lstlisting=\count339
+<logo.png, id=94, 256.96pt x 256.96pt>
+File: logo.png Graphic file (type png)
+<use logo.png>
+Package pdftex.def Info: logo.png  used on input line 15.
+(pdftex.def)             Requested size: 113.81102pt x 113.81163pt.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 45.
+ (C:\Users\pc\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd
+File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 45.
+ (C:\Users\pc\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd
+File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 45.
+ (C:\Users\pc\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd
+File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 45.
+ (C:\Users\pc\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd
+File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <12> on input line 45.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 45.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 45.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 45.
+ (C:\Users\pc\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 45.
+ (C:\Users\pc\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Trying to load font information for U+stmry on input line 45.
+ (C:\Users\pc\AppData\Local\Programs\MiKTeX\tex/latex/stmaryrd\ustmry.fd) [1
+
+{C:/Users/pc/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc} <./logo.png (PNG copy)>]
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.66 \newpage
+              [1] (main.toc
+<all-twemojis.pdf, id=118, page=365, 27.10126pt x 27.10126pt>
+File: all-twemojis.pdf Graphic file (type pdf)
+<use all-twemojis.pdf, page 365>
+Package pdftex.def Info: all-twemojis.pdf , page365 used on input line 12.
+(pdftex.def)             Requested size: 8.26648pt x 8.26648pt.
+File: all-twemojis.pdf Graphic file (type pdf)
+<use all-twemojis.pdf, page 365>
+Package pdftex.def Info: all-twemojis.pdf , page365 used on input line 12.
+(pdftex.def)             Requested size: 8.26648pt x 8.26648pt.
+)
+\tf@toc=\write5
+\openout5 = `main.toc'.
+
+ [2
+
+ <C:/Users/pc/AppData/Local/Programs/MiKTeX/tex/latex/twemojis/all-twemojis.pdf>] (chapters/chapter1.tex
+Chapter 1.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <14.4> on input line 5.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 5.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 5.
+[3
+
+{C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}] [4{C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc}] [5]
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 275.
+ (C:\Users\pc\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
+File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+) [6] [7{C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}] [8] [9]
+LaTeX Font Info:    Trying to load font information for T1+lmss on input line 608.
+ (C:\Users\pc\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmss.fd
+File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+) [10]
+Overfull \hbox (11.78632pt too wide) in paragraph at lines 737--757
+[][][] 
+ []
+
+[11] [12]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <17.28> on input line 856.
+ [13] [14]
+Overfull \hbox (34.34741pt too wide) in paragraph at lines 1079--1081
+[]\T1/lmr/m/n/12 We can par-ti-tion the ver-tices of $\OML/lmm/m/it/12 G$ \T1/lmr/m/n/12 into two sets via $\OML/lmm/m/it/12 X \OT1/lmr/m/n/12 = \OMS/lmsy/m/n/12 f\OML/lmm/m/it/12 x[]; x[]; x[]\OMS/lmsy/m/n/12 g$ \T1/lmr/m/n/12 and $\OML/lmm/m/it/12 Y \OT1/lmr/m/n/12 = \OMS/lmsy/m/n/12 f\OML/lmm/m/it/12 y[]; y[]; y[]; y[]\OMS/lmsy/m/n/12 g$\T1/lmr/m/n/12 . 
+ []
+
+[15] [16] [17]) (chapters/chapter2.tex [18]
+Chapter 2.
+[19
+
+] [20]
+Underfull \hbox (badness 10000) in paragraph at lines 103--108
+
+ []
+
+[21] [22] [23] [24] [25]
+Overfull \hbox (37.49002pt too wide) in paragraph at lines 344--348
+\T1/lmr/m/n/12 1500 pa-pers. Con-sider $\OML/lmm/m/it/12 G$ \T1/lmr/m/n/12 with $\OML/lmm/m/it/12 V[] \OT1/lmr/m/n/12 =$ \T1/lmr/m/n/12 all math-e-mati-cians, $\OML/lmm/m/it/12 E[] \OT1/lmr/m/n/12 = \OMS/lmsy/m/n/12 f\OML/lmm/m/it/12 xy \OMS/lmsy/m/n/12 j \OML/lmm/m/it/12 x[]y[]\OMS/lmsy/m/n/12 g$\T1/lmr/m/n/12 .
+ []
+
+) (chapters/chapter3.tex [26]
+Chapter 3.
+File: all-twemojis.pdf Graphic file (type pdf)
+<use all-twemojis.pdf, page 365>
+Package pdftex.def Info: all-twemojis.pdf , page365 used on input line 2.
+(pdftex.def)             Requested size: 8.26648pt x 8.26648pt.
+File: all-twemojis.pdf Graphic file (type pdf)
+<use all-twemojis.pdf, page 365>
+Package pdftex.def Info: all-twemojis.pdf , page365 used on input line 2.
+(pdftex.def)             Requested size: 8.26648pt x 8.26648pt.
+[27
+
+] [28] [29] [30] [31] [32] [33] [34]
+Overfull \hbox (30.0pt too wide) in paragraph at lines 878--1030
+$[]$ 
+ []
+
+[35]) 
+AED: lastpage setting LastPage
+[36] (main.aux)
+ ***********
+LaTeX2e <2023-06-01> patch level 1
+L3 programming layer <2023-08-29>
+ ***********
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: 26B8152AE6C448D852FB7D963D2956D0;1520.
+ ) 
 Here is how much of TeX's memory you used:
- 39776 strings out of 475248
- 871262 string characters out of 5759229
- 1917785 words of memory out of 5000000
- 60789 multiletter control sequences out of 15000+600000
- 559131 words of font info for 38 fonts, out of 8000000 for 9000
+ 43015 strings out of 475248
+ 931171 string characters out of 5759229
+ 1974785 words of memory out of 5000000
+ 63724 multiletter control sequences out of 15000+600000
+ 657362 words of font info for 104 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 122i,1n,124p,560b,266s stack positions out of 10000i,1000n,20000p,200000b,200000s
-C:\Users\pc\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibraryfadings.code.tex:17:  ==> Fatal error occurred, no output PDF file produced!
+ 122i,14n,124p,1239b,1063s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmcsc10.pfb><C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi6.pfb><C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi8.pfb><C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmss12.pfb><C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb><C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy6.pfb><C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (37 pages, 528167 bytes).
+PDF statistics:
+ 560 PDF objects out of 1000 (max. 8388607)
+ 188 named destinations out of 1000 (max. 500000)
+ 271 words of extra memory for PDF output out of 10000 (max. 10000000)
+
