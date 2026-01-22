@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1769004179.51007 "c:/Users/pc/Desktop/Graph theory Dr. Isabel/main.tex" "main.pdf" "main" 1769004184.73215 0
+["pdflatex"] 1769082501.64508 "c:/Users/pc/Desktop/Graph theory Dr. Isabel/main.tex" "main.pdf" "main" 1769082506.01161 0
   "C:/Users/pc/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1769001635 355436 054cd8a765e2d1b9fbaa542e24968760 ""
   "C:/Users/pc/AppData/Local/MiKTeX/fonts/tfm/public/stmaryrd/stmary10.tfm" 1768949916 848 f478e0761563bbc369eca609a1741348 ""
   "C:/Users/pc/AppData/Local/MiKTeX/fonts/tfm/public/stmaryrd/stmary6.tfm" 1768949918 848 068dd119e13b75777e62821af7d4f2a6 ""
@@ -257,12 +257,12 @@
   "C:/Users/pc/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1656236890 56148 51a9a8571c07b9921892ae11063ae853 ""
   "c:/Users/pc/Desktop/Graph theory Dr. Isabel/main.tex" 1769004089 2786 2854448fc47003560cd29932505f4c24 ""
   "chapters/chapter1.tex" 1769003864 59306 51b61a7ce780d9e36ebf57bacc036981 ""
-  "chapters/chapter2.tex" 1769004177 19048 d4d013b502a58313fff0deb193d19298 ""
+  "chapters/chapter2.tex" 1769082500 18198 6700c4e38d035a19389344eb5b2ecfec ""
   "logo.png" 1768843890 16091 4bde6fa1bbc729528ad5620efd65a284 ""
-  "main.aux" 1769004184 2013 4c8b10903a5d34f07d48c3bc6b7efbd5 "pdflatex"
-  "main.out" 1769004184 1213 ec039fbe48449b56447f3bc7bcb37bf5 "pdflatex"
+  "main.aux" 1769082505 2013 f17e4c5303b98b21247b5d43a0909901 "pdflatex"
+  "main.out" 1769082505 1213 ec039fbe48449b56447f3bc7bcb37bf5 "pdflatex"
   "main.tex" 1769004089 2786 2854448fc47003560cd29932505f4c24 ""
-  "main.toc" 1769004184 747 7d12f8c75c92c2f39b50e7d6e0d1a970 "pdflatex"
+  "main.toc" 1769082505 747 8bd2d1aa96afc138e58eec368b1fffb5 "pdflatex"
   "preamble.tex" 1769001629 4509 91819749d692a520459f3dc785dcbd68 ""
   (generated)
   "main.aux"

@@ -83,6 +83,7 @@ We call something eccentric if it is away from the usual. Similarly, in graphs w
 \end{enumerate}
 \end{definition}
 
+
 % 2.6 Example
 \begin{example}
 1) Consider $P_5$, the path of length 4, i.e.
@@ -100,75 +101,51 @@ Then
     d(v_4, v_i) &= |i-4|, \text{ whence } ecc(v_4) = \max\{3,2,1,0,1\} = 3. \\
     d(v_5, v_i) &= |i-5|, \text{ whence } ecc(v_5) = \max\{4,3,2,1,0\} = 4.
 \end{align*}
-Hence $rad(P_5) = \min\{ecc(v) \mid v \in V\} = \min\{4,3,2,3,4\} = 2$.
-Also $C(P_5) = \{v \in V \mid ecc(v) = rad(P_5)\} = \{v_3\}$.
-Further $diam(P_5) = \max\{ecc(v) \mid v \in V\} = \max\{4,3,2,3,4\} = 4$.
-And $P(P_5) = \{v \in V \mid ecc(v) = diam(P_5)\} = \{v_1, v_5\}$.
+Hence $rad(P_5) = \min\{ecc(v) \mid v \in V\} = \min\{4,3,2,3,4\} = 2$.\\
+Also $C(P_5) = \{v \in V \mid ecc(v) = rad(P_5)\} = \{v_3\}$.\\
+Further $diam(P_5) = \max\{ecc(v) \mid v \in V\} = \max\{4,3,2,3,4\} = 4$.\\
+And $P(P_5) = \{v \in V \mid ecc(v) = diam(P_5)\} = \{v_1, v_5\}$.\\
 
 2) Consider $G := C_6$, the cycle of length 6, i.e. $G=$
 \begin{center}
-\begin{tikzpicture}[scale=0.7, baseline=(current bounding box.center)]
-    \foreach \i in {1,...,6} \coordinate (v\i) at (90+60-60*\i : 1.2);
-    \draw[cyan!80!black, thick] (v1)--(v2)--(v3)--(v4)--(v5)--(v6)--(v1);
-    \foreach \i in {1,...,6} \filldraw (v\i) circle (2pt) node[anchor=center, shift={(90+60-60*\i:0.3)}] {$v_\i$};
+\begin{tikzpicture}[scale=0.8]
+    % Hexagon coordinates
+    % v0 left, v1 top-left, v2 top-right, v3 right, v4 bottom-right, v5 bottom-left
+    \coordinate (v0) at (180:1.5);
+    \coordinate (v1) at (120:1.5);
+    \coordinate (v2) at (60:1.5);
+    \coordinate (v3) at (0:1.5);
+    \coordinate (v4) at (300:1.5);
+    \coordinate (v5) at (240:1.5);
+    
+    \draw[cyan!80!black, thick] (v0)--(v1)--(v2)--(v3)--(v4)--(v5)--(v0);
+    
+    \foreach \i in {0,...,5} \filldraw (v\i) circle (2pt);
+    
+    % Labels based on drawing
+    \node[left] at (v0) {$v_0$};
+    \node[above] at (v1) {$v_1$};
+    \node[above] at (v2) {$v_2$};
+    \node[right] at (v3) {$v_3$};
+    \node[below] at (v4) {$v_4$};
+    \node[below] at (v5) {$v_5$};
 \end{tikzpicture}
 \end{center}
-Then $d(v_0, v_i)$... (calculations symmetric).
-$ecc(v_0) = \max\{0,1,2,3,2,1\} = 3$.
-Actually $ecc(v) = 3$ for all $v$.
-Hence, $rad(G) = \min\{3,3,3,3,3,3\} = 3$.
-Whence $C(G) = V_G$.
-Further, $diam(G) = \max\{3,3,3,3,3,3\} = 3$.
-And $P(G) = V_G$.
+Then 
+\begin{align*}
+    d(v_0, v_i) &= 3 - |3-i|, & ecc(v_0) &= \max\{0,1,2,3,2,1\} = 3. \\
+    d(v_1, v_i) &= |3 - |4-i||, & ecc(v_1) &= \max\{1,0,1,2,3,2\} = 3. \\
+    d(v_2, v_i) &= |3 - |5-i||, & ecc(v_2) &= \max\{2,1,0,1,2,3\} = 3. \\
+    d(v_3, v_i) &= |3 - i|, & ecc(v_3) &= \max\{3,2,1,0,1,2\} = 3. \\
+    d(v_4, v_i) &= |3 - |1-i||, & ecc(v_4) &= \max\{2,3,2,1,0,1\} = 3. \\
+    d(v_5, v_i) &= |3 - |2-i||, & ecc(v_5) &= \max\{1,2,3,2,1,0\} = 3.
+\end{align*}
+
+Hence, $rad(G) = \min\{ecc(v) \mid v \in V_G\} = \min\{3,3,3,3,3,3\} = 3$ \\
+whence $C(G) = \{v \in V_G \mid ecc(v) = rad(G)\} = V_G$. \\
+Further, $diam(G) = \max\{ecc(v) \mid v \in V_G\} = \max\{3,3,3,3,3,3\} = 3$. \\
+and $P(G) = \{v \in V_G \mid ecc(v) = diam(G)\} = V_G$.
 \end{example}
-
-\topic{Intermezzo}
-
-I: Find $rad(G), diam(G), C(G)$ and $P(G)$ of the following:
-1) $G_1 = P_{10}$ \hspace{1cm} 2) $G_2 = K_6$
-
-II: Consider
-\begin{center}
-\begin{tikzpicture}
-    % Graph from Intermezzo
-    \coordinate (a) at (0,1); \node[above] at (a) {$a$};
-    \coordinate (b) at (1,1); \node[above] at (b) {$b$};
-    \coordinate (e) at (1.5, 1.5); \node[above] at (e) {$e$};
-    \coordinate (h) at (2, 2); \node[left] at (h) {$h$};
-    \coordinate (k) at (3, 2); \node[right] at (k) {$k$};
-    \coordinate (i) at (2, 1); \node[right] at (i) {$i$};
-    \coordinate (l) at (3, 1); \node[above] at (l) {$l$};
-    \coordinate (n) at (4, 1); \node[above] at (n) {$n$};
-    \coordinate (f) at (1.5, 0.5); \node[below] at (f) {$g$}; % Wait, note says g below f
-    \coordinate (c) at (0,0); \node[below] at (c) {$c$};
-    \coordinate (d) at (1,0); \node[below] at (d) {$d$};
-    \coordinate (j) at (2,0); \node[left] at (j) {$j$};
-    \coordinate (m) at (3,0); \node[below] at (m) {$m$};
-    
-    % Draw left square
-    \draw[cyan!80!black, thick] (a)--(b)--(f)--(c)--(a); 
-    \draw[cyan!80!black, thick] (c)--(d)--(b); % Cross in square
-    \draw[cyan!80!black, thick] (a)--(d); % Cross
-    \draw[cyan!80!black, thick] (f)--(d);
-    
-    % Connection to right part
-    \draw[cyan!80!black, thick] (b)--(e)--(h)--(k)--(l)--(i)--(e);
-    \draw[cyan!80!black, thick] (h)--(i); % vertical? No
-    \draw[cyan!80!black, thick] (f)--(i);
-    \draw[cyan!80!black, thick] (i)--(j)--(m)--(l)--(n);
-    \draw[cyan!80!black, thick] (j)--(l);
-    
-    % Let's approximate the sketch better based on standard Intermezzo style
-    % It looks like two house/square shapes connected.
-    % I will draw a representative graph based on the nodes shown.
-\end{tikzpicture}
-\end{center}
-Find:
-\begin{itemize}
-    \item $d(b,c), d(h,k), d(a,m)$
-    \item $ecc(v)$ for all $v \in V_G$
-    \item $rad(G), diam(G), C(G), P(G)$.
-\end{itemize}
 
 % 2.7 Lemma
 \begin{lemma}
@@ -314,7 +291,15 @@ As $S_k(i,j) = \sum_{i=0}^k A^i(i,j)$, we get that $S_k(i,j)$ is the number of $
 
 % 2.18 Example
 \begin{example}
-Recall the graph $G = $ \tikz[baseline=-0.5ex, scale=0.3]{\draw[cyan!80!black](0,0)--(1,0)--(1,1)--(0,1)--(0,0);\draw[cyan!80!black](0,1)--(1,0);\filldraw(0,0)circle(4pt);\filldraw(1,0)circle(4pt);\filldraw(1,1)circle(4pt);\filldraw(0,1)circle(4pt);} with $A = \begin{pmatrix} 0 & 1 & 0 & 1 \\ 1 & 0 & 1 & 1 \\ 0 & 1 & 0 & 1 \\ 1 & 1 & 1 & 0 \end{pmatrix}$.
+Recall the graph $G = $ \tikz[baseline=-0.5ex, scale=0.3]{\coordinate (v1) at (-1, 0); \node[left] at (v1) {$v_1$};
+    \coordinate (v2) at (0, -1); \node[below] at (v2) {$v_2$};
+    \coordinate (v3) at (1, 0); \node[right] at (v3) {$v_3$};
+    \coordinate (v4) at (0, 1); \node[above] at (v4) {$v_4$};
+    
+    \draw[cyan!80!black, thick] (v1)--(v2)--(v3)--(v4)--(v1);
+    \draw[cyan!80!black, thick] (v2)--(v4); % Cross
+    
+    \foreach \p in {v1,v2,v3,v4} \filldraw (\p) circle (2pt);} with $A = \begin{pmatrix} 0 & 1 & 0 & 1 \\ 1 & 0 & 1 & 1 \\ 0 & 1 & 0 & 1 \\ 1 & 1 & 1 & 0 \end{pmatrix}$.
 
 $A^2 = \begin{pmatrix} 2 & 1 & 2 & 1 \\ 1 & 3 & 1 & 2 \\ 2 & 1 & 2 & 1 \\ 1 & 2 & 1 & 3 \end{pmatrix}$ and $A^3 = \begin{pmatrix} 2 & 5 & 2 & 5 \\ 5 & 4 & 5 & 5 \\ 2 & 5 & 2 & 5 \\ 5 & 5 & 5 & 4 \end{pmatrix}$.
 
@@ -322,14 +307,6 @@ Then $S_0 = I_4 = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 
 
 $S_3 = \begin{pmatrix} 5 & 7 & 4 & 8 \\ 7 & 8 & 7 & 8 \\ 4 & 7 & 5 & 7 \\ 7 & 8 & 7 & 8 \end{pmatrix}$. This means there are for example 4 $v_1v_3$ walks of length at most 3, namely $(v_1, v_2, v_3)$, $(v_1, v_4, v_3)$, $(v_1, v_2, v_4, v_3)$ and $(v_1, v_4, v_2, v_3)$.
 \end{example}
-
-\topic{Intermezzo}
-Consider $P_4$.
-1) Compute $rad(P_4), diam(P_4), C(P_4), P(P_4)$ as well as $ecc(v_i)$ for $v_1, v_2, v_3$ and $v_4$.
-2) Compute $S_0, S_1, S_2$ and $S_3$.
-3) How can we read the data of 1) from the matrices in 2?
-
-The following theorem sums up the knowledge we acquired so far.
 
 % 2.19 Theorem
 \begin{theorem}
@@ -350,7 +327,15 @@ Let $G$ be a graph with $V_G=\{v_1, \dots, v_n\}$. The \textbf{\color{red}distan
 
 % 2.21 Example
 \begin{example}
-Back to our example $G=$ \tikz[baseline=-0.5ex, scale=0.3]{\draw[cyan!80!black](0,0)--(1,0)--(1,1)--(0,1)--(0,0);\draw[cyan!80!black](0,1)--(1,0);\filldraw(0,0)circle(4pt);\filldraw(1,0)circle(4pt);\filldraw(1,1)circle(4pt);\filldraw(0,1)circle(4pt);}. Then the distance matrix $D$ is
+Back to our example $G=$ \tikz[baseline=-0.5ex, scale=0.3]{\coordinate (v1) at (-1, 0); \node[left] at (v1) {$v_1$};
+    \coordinate (v2) at (0, -1); \node[below] at (v2) {$v_2$};
+    \coordinate (v3) at (1, 0); \node[right] at (v3) {$v_3$};
+    \coordinate (v4) at (0, 1); \node[above] at (v4) {$v_4$};
+    
+    \draw[cyan!80!black, thick] (v1)--(v2)--(v3)--(v4)--(v1);
+    \draw[cyan!80!black, thick] (v2)--(v4); % Cross
+    
+    \foreach \p in {v1,v2,v3,v4} \filldraw (\p) circle (2pt);}. Then the distance matrix $D$ is
 \[ \begin{pmatrix} 0 & 1 & 2 & 1 \\ 1 & 0 & 1 & 1 \\ 2 & 1 & 0 & 1 \\ 1 & 1 & 1 & 0 \end{pmatrix}. \]
 \end{example}
 
