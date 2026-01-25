@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1769178078.78673 "c:/Users/pc/Desktop/Graph theory Dr. Isabel/main.tex" "main.pdf" "main" 1769178087.80256 0
+["pdflatex"] 1769367381.58873 "c:/Users/pc/Desktop/Graph theory Dr. Isabel/main.tex" "main.pdf" "main" 1769367390.14346 0
   "C:/Users/pc/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1769084118 355436 054cd8a765e2d1b9fbaa542e24968760 ""
   "C:/Users/pc/AppData/Local/MiKTeX/fonts/tfm/public/stmaryrd/stmary10.tfm" 1768949916 848 f478e0761563bbc369eca609a1741348 ""
   "C:/Users/pc/AppData/Local/MiKTeX/fonts/tfm/public/stmaryrd/stmary6.tfm" 1768949918 848 068dd119e13b75777e62821af7d4f2a6 ""
@@ -53,6 +53,7 @@
   "C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb" 1256929440 116908 9a7a12d1e4df280ea0ab4aad83cdef88 ""
   "C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmcsc10.pfb" 1256929440 116427 4909e80035dae5d5a4ec2b5ddd9649dd ""
   "C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb" 1256929440 23055 2e5b42921de910eaa97b85df04ca4891 ""
+  "C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.pfb" 1256929440 30388 702fae6a5f0e6e9c48a1d872b442ffcf ""
   "C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb" 1256929440 30696 3da7e46ecf5615eedebd9f27dab4d9d7 ""
   "C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi6.pfb" 1256929440 31113 04b711c9a4c7f8cb4ed784c6fc4cc1c5 ""
   "C:/Users/pc/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi8.pfb" 1256929440 30635 833ec815d446ec453a4913fc26d24cbc ""
@@ -270,7 +271,7 @@
   "chapters/chapter2.tex" 1769082500 18198 6700c4e38d035a19389344eb5b2ecfec ""
   "chapters/chapter3.tex" 1769093008 47859 201da1081cca79b314f22428ce585b5f ""
   "chapters/chapter4.tex" 1769176556 33838 e256f2a9660261e1f2e0457635815acb ""
-  "chapters/chapter5.tex" 1769178061 18579 49ff3fbee0c06c91901a5d4c11f1e5fd ""
+  "chapters/chapter5.tex" 1769367380 25678 1dba16199f9a7d578d9663e46b603376 ""
   "images/pic_4_16_1.png" 1769173948 78168 151714625b43632be3c014c3b9f88377 ""
   "images/pic_4_16_2.png" 1769174035 74845 2ad172ec3f7028959c5c2230c9d072a5 ""
   "images/pic_4_16_3.png" 1769174067 93396 9e075ad82c6847ad802a536c69d85e2c ""
@@ -278,11 +279,12 @@
   "images/pic_4_16_5.png" 1769174122 95106 cd2ffa55a328eda7a9db95fcb40830f1 ""
   "images/pic_4_16_6.png" 1769174154 117431 f4caaf1409a0f6b1dfdbfb0a67b999a6 ""
   "images/pic_4_20.png" 1769175725 38348 e92171d28c6d769069da194f946ce414 ""
+  "images/pic_5_4.png" 1769364781 806199 9ae40f26bfff13af5400652129818892 ""
   "logo.png" 1768843890 16091 4bde6fa1bbc729528ad5620efd65a284 ""
-  "main.aux" 1769178087 3087 f76ffe081d97ca30695d84059fa32767 "pdflatex"
-  "main.out" 1769178087 1924 b043cb8b00f4a6781894971f05f4530f "pdflatex"
+  "main.aux" 1769367389 3436 803e4a26e9140ce405041f20ac0d25fd "pdflatex"
+  "main.out" 1769367389 2343 57fe81c45eea9d392462ef40b995190e "pdflatex"
   "main.tex" 1769178068 2945 c782b77190956eeaa6ad7e8b34fe04ce ""
-  "main.toc" 1769178087 1306 a3683b11e35b076b4b7bc3819811944b "pdflatex"
+  "main.toc" 1769367389 1532 de2632eb9149248f202b783ddc4f510f "pdflatex"
   "preamble.tex" 1769174545 4226 1e20ccf2c51d04afcad6281b9baa98cf ""
   (generated)
   "main.aux"
