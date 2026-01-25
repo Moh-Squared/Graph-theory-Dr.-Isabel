@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1769176564.7868 "c:/Users/pc/Desktop/Graph theory Dr. Isabel/main.tex" "main.pdf" "main" 1769176573.156 0
+["pdflatex"] 1769178078.78673 "c:/Users/pc/Desktop/Graph theory Dr. Isabel/main.tex" "main.pdf" "main" 1769178087.80256 0
   "C:/Users/pc/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1769084118 355436 054cd8a765e2d1b9fbaa542e24968760 ""
   "C:/Users/pc/AppData/Local/MiKTeX/fonts/tfm/public/stmaryrd/stmary10.tfm" 1768949916 848 f478e0761563bbc369eca609a1741348 ""
   "C:/Users/pc/AppData/Local/MiKTeX/fonts/tfm/public/stmaryrd/stmary6.tfm" 1768949918 848 068dd119e13b75777e62821af7d4f2a6 ""
@@ -265,11 +265,12 @@
   "C:/Users/pc/AppData/Local/Programs/MiKTeX/tex/latex/twemojis/twemojis.sty" 1649148999 365308 f83b238af2ba6ee3863a4efa272f41c8 ""
   "C:/Users/pc/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/pc/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1656236890 56148 51a9a8571c07b9921892ae11063ae853 ""
-  "c:/Users/pc/Desktop/Graph theory Dr. Isabel/main.tex" 1769093236 2947 80dfbd6aee60f325ae564b513a54a77e ""
+  "c:/Users/pc/Desktop/Graph theory Dr. Isabel/main.tex" 1769178068 2945 c782b77190956eeaa6ad7e8b34fe04ce ""
   "chapters/chapter1.tex" 1769003864 59306 51b61a7ce780d9e36ebf57bacc036981 ""
   "chapters/chapter2.tex" 1769082500 18198 6700c4e38d035a19389344eb5b2ecfec ""
   "chapters/chapter3.tex" 1769093008 47859 201da1081cca79b314f22428ce585b5f ""
   "chapters/chapter4.tex" 1769176556 33838 e256f2a9660261e1f2e0457635815acb ""
+  "chapters/chapter5.tex" 1769178061 18579 49ff3fbee0c06c91901a5d4c11f1e5fd ""
   "images/pic_4_16_1.png" 1769173948 78168 151714625b43632be3c014c3b9f88377 ""
   "images/pic_4_16_2.png" 1769174035 74845 2ad172ec3f7028959c5c2230c9d072a5 ""
   "images/pic_4_16_3.png" 1769174067 93396 9e075ad82c6847ad802a536c69d85e2c ""
@@ -278,10 +279,10 @@
   "images/pic_4_16_6.png" 1769174154 117431 f4caaf1409a0f6b1dfdbfb0a67b999a6 ""
   "images/pic_4_20.png" 1769175725 38348 e92171d28c6d769069da194f946ce414 ""
   "logo.png" 1768843890 16091 4bde6fa1bbc729528ad5620efd65a284 ""
-  "main.aux" 1769176572 2904 1ec95c6f9350340509e286c553171583 "pdflatex"
-  "main.out" 1769176572 1835 42ae0a3d89951680bf4c21daf9691c38 "pdflatex"
-  "main.tex" 1769093236 2947 80dfbd6aee60f325ae564b513a54a77e ""
-  "main.toc" 1769176572 1240 7e7a30862fa0e2d88d08fca9d96e6324 "pdflatex"
+  "main.aux" 1769178087 3087 f76ffe081d97ca30695d84059fa32767 "pdflatex"
+  "main.out" 1769178087 1924 b043cb8b00f4a6781894971f05f4530f "pdflatex"
+  "main.tex" 1769178068 2945 c782b77190956eeaa6ad7e8b34fe04ce ""
+  "main.toc" 1769178087 1306 a3683b11e35b076b4b7bc3819811944b "pdflatex"
   "preamble.tex" 1769174545 4226 1e20ccf2c51d04afcad6281b9baa98cf ""
   (generated)
   "main.aux"

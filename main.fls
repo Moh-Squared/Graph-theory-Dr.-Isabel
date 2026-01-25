@@ -559,6 +559,9 @@ INPUT .\images\pic_4_20.png
 INPUT .\images\pic_4_20.png
 INPUT .\images\pic_4_20.png
 INPUT .\images\pic_4_20.png
+INPUT .\chapters\chapter5.tex
+INPUT .\chapters\chapter5.tex
+INPUT chapters\chapter5.tex
 INPUT main.aux
 INPUT .\main.out
 INPUT .\main.out

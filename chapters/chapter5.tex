@@ -1,0 +1,328 @@
+\chapter{Planarity}
+
+(lat. planaris -- flat, level)
+
+\begin{definition}
+A graph $G$ is called \textbf{\color{red}planar} if it can be drawn on a plane s.t. its edges at most intersect in their end vertices. Any such drawing is then called a \textbf{\color{red}planar representation} or a \textbf{\color{red}planar embedding}. If $G$ is not planar, it is called \textbf{\color{red}nonplanar}.
+\end{definition}
+
+\begin{example}
+\begin{enumerate}
+    \item[1)] Clearly, trees, cycles and empty graphs are planar.
+    \item[2)] The graph \begin{tikzpicture}[baseline=(current bounding box.center), scale=0.4]
+        \coordinate (a) at (0,0); \coordinate (b) at (1,0); \coordinate (c) at (1,1); \coordinate (d) at (0,1);
+        \draw[cyan!80!black, thick] (a)--(b)--(c)--(d)--(a)--(c); \draw[cyan!80!black, thick] (b)--(d);
+        \foreach \p in {a,b,c,d} \filldraw (\p) circle (2pt);
+    \end{tikzpicture} is planar and this is a planar representation.
+    \item[3)] The graph $K_{2,3}$ 
+    \begin{tikzpicture}[baseline=(current bounding box.center), scale=0.5]
+        \coordinate (a) at (0,0.5); \coordinate (b) at (0,-0.5);
+        \coordinate (c) at (1,0.8); \coordinate (d) at (1,0); \coordinate (e) at (1,-0.8);
+        \foreach \x in {a,b} \foreach \y in {c,d,e} \draw[cyan!80!black] (\x)--(\y);
+        \foreach \p in {a,b,c,d,e} \filldraw (\p) circle (2pt);
+        \node[left] at (a) {$a$}; \node[left] at (b) {$b$};
+        \node[right] at (c) {$c$}; \node[right] at (d) {$d$}; \node[right] at (e) {$e$};
+    \end{tikzpicture}
+    is planar, but this is \textbf{not} a planar representation.
+    One planar representation is given by
+    \begin{tikzpicture}[baseline=(current bounding box.center), scale=0.5]
+        % Diamond shape a, d, b, c
+        \coordinate (a) at (0,1); \coordinate (d) at (1,0); 
+        \coordinate (b) at (0,-1); \coordinate (c) at (-1,0);
+        \coordinate (e) at (2,0);
+        
+        \draw[cyan!80!black, thick] (a)--(c)--(b)--(d)--(a); % Cycle a-c-b-d-a
+        \draw[cyan!80!black, thick] (a)--(e)--(b); % Outer connections to e
+        
+        \filldraw (a) circle (2pt) node[above] {$a$};
+        \filldraw (b) circle (2pt) node[below] {$b$};
+        \filldraw (c) circle (2pt) node[left] {$c$};
+        \filldraw (d) circle (2pt) node[right] {$d$};
+        \filldraw (e) circle (2pt) node[right] {$e$};
+    \end{tikzpicture}.
+\end{enumerate}
+\end{example}
+
+In order to prove that a graph is planar, we ``just'' have to provide one planar representation. But these can be very hard to find.
+In order to prove that a graph is \underline{not} planar, we would have to check ``all'' possible representations. This is not feasible.
+But we can help ourselves by throwing some math on the problem.
+To this end, we need some more terminology.
+
+\begin{definition}
+A \textbf{\color{red}region} in a planar rep. is a maximal area of the plane s.t. any two points within can be connected by a curve which does not intersect or touch any part of the graph.
+Regions which are completely bounded (=surrounded) by graph edges are called \textbf{\color{red}interior regions}. The unique non-interior region is called \textbf{\color{red}exterior region}.
+\end{definition}
+
+\begin{example}
+Consider the planar representation 
+\begin{tikzpicture}[baseline=(current bounding box.center), scale=0.3]
+    \coordinate (a) at (0,0); \coordinate (b) at (2,0); \coordinate (c) at (2,2); \coordinate (d) at (0,2);
+    \draw[cyan!80!black, thick] (a)--(b)--(c)--(d)--(a)--(c);
+    \draw[cyan!80!black, thick] (b) -- (3,1); % Hanging edge
+    \foreach \p in {a,b,c,d} \filldraw (\p) circle (3pt);
+    \filldraw (3,1) circle (3pt);
+\end{tikzpicture}.
+We can find the regions by considering this representation as a cookie cutter which we use to part the dough on our table surface.
+So the regions are:
+\begin{center}
+\begin{tikzpicture}[scale=0.7]
+    % Draw "dough" (regions)
+    \fill[gray!20] (-1,-1) rectangle (4,3);
+    
+    % R1 (top left triangle)
+    \fill[green!20] (0,0) -- (0,2) -- (2,2) -- cycle;
+    \node at (0.7,1.3) {$R_1$};
+    
+    % R2 (bottom right triangle)
+    \fill[blue!20] (0,0) -- (2,0) -- (2,2) -- cycle;
+    \node at (1.3,0.7) {$R_2$};
+    
+    % R3 (something else in example logic, keeping simple based on standard planar graphs)
+    % The note has R1..R4 interior and R5 exterior. 
+    % Let's replicate the specific drawing from the note roughly.
+    
+    \draw[line width=2pt, white] (0,0)--(0,2)--(2,2)--(2,0)--cycle; 
+    \draw[line width=2pt, white] (0,0)--(2,2);
+    
+    \node at (3,2.5) {$R_5$ (exterior)};
+\end{tikzpicture}
+\end{center}
+where $R_1-R_4$ are interior and $R_5$ is the exterior region.
+\end{example}
+
+\begin{definition}
+Let $\Gamma$ be a planar representation of $G$ in $\mathbb{R}^2$. We say that an edge $e$ is incident with a region $R$ iff every point $x$ on the edge $e$ and $\varepsilon > 0$ there is a point $y$ in $R$ s.t. $d(x,y) < \varepsilon$ (or $B_\varepsilon(x) \cap R \neq \emptyset$). We say that $e$ is a \textbf{\color{red}bound} for $R$, if it is incident with $R$ and at least one other region. We denote the number of bounds for a given region $R$ by $b(R)$ and call it its \textbf{\color{red}boundary degree} while $B(R) = \{e \in E(G) \mid e \text{ is a bound for } R\}$ is called the \textbf{\color{red}boundary} of $R$.
+\end{definition}
+
+\begin{example}
+Consider $G$ given by its planar representation
+\begin{center}
+\begin{tikzpicture}[scale=1.5]
+    \coordinate (v1) at (0,0);
+    \coordinate (v2) at (2,0);
+    \coordinate (v3) at (1,1.5);
+    \coordinate (c) at (1,0.5);
+    
+    \draw[cyan!80!black, thick] (v1)--(v2) node[midway, below] {$e_1$};
+    \draw[cyan!80!black, thick] (v2)--(v3) node[midway, right] {$e_2$};
+    \draw[cyan!80!black, thick] (v3)--(v1) node[midway, left] {$e_3$};
+    
+    \draw[cyan!80!black, thick] (v1)--(c) node[midway, above] {$e_4$};
+    \draw[cyan!80!black, thick] (v2)--(c) node[midway, above] {$e_5$};
+    \draw[cyan!80!black, thick] (v3)--(c) node[midway, right] {$e_6$};
+    
+    \foreach \p in {v1,v2,v3,c} \filldraw (\p) circle (1.5pt);
+    
+    \node at (1,0.2) {$R_1$};
+    \node at (1.3,0.8) {$R_2$};
+    \node at (0.7,0.8) {$R_3$};
+    \node at (-0.5,1) {$R_{ext}$};
+\end{tikzpicture}
+\end{center}
+Then $e_6$ is a bound of $R_2$, as it is incident with $R_1$ and $R_2$, but $e_7$ [sic] is not a bound of $R_2$, as it is only incident with $R_2$.
+Further, $B(R_2) = \{e_1, e_2, e_3, e_4, e_5, e_6\}$ and $b(R_2) = 6$. Also, $B(R_3) = \{e_1, e_2, e_3\}$ and $B(R_1) = \{e_4, e_5, e_6\}$.
+\end{example}
+
+\begin{remark}
+\begin{itemize}
+    \item A very proper treatment needs a good fusion of real analysis with topology and exceeds our time frame (nice thesis topic).
+    \item Any edge is incident with either 1 or 2 regions, whence
+    \[ \sum_{R \text{ is region}} b(R) = \sum_{R \text{ is region}} |B(R)| = 2 |\{e \mid e \text{ is a bound for some } R\}| \le 2 |E| \]
+    \item Any region either has no bounds or at least three.
+    \item A region has no bound iff it is the only region and $G$ is a forest.
+\end{itemize}
+\end{remark}
+
+\begin{theorem}[Fact]
+Assume $\Gamma$ is the planar representation of a graph $G$ with regions $R_1, R_2, \dots, R_r$. Then
+\begin{enumerate}
+    \item[1)] Either $G$ is a forest and $r=1$ and $b(R_1)=0$ or
+    \item[2)] $G$ contains a cycle and $r \ge 2$ with
+    \[ 3r \le \sum_{i=1}^r b(R_i) \le 2 |E|. \]
+\end{enumerate}
+\end{theorem}
+
+\topic{Observation}
+Let $e$ be the edge of a planar graph $G$. Then $e$ is a bound for some region $R$ iff $e$ is part of a cycle in $G$.
+
+We now will prove that the relation discovered in the intermezzo holds for \underline{any} planar representation.
+
+\begin{theorem}[Euler's Formula]
+Let $\Gamma$ be any planar representation of a connected graph $G$. Then for $|G|=n, \|G\|=m$ and $r$ the number of regions in $\Gamma$, we have:
+\[ n - m + r = 2. \]
+\end{theorem}
+
+\begin{corollary}
+\begin{enumerate}
+    \item[1)] As consequently $r = \|G\| - |G| + 2$, we get that for a planar graph $G$, the number of regions is independent from the chosen planar representation. We can hence say that $G$ has $r$-many regions.
+    \item[2)] If $G$ is a planar graph on $k$-many connected components $C_1 \dots C_k$ then each $C_i$ is planar. If $C_i$ has $r_i$-many regions, note that $G$ has $\sum_{i=1}^k r_i - (k-1)$ many regions as all components share the common exterior region in a joint embedding. Thus the number of regions $r$ of $G$ is
+    \begin{align*}
+        r &= (\sum r_i) - (k-1) = \sum(\|C_i\| - |C_i| + 2) - (k-1) \\
+          &= \|G\| - |G| + 2k + 1 - k + 1 \\
+          &= \|G\| - |G| + k + 1.
+    \end{align*}
+    Hence, for arbitrary planar $G$ with $|G|=n, \|G\|=m$ and $\rho(G)=r$, we get
+    \[ n - m + r = k + 1 \]
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+Proof of Theorem 5.11\\
+Let $G$ be a connected planar graph in any given planar representation with regions $R_1, R_2, \dots, R_r$. Let $|G|=n$.
+We prove the theorem by induction on $\|G\|=m$.
+\underline{$m=0$}: If $G$ has no edges, then $G=K_1$. Then clearly $n=1, r=1$ and thus $n-m+r = 1-0+1 = 2$, as desired.
+\underline{$m-1 \to m$}: Assume we established the claim for all graphs with less than $m$ many edges. Consider $G$ with $m$ many edges.
+If $G$ is a tree, then we know that $n=m+1$ and $r=1$ (whence $n-m+r = m+1-m+1 = 2$, as desired).
+Otherwise, $G$ contains at least one cycle. Let $e \in E(G)$ be one edge on that cycle. Then by Observation 5.10, $e$ is a bound for two regions $R_i$ and $R_j$. Note that in $G-e$ the regions $R_i$ and $R_j$ merge together to one new region $R'$, whence $G-e$ has one less region than $G$. Thus, by I.H. we get
+\[ |G-e| - \|G-e\| + (r-1) = 2 = n - (m-1) + (r-1) = n - m + r, \]
+as desired.
+\end{proof}
+
+\begin{remark}
+\begin{enumerate}
+    \item[1)] Every subgraph of a planar graph is planar.
+    \item[2)] If $G$ is planar and $R$ is any region, then in the induced planar representation for $B(R)$ (i.e. deleting all drawings apart from $B(R)$), $R$ is still a region and $B(R)$ its boundary.
+    \item[3)] For any region we have $b(R) \in \{0\} \cup \mathbb{N}_{\ge 3}$. In particular, if $b(R)=3$, then $B(R) \cong C_3$.
+\end{enumerate}
+\end{remark}
+
+\topic{Nonplanar Graphs}
+
+Imagine you want to connect three houses each to gas, electricity and water, s.t. the pipes don't intersect. This question boils down to asking: Is
+\begin{center}
+\begin{tikzpicture}[scale=0.8, baseline=(current bounding box.center)]
+    \node[draw, circle, inner sep=1pt] (g) at (0,1) {\tiny Gas};
+    \node[draw, circle, inner sep=1pt] (w) at (0,0) {\tiny Water};
+    \node[draw, circle, inner sep=1pt] (e) at (0,-1) {\tiny E};
+    
+    \node[draw, circle, inner sep=1pt] (h1) at (2,1) {\tiny H1};
+    \node[draw, circle, inner sep=1pt] (h2) at (2,0) {\tiny H2};
+    \node[draw, circle, inner sep=1pt] (h3) at (2,-1) {\tiny H3};
+    
+    \draw[cyan!80!black] (g)--(h1); \draw[cyan!80!black] (g)--(h2); \draw[cyan!80!black] (g)--(h3);
+    \draw[cyan!80!black] (w)--(h1); \draw[cyan!80!black] (w)--(h2); \draw[cyan!80!black] (w)--(h3);
+    \draw[cyan!80!black] (e)--(h1); \draw[cyan!80!black] (e)--(h2); \draw[cyan!80!black] (e)--(h3);
+    
+    \node at (3.5, 0) {$= K_{3,3}$};
+\end{tikzpicture}
+\end{center}
+a planar graph?
+(This is why $K_{3,3}$ is also called the \textbf{\color{red}utility graph}.)
+
+\begin{theorem}
+The utility graph $K_{3,3}$ is not planar.
+\end{theorem}
+
+\begin{proof}
+Aiming for a contradiction, assume $K_{3,3}$ was planar. Then it needed to have
+\[ r = \|K_{3,3}\| - |K_{3,3}| + 2 = 9 - 6 + 2 = 5 \text{ regions}. \]
+On the other hand, as $K_{3,3}$ is bipartite and thus does not contain odd cycles, every region has at least four bounds by Remark 5.13(3). Hence
+\[ \sum_{i=1}^5 b(R_i) \ge 5 \cdot 4 = 20 > 2 \cdot 9 = 2 \cdot \|K_{3,3}\|, \]
+contradicting Fact 5.9.
+Thus, $K_{3,3}$ cannot be planar.
+\end{proof}
+
+\begin{theorem}
+Let $G$ be planar of order at least 3. Then $\|G\| \le 3(|G|-2)$.
+Further, if equality holds then every region is bounded by exactly three edges.
+\end{theorem}
+
+\begin{proof}
+Assume $G$ consists of $k$ connected components. The equation clearly holds for forests as then $\|G\| = |G|-k \le 3|G|-6$ iff $6-k \le 2|G|$.
+Otherwise, $r \ge 2$ and $G$ contains a cycle. Recall that
+\[ (*) \quad 3r \le \sum_{i=1}^r b(R_i) \le 2 \|G\|. \]
+Hence, by Eulers generalised formula, we get $r = \|G\| - |G| + k+1 \ge \|G\| - |G| + 2$. This yields
+\[ 2\|G\| \ge 3r \ge 3(\|G\| - |G| + 2), \text{ whence } 3(|G|-2) \ge \|G\|, \text{ as desired}. \]
+Finally, for equality to hold we need in particular that $2\|G\| = 3r$, whence also $3r = \sum_{i=1}^r b(R_i)$. Thus, every region has boundary degree 3 as desired.
+\end{proof}
+
+\begin{corollary}
+The complete graph $K_n$ is planar iff $n \le 4$.
+\end{corollary}
+
+\begin{proof}
+First note that $K_4 = $ \begin{tikzpicture}[baseline=-0.5ex, scale=0.3] \draw[cyan!80!black] (0,0) rectangle (1,1); \draw[cyan!80!black] (0,0)--(1,1); \draw[cyan!80!black] (0,1)--(1,0); \end{tikzpicture} is planar, and hence so are its subgraphs $K_1, K_2$ and $K_3$.
+Now, for $K_5$, by Lemma 5.15 we get $10 = |K_5| \le 3(|K_5|-2) = 3(3) = 9$, a contradiction. Hence, $K_5$ is not planar and so is neither of the $K_n$ for $n \ge 5$, as they contain $K_5$ as a subgraph.
+\end{proof}
+
+\begin{theorem}
+If $G$ is planar, then $\delta(G) \le 5$.
+\end{theorem}
+
+\begin{proof}
+Let $G$ be a planar graph and set $n=|G|$ and $m=\|G\|$. Aiming for a contradiction, assume $\delta(G) > 5$. Then in particular, $n \ge 6$.
+Then
+\[ 6 \cdot n \le \sum_{v \in V_G} \deg(v) = 2m \stackrel{(5.15)}{\le} 2(3 \cdot (n-2)) = 6n - 12 \]
+yields a contradiction.
+\end{proof}
+
+\topic{Kuratowski's Theorem}
+
+We have seen that the graphs $K_{3,3}$ and $K_5$ are not planar. It turns out that these two graphs are the major obstruction for any graph to be planar. This section gives an introduction to Kuratowski's theorem. But first, we want to introduce a new notation.
+
+\begin{example}
+Consider
+\[ G = \begin{tikzpicture}[baseline=(current bounding box.center), scale=0.5]
+    \foreach \i in {1,...,5} \coordinate (p\i) at (90+72*\i:1);
+    \draw[cyan!80!black] (p1)--(p2)--(p3)--(p4)--(p5)--(p1);
+    \draw[cyan!80!black] (p1)--(p3)--(p5)--(p2)--(p4)--(p1);
+    \foreach \i in {1,...,5} \filldraw (p\i) circle (2pt);
+    \node at (1.5,0.5) {$x$}; \node at (0.5,-1) {$z$}; \node at (-1.5,0.5) {$y$};
+\end{tikzpicture} \quad \text{and} \quad H = \begin{tikzpicture}[baseline=(current bounding box.center), scale=0.5]
+    \foreach \i in {1,...,5} \coordinate (p\i) at (90+72*\i:1);
+    \coordinate (m) at (0.5,-0.2); % Mid point on edge xz
+    \draw[cyan!80!black] (p1)--(p2)--(p3)--(p4)--(p5)--(p1);
+    \draw[cyan!80!black] (p1)--(p3); \draw[cyan!80!black] (p2)--(p4); \draw[cyan!80!black] (p5)--(p2);
+    % x-y-z path replacing edge
+    \draw[cyan!80!black, red, dashed] (p3)--(m)--(p5);
+    \foreach \i in {1,...,5} \filldraw (p\i) circle (2pt);
+    \filldraw[red] (m) circle (2pt) node[above] {$y$};
+    \node at (1.5,0.5) {$x$}; \node at (0.5,-1) {$z$}; 
+    % ... labels
+    \node[right] at (p1) {$a$}; \node[left] at (p4) {$b$};
+\end{tikzpicture} \]
+Note that neither of $G$ or $H$ contains $K_5$ (or $K_{3,3}$) as a subgraph. Nevertheless, they both look so similar to $K_5$ that they should not be planar.
+Indeed, $G$ arises from $K_5$ by replacing the edge $xz$ by $\{xy, yz\}$ and $H$ arises from $G$ by replacing the edges $\{xz, ad\}$ by $\{xy, yz, ab, bc, cd\}$. This process is called subdivision.
+\end{example}
+
+\begin{definition}
+\begin{enumerate}
+    \item[1)] Let $G$ be a graph and $e=xy \in E(G)$. An \textbf{\color{red}edge subdivision} of $e$ is the replacement of $e$ by a finite path of length $\ge 2$ starting in $x$ and ending in $y$.
+    \item[2)] Let $G$ and $H$ be graphs. Then $H$ is called a \textbf{\color{red}subdivision} of $G$ iff $H$ can be obtained through a finite sequence of edge subdivisions.
+\end{enumerate}
+\end{definition}
+
+\begin{example}
+\begin{enumerate}
+    \item[1)] The graphs $G, H$ from 5.18 are edge subdivisions of $K_5$.
+    \item[2)] The graph \begin{tikzpicture}[baseline=(current bounding box.center), scale=0.3]
+        \foreach \i in {1,...,5} \coordinate (p\i) at (90+72*\i:1);
+        \draw[cyan!80!black] (p1)--(p2)--(p3)--(p4)--(p5)--(p1);
+        \draw[cyan!80!black] (p1)--(p3)--(p5)--(p2)--(p4)--(p1);
+        \filldraw (0,0) circle (2pt); \draw[cyan!80!black] (0,0)--(p1); \draw[cyan!80!black] (0,0)--(p3);
+        \foreach \i in {1,...,5} \filldraw (p\i) circle (2pt);
+    \end{tikzpicture} is \textbf{\color{red}not} an edge subdivision of $K_5$, as the edges $\{xy, yz\}$ were added rather than replacing the edge $xz$.
+\end{enumerate}
+\end{example}
+
+\begin{lemma}
+A graph $G$ is planar iff every subdivision of $G$ is planar.
+\end{lemma}
+
+\begin{proof}
+``$\Rightarrow$'' Consider a planar representation $\Gamma$ of $G$. Let $H$ be a subdivision of $G$ where a sequence of $n$-many edge subdivisions were performed. We do induction on $n$.
+If $n=0$, then $H=G$ is clearly planar.
+Now assume we proved the claim for $n$ and consider $H$ arising from $G$ through $n+1$ many subdivisions. Let $H_0$ be the graph arising from $G$ through the first $n$-many subdivisions. By I.H. $H_0$ is planar and $H$ can be obtained from $H_0$ through exactly one edge-subdivision. Let $\Gamma_0$ be a planar drawing of $H_0$ and $e=xy$ be the edge which is subdivided to obtain $H$, say by replacing it by the path $P=(x=x_0, x_1, \dots, x_k=y)$ for $k \ge 2$. Let $\vec{xy}$ be the geodesic from $x$ to $y$ in $\mathbb{R}^2$. Then we draw in the vertex $x_i$ at the point $x + \frac{i}{k}\vec{xy}$ for any $i$. This yields a planar representation of $H$, as desired.
+\end{proof}
+
+\begin{corollary}
+If $G$ contains a subdivision of $K_{3,3}$ or $K_5$ as a subgraph, then $G$ is not planar. (Or: If $G$ planar $\Rightarrow$ no subdivision of $K_5, K_{3,3} \subseteq G$).
+\end{corollary}
+
+\begin{theorem}[Kuratowski's Theorem]
+A graph is planar if and only if it does not contain a subdivision of $K_{3,3}$ or $K_5$ as a subgraph.
+\end{theorem}
+
+\begin{remark}
+The left over, hard direction is the backwards direction, i.e. if $G$ does not contain a subdivision of $K_{3,3}$ or $K_5$, then $G$ is planar.
+\end{remark}
