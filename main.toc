@@ -19,3 +19,7 @@
 \contentsline {section}{\numberline {1}Planar Graphs}{47}{section.5.1}%
 \contentsline {section}{\numberline {2}Nonplanar Graphs}{51}{section.5.2}%
 \contentsline {section}{\numberline {3}Kuratowski's Theorem}{52}{section.5.3}%
+\contentsline {chapter}{\numberline {6}Graph Colourings}{55}{chapter.6}%
+\contentsline {section}{\numberline {1}The Chromatic Number}{55}{section.6.1}%
+\contentsline {section}{\numberline {2}The 4-Colour Problem}{62}{section.6.2}%
+\contentsline {section}{\numberline {3}Chromatic Polynomials}{64}{section.6.3}%
