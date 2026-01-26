@@ -46,6 +46,8 @@
 % --- CUSTOM HEADER STYLING ---
 \usepackage{titlesec}
 
+\pretocmd{\section}{\needspace{9\baselineskip}}{}{}
+
 \renewcommand{\thesection}{\arabic{section}}
 
 \titleformat{\chapter}[display]
