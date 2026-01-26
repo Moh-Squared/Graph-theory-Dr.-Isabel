@@ -25,3 +25,7 @@
 \contentsline {paragraph}{Case b.}{61}{seq.6.20}%
 \contentsline {section}{\numberline {2}The 4-Colour Problem}{65}{section.6.2}%
 \contentsline {section}{\numberline {3}Chromatic Polynomials}{68}{section.6.3}%
+\contentsline {chapter}{\numberline {7}Matchings}{72}{chapter.7}%
+\contentsline {section}{\numberline {1}Introduction}{72}{section.7.1}%
+\contentsline {section}{\numberline {2}Hall's Marriage Theorem}{75}{section.7.2}%
+\contentsline {section}{\numberline {3}The K\"{o}nig-Egerv\'{a}ry Theorem}{77}{section.7.3}%

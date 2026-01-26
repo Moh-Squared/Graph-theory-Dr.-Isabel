@@ -637,6 +637,9 @@ INPUT C:\Users\pc\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\lmsy5.tfm
 INPUT C:\Users\pc\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam5.tfm
 INPUT C:\Users\pc\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm5.tfm
 INPUT C:\Users\pc\AppData\Local\MiKTeX\fonts\tfm\public\stmaryrd\stmary5.tfm
+INPUT .\chapters\chapter7.tex
+INPUT .\chapters\chapter7.tex
+INPUT chapters\chapter7.tex
 INPUT main.aux
 INPUT .\main.out
 INPUT .\main.out
