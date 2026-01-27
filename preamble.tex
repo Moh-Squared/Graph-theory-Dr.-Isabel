@@ -33,7 +33,9 @@
 \usepackage{graphicx}
 \usepackage{xcolor}
 \usepackage{tikz} 
-\usetikzlibrary{positioning, arrows.meta, shapes, calc}
+\usetikzlibrary{positioning, arrows.meta, shapes, calc, backgrounds, fit, shapes.geometric}
+
+\usepackage{setspace}
 
 % --- Color Definitions ---
 \definecolor{aucred}{RGB}{140, 0, 50}   
@@ -69,7 +71,7 @@
 
 \newcommand{\topic}[1]{%
     \par\vspace{0.5cm}\noindent%
-    \needspace{3\baselineskip}% 
+    \needspace{6\baselineskip}% 
     \refstepcounter{seq}%
     {\large \underline{\textbf{\theseq~#1}}}%
     \par\vspace{0.2cm}%

@@ -5,72 +5,98 @@
 Imagine a group of people has to split up in pairs and take part in a competition. Every person has several people they'd be happy to compete with, and we assume this is symmetric.
 This situation can be modeled using a graph. How would a possible matching look like which would please everyone?
 
-\begin{example}
+Example:
 \begin{center}
 \begin{tikzpicture}[scale=0.8]
-    % Graph Coordinates
-    \coordinate (a) at (0,1);
-    \coordinate (b) at (1,2);
-    \coordinate (c) at (2,1.5);
-    \coordinate (d) at (0,0);
-    \coordinate (e) at (1.5,0);
-    \coordinate (f) at (3,0.5);
+    % Coordinates matching the visual layout (1 top, 2 top-right, 3 right, 4 bottom-right, 5 bottom, 6 left)
+    \coordinate (n1) at (0, 1.5);
+    \coordinate (n2) at (1.5, 1.2);
+    \coordinate (n3) at (2, 0);
+    \coordinate (n4) at (1, -1);
+    \coordinate (n5) at (0, -1);
+    \coordinate (n6) at (-1, 0);
 
     % Edges
-    \draw[cyan!80!black] (a)--(b)--(c)--(f)--(e)--(d)--(a);
-    \draw[cyan!80!black] (b)--(d);
-    \draw[cyan!80!black] (b)--(e);
-    \draw[cyan!80!black] (c)--(e);
+    \draw[cyan!80!black, thick] (n6)--(n1)--(n2)--(n3)--(n4)--(n1)--(n5)--(n6); % Outer cycle-ish
+    \draw[cyan!80!black, thick] (n1)--(n5);
+    \draw[cyan!80!black, thick] (n1)--(n4);
+    \draw[cyan!80!black, thick] (n2)--(n5);
 
-    \foreach \p in {a,b,c,d,e,f} \filldraw (\p) circle (2pt);
-    
-    % Text
-    \node at (4.5, 1) {Possible matchings are};
+    % Labels
+    \foreach \i in {1,2,3,4,5,6} \filldraw (n\i) circle (2pt);
+    \node[above] at (n1) {\small 1}; \node[above right] at (n2) {\small 2};
+    \node[right] at (n3) {\small 3}; \node[below right] at (n4) {\small 4};
+    \node[below] at (n5) {\small 5}; \node[left] at (n6) {\small 6};
 \end{tikzpicture}
 \end{center}
+
+Possible matchings are
 
 \begin{center}
-\begin{tikzpicture}[scale=0.7]
-    % Matching 1 (Left)
+\begin{tikzpicture}[scale=0.5]
+    % Left Matching
     \begin{scope}[xshift=0cm]
-        \coordinate (a) at (0,1); \coordinate (b) at (1,2);
-        \coordinate (c) at (2,1.5); \coordinate (d) at (0,0);
-        \coordinate (e) at (1.5,0); \coordinate (f) at (3,0.5);
+        \coordinate (n1) at (0, 1.5); \coordinate (n2) at (1.5, 1.2); \coordinate (n3) at (2, 0);
+        \coordinate (n4) at (1, -1); \coordinate (n5) at (0, -1); \coordinate (n6) at (-1, 0);
         
-        \draw[cyan!80!black] (a)--(b)--(c)--(f)--(e)--(d)--(a);
-        \draw[cyan!80!black] (b)--(d); \draw[cyan!80!black] (b)--(e); \draw[cyan!80!black] (c)--(e);
+        \draw[cyan!80!black] (n6)--(n1)--(n2)--(n3)--(n4)--(n1)--(n5)--(n6);
+        \draw[cyan!80!black] (n1)--(n5); \draw[cyan!80!black] (n1)--(n4); \draw[cyan!80!black] (n2)--(n5);
         
-        % Thick Matching Edges (Grey/Purple highlight style)
-        \draw[line width=3pt, purple!50, opacity=0.5] (a)--(d);
-        \draw[line width=3pt, purple!50, opacity=0.5] (b)--(e);
-        \draw[line width=3pt, purple!50, opacity=0.5] (c)--(f);
+        % Thick Matching Edges (Grey highlight style)
+        % Notes show: (1-6), (2-5), (3-4)
+        \draw[line width=4pt, gray, opacity=0.5] (n1)--(n6);
+        \draw[line width=4pt, gray, opacity=0.5] (n2)--(n5);
+        \draw[line width=4pt, gray, opacity=0.5] (n3)--(n4);
         
-        \foreach \p in {a,b,c,d,e,f} \filldraw (\p) circle (2pt);
+        \foreach \i in {1,...,6} \filldraw (n\i) circle (2pt);
+        \node[above] at (n1) {\tiny 1}; \node[above right] at (n2) {\tiny 2}; \node[right] at (n3) {\tiny 3};
+        \node[below right] at (n4) {\tiny 4}; \node[below] at (n5) {\tiny 5}; \node[left] at (n6) {\tiny 6};
     \end{scope}
 
-    \node at (4, 1) {or};
+    \node at (3, 0) {or};
 
-    % Matching 2 (Right)
+    % Right Matching
     \begin{scope}[xshift=6cm]
-        \coordinate (a) at (0,1); \coordinate (b) at (1,2);
-        \coordinate (c) at (2,1.5); \coordinate (d) at (0,0);
-        \coordinate (e) at (1.5,0); \coordinate (f) at (3,0.5);
+        \coordinate (n1) at (0, 1.5); \coordinate (n2) at (1.5, 1.2); \coordinate (n3) at (2, 0);
+        \coordinate (n4) at (1, -1); \coordinate (n5) at (0, -1); \coordinate (n6) at (-1, 0);
         
-        \draw[cyan!80!black] (a)--(b)--(c)--(f)--(e)--(d)--(a);
-        \draw[cyan!80!black] (b)--(d); \draw[cyan!80!black] (b)--(e); \draw[cyan!80!black] (c)--(e);
+        \draw[cyan!80!black] (n6)--(n1)--(n2)--(n3)--(n4)--(n1)--(n5)--(n6);
+        \draw[cyan!80!black] (n1)--(n5); \draw[cyan!80!black] (n1)--(n4); \draw[cyan!80!black] (n2)--(n5);
         
         % Thick Matching Edges
-        \draw[line width=3pt, purple!50, opacity=0.5] (a)--(b);
-        \draw[line width=3pt, purple!50, opacity=0.5] (d)--(e);
-        \draw[line width=3pt, purple!50, opacity=0.5] (c)--(f);
+        % Notes show: (2-5), (1-4)
+        \draw[line width=4pt, gray, opacity=0.5] (n2)--(n1);
+        \draw[line width=4pt, gray, opacity=0.5] (n3)--(n4);
+        \draw[line width=4pt, gray, opacity=0.5] (n5)--(n6);
+
+        \foreach \i in {1,...,6} \filldraw (n\i) circle (2pt);
+        \node[above] at (n1) {\tiny 1}; \node[above right] at (n2) {\tiny 2}; \node[right] at (n3) {\tiny 3};
+        \node[below right] at (n4) {\tiny 4}; \node[below] at (n5) {\tiny 5}; \node[left] at (n6) {\tiny 6};
         
-        \foreach \p in {a,b,c,d,e,f} \filldraw (\p) circle (2pt);
     \end{scope}
 \end{tikzpicture}
 \end{center}
-If we pair 2 with 5, 3 and 4 with 1, this is still a matching.
+If we pair 2 with 5 3 and 4 with 1, this is still a matching.\\
+
+\begin{center}
+    \begin{tikzpicture}[scale=0.5]
+        \coordinate (n1) at (0, 1.5); \coordinate (n2) at (1.5, 1.2); \coordinate (n3) at (2, 0);
+        \coordinate (n4) at (1, -1); \coordinate (n5) at (0, -1); \coordinate (n6) at (-1, 0);
+        
+        \draw[cyan!80!black] (n6)--(n1)--(n2)--(n3)--(n4)--(n1)--(n5)--(n6);
+        \draw[cyan!80!black] (n1)--(n5); \draw[cyan!80!black] (n1)--(n4); \draw[cyan!80!black] (n2)--(n5);
+        
+        % Thick Matching Edges
+        % Notes show: (2-5), (1-4)
+        \draw[line width=4pt, gray, opacity=0.5] (n2)--(n5);
+        \draw[line width=4pt, gray, opacity=0.5] (n1)--(n4);
+        
+        \foreach \i in {1,...,6} \filldraw (n\i) circle (2pt);
+        \node[above] at (n1) {\tiny 1}; \node[above right] at (n2) {\tiny 2}; \node[right] at (n3) {\tiny 3};
+        \node[below right] at (n4) {\tiny 4}; \node[below] at (n5) {\tiny 5}; \node[left] at (n6) {\tiny 6};
+    \end{tikzpicture}
+\end{center}
 But we have 2 happy teams and can't form another one. It is not perfect...
-\end{example}
 
 Observation: The goal will be to pick a set of edges which do not share end vertices.
 
@@ -88,83 +114,103 @@ Let $G$ be any graph.
 
 % 7.3 Example
 \begin{example}
-Consider the graph $G = $
-\begin{tikzpicture}[baseline=(current bounding box.center), scale=0.6]
-    \coordinate (a) at (0,1); \coordinate (b) at (1,1);
-    \coordinate (c) at (0,0); \coordinate (e) at (1,0);
-    \coordinate (d) at (1.5, 0.5); \coordinate (f) at (2.5, 1);
-    \coordinate (g) at (2.5, 0);
+Consider the graph $G =$
+\begin{center}
+\begin{tikzpicture}[scale=0.8, baseline=(current bounding box.center)]
+    % Coordinates matching the handwritten layout
+    \coordinate (b) at (0, 1);
+    \coordinate (c) at (0, 0);
+    \coordinate (e) at (1.5, 0);
+    \coordinate (d) at (1.5, 1);
+    \coordinate (a) at (0.75, 1.6); % Top peak
+    \coordinate (f) at (2.3, 1.3); % Leaf from d
+    \coordinate (g) at (2.3, 0.5); % Leaf from e
 
-    \draw[cyan!80!black] (a)--(b)--(d)--(e)--(c)--(a);
-    \draw[cyan!80!black] (b)--(e); \draw[cyan!80!black] (d)--(f); \draw[cyan!80!black] (d)--(g);
+    % Edges
+    \draw[cyan!80!black, thick] (b)--(a)--(d)--(e)--(c)--(b); % Pentagon
+    \draw[cyan!80!black, thick] (b)--(d); % Diagonal
+    \draw[cyan!80!black, thick] (d)--(f); % Leaf f
+    \draw[cyan!80!black, thick] (d)--(g); % Leaf g
+    \draw[cyan!80!black, thick] (c)--(d);
 
-    \foreach \p in {a,b,c,d,e,f,g} \filldraw (\p) circle (2pt);
-    
-    \node[above] at (a) {$a$}; \node[above] at (b) {$b$}; \node[left] at (c) {$c$};
-    \node[above] at (d) {$d$}; \node[below] at (e) {$e$}; \node[right] at (f) {$f$}; \node[right] at (g) {$g$};
-\end{tikzpicture}.
+
+    % Nodes and Labels
+    \foreach \p/\pos/\label in {a/above/a, b/left/b, c/left/c, d/above right/d, e/below right/e, f/right/f, g/right/g}
+        \filldraw (\p) circle (2pt) node[\pos] {$\label$};
+\end{tikzpicture}
+\end{center}
 
 Then
 \begin{center}
-\begin{tikzpicture}[scale=0.6]
-    % Graph 1
+\begin{tikzpicture}[scale=0.8]
+    % --- SCENARIO 1: Maximum Matching ---
     \begin{scope}[xshift=0cm]
-        \coordinate (a) at (0,1); \coordinate (b) at (1,1);
-        \coordinate (c) at (0,0); \coordinate (e) at (1,0);
-        \coordinate (d) at (1.5, 0.5); \coordinate (f) at (2.5, 1);
-        \coordinate (g) at (2.5, 0);
-        \draw[cyan!80!black] (a)--(b)--(d)--(e)--(c)--(a);
-        \draw[cyan!80!black] (b)--(e); \draw[cyan!80!black] (d)--(f); \draw[cyan!80!black] (d)--(g);
-        
-        \draw[line width=3pt, red!50, opacity=0.5] (c)--(e);
-        \draw[line width=3pt, red!50, opacity=0.5] (b)--(d);
-        
+        \coordinate (b) at (0, 1); \coordinate (c) at (0, 0); \coordinate (e) at (1.5, 0);
+        \coordinate (d) at (1.5, 1); \coordinate (a) at (0.75, 1.6);
+        \coordinate (f) at (2.3, 1.3); \coordinate (g) at (2.3, 0.5);
+
+        % Base Graph
+        \draw[cyan!80!black] (b)--(a)--(d)--(e)--(c)--(b);
+        \draw[cyan!80!black] (b)--(d); \draw[cyan!80!black] (d)--(f); \draw[cyan!80!black, thick] (d)--(g); % Leaf g
+        \draw[cyan!80!black, thick] (c)--(d);
+
+        % Highlighted Matching {ab, ce, df}
+        \draw[line width=4pt, red!40, opacity=0.6] (a)--(b);
+        \draw[line width=4pt, red!40, opacity=0.6] (c)--(e);
+        \draw[line width=4pt, red!40, opacity=0.6] (d)--(g);
+
         \foreach \p in {a,b,c,d,e,f,g} \filldraw (\p) circle (2pt);
     \end{scope}
+    
     \node[right, align=left] at (3, 0.5) {is a maximal matching and also \\ a maximum matching.};
 \end{tikzpicture}
 \end{center}
 
 Further,
 \begin{center}
-\begin{tikzpicture}[scale=0.6]
-    % Graph 2
+\begin{tikzpicture}[scale=0.8]
+    % --- SCENARIO 2: Maximal but NOT Maximum ---
     \begin{scope}[xshift=0cm]
-        \coordinate (a) at (0,1); \coordinate (b) at (1,1);
-        \coordinate (c) at (0,0); \coordinate (e) at (1,0);
-        \coordinate (d) at (1.5, 0.5); \coordinate (f) at (2.5, 1);
-        \coordinate (g) at (2.5, 0);
-        \draw[cyan!80!black] (a)--(b)--(d)--(e)--(c)--(a);
-        \draw[cyan!80!black] (b)--(e); \draw[cyan!80!black] (d)--(f); \draw[cyan!80!black] (d)--(g);
-        
-        \draw[line width=3pt, red!50, opacity=0.5] (a)--(b);
-        \draw[line width=3pt, red!50, opacity=0.5] (d)--(f);
-        
+        \coordinate (b) at (0, 1); \coordinate (c) at (0, 0); \coordinate (e) at (1.5, 0);
+        \coordinate (d) at (1.5, 1); \coordinate (a) at (0.75, 1.6);
+        \coordinate (f) at (2.3, 1.3); \coordinate (g) at (2.3, 0.5);
+
+        \draw[cyan!80!black] (b)--(a)--(d)--(e)--(c)--(b);
+        \draw[cyan!80!black] (b)--(d); \draw[cyan!80!black] (d)--(f); \draw[cyan!80!black, thick] (d)--(g); % Leaf g
+        \draw[cyan!80!black, thick] (c)--(d);
+
+        % Highlighted Matching {bd, ce}
+        \draw[line width=4pt, red!40, opacity=0.6] (b)--(c);
+        \draw[line width=4pt, red!40, opacity=0.6] (d)--(f);
+
         \foreach \p in {a,b,c,d,e,f,g} \filldraw (\p) circle (2pt);
     \end{scope}
-    \node[right, align=left] at (3, 0.5) {is a maximal matching, but \textbf{\underline{not}} \\ a maximum matching.};
+    
+    \node[right, align=left] at (3, 0.5) {is a maximal matching, but \underline{not} \\ a maximum matching.};
 \end{tikzpicture}
 \end{center}
 
 Also,
 \begin{center}
-\begin{tikzpicture}[scale=0.6]
-    % Graph 3
+\begin{tikzpicture}[scale=0.8]
+    % --- SCENARIO 3: Not Maximal ---
     \begin{scope}[xshift=0cm]
-        \coordinate (a) at (0,1); \coordinate (b) at (1,1);
-        \coordinate (c) at (0,0); \coordinate (e) at (1,0);
-        \coordinate (d) at (1.5, 0.5); \coordinate (f) at (2.5, 1);
-        \coordinate (g) at (2.5, 0);
-        \draw[cyan!80!black] (a)--(b)--(d)--(e)--(c)--(a);
-        \draw[cyan!80!black] (b)--(e); \draw[cyan!80!black] (d)--(f); \draw[cyan!80!black] (d)--(g);
-        
-        \draw[line width=3pt, red!50, opacity=0.5] (a)--(c);
-        \draw[line width=3pt, red!50, opacity=0.5] (b)--(e);
-        \draw[line width=3pt, red!50, opacity=0.5] (d)--(g);
-        
+        \coordinate (b) at (0, 1); \coordinate (c) at (0, 0); \coordinate (e) at (1.5, 0);
+        \coordinate (d) at (1.5, 1); \coordinate (a) at (0.75, 1.6);
+        \coordinate (f) at (2.3, 1.3); \coordinate (g) at (2.3, 0.5);
+
+        \draw[cyan!80!black] (b)--(a)--(d)--(e)--(c)--(b);
+        \draw[cyan!80!black] (b)--(d); \draw[cyan!80!black] (d)--(f); \draw[cyan!80!black, thick] (d)--(g); % Leaf g
+        \draw[cyan!80!black, thick] (c)--(d);
+
+        % Highlighted Matching {ab, df}
+        \draw[line width=4pt, red!40, opacity=0.6] (a)--(b);
+        \draw[line width=4pt, red!40, opacity=0.6] (d)--(f);
+
         \foreach \p in {a,b,c,d,e,f,g} \filldraw (\p) circle (2pt);
     \end{scope}
-    \node[right, align=left] at (3, 0.5) {is \textbf{\underline{not}} a maximal matching, as \\ $M \cup \{e\}$ is still a matching.};
+    
+    \node[right, align=left] at (3, 0.5) {is \underline{not} a maximal matching, as \\ $M \cup \{ce\}$ is still a matching.};
 \end{tikzpicture}
 \end{center}
 
@@ -184,32 +230,162 @@ Further, any matching $M$ is perfect iff it is a maximum matching iff $|M| = \fr
 % 7.5 Examples
 \begin{example}
 \begin{center}
-\begin{tabular}{c c c c}
-Graph $G$ & maximal & maximum & perfect \\[0.5em]
-\begin{tikzpicture}[scale=0.4, baseline=-0.5ex]
-    \draw[cyan!80!black] (0,0)--(1,0.5)--(2,0)--(3,0);
-    \draw[cyan!80!black] (0,-1)--(1,-0.5)--(2,-1)--(3,-0.5);
-    \draw[cyan!80!black] (1,0.5)--(1,-0.5); \draw[cyan!80!black] (2,0)--(2,-1);
-    \draw[line width=2pt, red!50, opacity=0.5] (0,0)--(1,0.5);
-    \draw[line width=2pt, red!50, opacity=0.5] (2,0)--(3,0);
-    \draw[line width=2pt, red!50, opacity=0.5] (1,-0.5)--(2,-1);
-    \foreach \x in {0,1,2,3} { \filldraw (\x,0) circle (3pt); \filldraw (\x,-1) circle (3pt); \filldraw (1,0.5) circle (3pt); \filldraw (1,-0.5) circle (3pt); \filldraw (3,0.5) circle (3pt); \filldraw (3,-0.5) circle (3pt); } 
-    % Note: Simplified sketch for the table
-\end{tikzpicture} & \textbf{\color{green!60!black}\checkmark} & \textbf{\color{red}X} & \textbf{\color{red}X} \\
-\begin{tikzpicture}[scale=0.4, baseline=-0.5ex]
-    % Another matching on same graph
-    \draw[cyan!80!black] (0,0)--(1,0)--(2,0);
-    \draw[line width=2pt, red!50, opacity=0.5] (0,0)--(1,0);
-    \filldraw (0,0) circle (3pt); \filldraw (1,0) circle (3pt); \filldraw (2,0) circle (3pt);
-\end{tikzpicture} & \textbf{\color{green!60!black}\checkmark} & \textbf{\color{green!60!black}\checkmark} & \textbf{\color{red}X} \\
-\begin{tikzpicture}[scale=0.4, baseline=-0.5ex]
-    % Perfect matching example
-    \draw[cyan!80!black] (0,0)--(1,0)--(1,1)--(0,1)--(0,0);
-    \draw[line width=2pt, red!50, opacity=0.5] (0,0)--(1,0);
-    \draw[line width=2pt, red!50, opacity=0.5] (0,1)--(1,1);
-    \foreach \x in {0,1} \foreach \y in {0,1} \filldraw (\x,\y) circle (3pt);
-\end{tikzpicture} & \textbf{\color{green!60!black}\checkmark} & \textbf{\color{green!60!black}\checkmark} & \textbf{\color{green!60!black}\checkmark} 
-\end{tabular}
+
+% Define colors and styles
+\tikzset{
+    vertex/.style={circle, draw, fill=black, inner sep=1.5pt, outer sep=0pt},
+    highlight/.style={line width=6pt, violet!40, line cap=round},
+    edge/.style={thick},
+    label text/.style={font=\itshape\small}
+}
+\newcommand{\greencheck}{\textcolor{green!60!black}{\Huge\checkmark}}
+\newcommand{\redcross}{\textcolor{red}{\Huge$\times$}}
+
+\noindent
+\begin{tikzpicture}[scale=1]
+
+    % --- HEADERS ---
+    \node[anchor=west, blue, font=\large] at (0, 3) {Graph $G$};
+    \node[blue] at (7, 3) {maximal};
+    \node[blue] at (10, 3) {maximum};
+    \node[blue] at (13, 3) {perfect};
+
+    % ================= GRAPH 1 (TOP) =================
+    \begin{scope}[yshift=0cm]
+        % Coordinates
+        \coordinate (e) at (0,0);
+        \coordinate (c) at (2,0);
+        \coordinate (d) at (4,0);
+        \coordinate (g) at (6,0);
+        \coordinate (a) at (1,1);
+        \coordinate (b) at (3,1);
+        \coordinate (f) at (2,2);
+        \coordinate (h) at (5.5,0.8);
+        \coordinate (i) at (6,0.8);
+        \coordinate (j) at (6.5,0.8);
+
+        % Highlights (Graph 1)
+        \draw[highlight] (a) -- (f);
+        \draw[highlight] (c) -- (b);
+        \draw[highlight] (d) -- (g);
+
+        % Edges
+        \draw[edge] (e)--(c)--(d)--(g);
+        \draw[edge] (e)--(a)--(c)--(b)--(d);
+        \draw[edge] (a)--(b);
+        \draw[edge] (a)--(f)--(b);
+        \draw[edge] (g)--(h);
+        \draw[edge] (g)--(i);
+        \draw[edge] (g)--(j);
+
+        % Nodes and Labels
+        \foreach \p/\l/\pos in {e/e/below, c/c/below, d/d/below, g/g/below, a/a/left, b/b/right, f/f/above, h/h/above, i/i/above, j/j/above}
+            \node[vertex, label=\pos:{\label t \l}] at (\p) {};
+
+        % Table Marks
+        \node at (7, 1) {\greencheck};
+        \node at (10, 1) {\redcross};
+        \node at (13, 1) {\redcross};
+    \end{scope}
+
+    % ================= GRAPH 2 (MIDDLE) =================
+    \begin{scope}[yshift=-3.5cm]
+        % Coordinates (same as above)
+        \coordinate (e) at (0,0);
+        \coordinate (c) at (2,0);
+        \coordinate (d) at (4,0);
+        \coordinate (g) at (6,0);
+        \coordinate (a) at (1,1);
+        \coordinate (b) at (3,1);
+        \coordinate (f) at (2,2);
+        \coordinate (h) at (5.5,0.8);
+        \coordinate (i) at (6,0.8);
+        \coordinate (j) at (6.5,0.8);
+
+        % Highlights (Graph 2)
+        \draw[highlight] (e) -- (a);
+        \draw[highlight] (f) -- (b);
+        \draw[highlight] (c) -- (d);
+        \draw[highlight] (h) -- (g);
+
+        % Edges
+        \draw[edge] (e)--(c)--(d)--(g);
+        \draw[edge] (e)--(a)--(c)--(b)--(d);
+        \draw[edge] (a)--(b);
+        \draw[edge] (a)--(f)--(b);
+        \draw[edge] (g)--(h);
+        \draw[edge] (g)--(i);
+        \draw[edge] (g)--(j);
+
+        % Nodes and Labels
+        \foreach \p/\l/\pos in {e/e/below, c/c/below, d/d/below, g/g/below, a/a/left, b/b/right, f/f/above, h/h/above, i/i/above, j/j/above}
+            \node[vertex, label=\pos:{\label t \l}] at (\p) {};
+
+        % Table Marks
+        \node at (7, 1) {\greencheck};
+        \node at (10, 1) {\greencheck};
+        \node at (13, 1) {\redcross};
+    \end{scope}
+
+\end{tikzpicture}
+
+\vspace{1em}
+\noindent
+Note that there can't be a perfect matching, even though $|G|=10$ is even, as any matching uses at most one of $hg, ig$ and $jg$.
+\vspace{1em}
+
+\noindent
+\begin{tikzpicture}[scale=1]
+    \tikzset{
+        vertex/.style={circle, draw, fill=black, inner sep=1.5pt, outer sep=0pt},
+        highlight/.style={line width=6pt, violet!40, line cap=round},
+        edge/.style={thick},
+        label text/.style={font=\itshape\small}
+    }
+    
+    % ================= GRAPH 3 (BOTTOM) =================
+    % Coordinates based on visual layout
+    % Bottom row: g, f, e
+    \coordinate (g) at (0,0);
+    \coordinate (f) at (2,0);
+    \coordinate (e) at (4,0);
+    % Middle row (bridge): b, d
+    \coordinate (b) at (1,1);
+    \coordinate (d) at (3,1);
+    % Top row: a, c, h
+    \coordinate (a) at (0,2);
+    \coordinate (c) at (2,2);
+    \coordinate (h) at (4,2);
+
+    % Highlights (Graph 3)
+    \draw[highlight] (a) -- (b);
+    \draw[highlight] (c) -- (h);
+    \draw[highlight] (g) -- (f);
+    \draw[highlight] (d) -- (e);
+
+    % Edges
+    % Vertical/Zigzag stacks
+    \draw[edge] (a) -- (b) -- (g);
+    \draw[edge] (b) -- (c);
+    % Top horizontal
+    \draw[edge] (a) -- (c) -- (h);
+    % Middle cross connections
+    \draw[edge] (c) -- (d);
+    \draw[edge] (d) -- (f);
+    % Bottom horizontal
+    \draw[edge] (g) -- (f) -- (e);
+    \draw[edge] (e) -- (d);
+
+    % Nodes and Labels
+    \foreach \p/\l/\pos in {g/g/below, f/f/below, e/e/below, b/b/left, d/d/right, a/a/above, c/c/above, h/h/above}
+        \node[vertex, label=\pos:{\label t \l}] at (\p) {};
+
+    % Table Marks (Aligned with previous picture coordinates x=7, 10, 13)
+    \node at (7, 1) {\greencheck};
+    \node at (10, 1) {\greencheck};
+    \node at (13, 1) {\greencheck};
+
+\end{tikzpicture}
 \end{center}
 Note that there can't be a perfect matching, even though $|G|=10$ is even, as any matching uses at most one of $hg, ig$ and $jg$.
 
@@ -231,49 +407,291 @@ How does this relate to maximum matchings?
 \begin{example}
 Consider the graph $G$ with matching $M$ below.
 \begin{center}
-\begin{tikzpicture}[scale=0.8]
-    \coordinate (b) at (0,1); \coordinate (c) at (2,1); \coordinate (a) at (4,1); \coordinate (d) at (6,1);
-    \coordinate (g) at (2,0); \coordinate (f) at (4,0); \coordinate (h) at (6,0);
-    \coordinate (e) at (8,1); \coordinate (i) at (8,0); \coordinate (j) at (4,-1);
+\begin{tikzpicture}[
+    scale=1,
+    node distance=2cm,
+    % Style for the black graph nodes
+    vertex/.style={circle, fill=black, inner sep=2pt, minimum size=6pt},
+    % Style for the crossed-out red markers
+    cut marker/.style={
+        circle, draw=red, thick, inner sep=3pt,
+        path picture={
+            \draw[red, thick] 
+            (path picture bounding box.south west) -- (path picture bounding box.north east)
+            (path picture bounding box.south east) -- (path picture bounding box.north west);
+        }
+    }
+]
 
-    % Box structure
-    \draw[cyan!80!black] (b)--(c); 
-    \draw[cyan!80!black, line width=2pt, double, double distance=1pt] (c)--(a); % Matching
-    \draw[cyan!80!black] (a)--(d);
-    \draw[cyan!80!black, line width=2pt, double, double distance=1pt] (d)--(e); % Matching
+    % --- 1. Define Coordinates ---
+    \coordinate (b) at (0, 2);
+    \coordinate (c) at (2, 2);
+    \coordinate (a) at (4, 2);
+    \coordinate (d) at (6, 2);
+    \coordinate (e) at (8, 2);
+
+    \coordinate (g) at (2, 0);
+    \coordinate (f) at (4, 0);
+    \coordinate (h) at (6, 0);
+    \coordinate (i) at (8, 0);
+
+    \coordinate (j) at (4, -2);
+
+
+    % --- 2. Draw Highlights (Purple Lines) ---
+    % Drawn first so they appear behind
+    \tikzstyle{highlight}=[line width=8pt, purple!40, opacity=0.6, line cap=round]
     
-    \draw[cyan!80!black, line width=2pt, double, double distance=1pt] (c)--(g); % Matching
-    \draw[cyan!80!black] (a)--(f);
-    \draw[cyan!80!black] (d)--(h);
-    \draw[cyan!80!black] (e)--(i);
+    \draw[highlight] (c) -- (a);
+    \draw[highlight] (d) -- (e);
+    \draw[highlight] (g) -- (f);
+    \draw[highlight] (h) -- (i);
+
+
+    % --- 3. Draw Black Edges ---
+    % Horizontal
+    \draw (b) -- (c) -- (a) -- (d) -- (e);
+    \draw (g) -- (f) -- (h) -- (i);
     
-    \draw[cyan!80!black] (g)--(f);
-    \draw[cyan!80!black, line width=2pt, double, double distance=1pt] (f)--(h); % Matching
-    \draw[cyan!80!black] (h)--(i);
+    % Vertical
+    \draw (c) -- (g);
+    \draw (a) -- (f);
+    \draw (d) -- (h);
+    \draw (e) -- (i);
     
-    \draw[cyan!80!black] (g)--(j)--(f);
+    % Triangle connections
+    \draw (g) -- (j);
+    \draw (f) -- (j);
+    \draw (h) -- (j);
+
+
+    % --- 4. Draw Nodes and Labels ---
+    \node[vertex, label=above left:$b$] at (b) {};
+    \node[vertex, label=above:$c$] at (c) {};
+    \node[vertex, label=above:$a$] at (a) {};
+    \node[vertex, label=above:$d$] at (d) {};
+    \node[vertex, label=above right:$e$] at (e) {};
+
+    \node[vertex, label=below left:$g$] at (g) {};
+    \node[vertex, label=below right:$f$] at (f) {};
+    \node[vertex, label=below:$h$] at (h) {};
+    \node[vertex, label=above right:$i$] at (i) {};
+
+    \node[vertex, label=below left:$j$] at (j) {};
+
+
+    % --- 5. Draw the Red Path (Fixed) ---
+    % Start point (Left of g)
+    \coordinate (start) at (1.2, 0);
     
-    \foreach \p in {a,b,c,d,e,f,g,h,i,j} \filldraw (\p) circle (2pt);
+    % Top boundary box (Above the graph)
+    \coordinate (top_left) at (1.2, 2.5);
+    \coordinate (top_right) at (8.5, 2.5);
     
-    \node[above] at (b) {$b$}; \node[above] at (c) {$c$}; \node[above] at (a) {$a$}; \node[above] at (d) {$d$}; \node[above] at (e) {$e$};
-    \node[below] at (g) {$g$}; \node[below] at (f) {$f$}; \node[below] at (h) {$h$}; \node[below] at (i) {$i$}; \node[below] at (j) {$j$};
-    
-    % Red Path Highlight
-    \draw[red, thick, rounded corners] (1.8,-0.2) rectangle (6.2, 1.2);
-    \node[right, red] at (6.5, 0.5) {$p_1$};
+    % Bottom boundary path
+    % Moved Y to -1.0 so it runs underneath h and f
+    \coordinate (btm_right) at (8.5, -1.0); 
+    \coordinate (extra) at (6, -1.0); 
+    % End point
+    % Moved X to 3.0 so it crosses the edge g-j
+    \coordinate (end) at (5.0, -2.0);     
+
+    \draw[red, thick] (start) -- (top_left) -- (top_right) -- (btm_right) -- (extra) -- (end);
+
+    \node[cut marker] at (start) {};
+    \node[cut marker] at (end) {};
+
 \end{tikzpicture}
 \end{center}
 The path $p_1 = (g, c, a, d, e, i, h, j)$ is $M$-alternating, but not $M$-augmenting, its start vertex $g$ is $M$-saturated.
 
 On the other hand, the path $p_2 = (b, c, a, d, e, i, h, j)$ is $M$-augmenting. In particular, it is $M$-alternating. What happens if we define a new edge set $M'$ by containing all edges of $M$ outside of $p$ and also exactly those edges of $p$ which were not in $M$?
 
+\begin{center}
+    \begin{tikzpicture}[
+    scale=1,
+    node distance=2cm,
+    % Style for the black graph nodes
+    vertex/.style={circle, fill=black, inner sep=2pt, minimum size=6pt},
+    % Style for the crossed-out red markers
+    cut marker/.style={
+        circle, draw=red, thick, inner sep=3pt,
+        path picture={
+            \draw[red, thick] 
+            (path picture bounding box.south west) -- (path picture bounding box.north east)
+            (path picture bounding box.south east) -- (path picture bounding box.north west);
+        }
+    }
+]
+
+    % --- 1. Define Coordinates ---
+    \coordinate (b) at (0, 2);
+    \coordinate (c) at (2, 2);
+    \coordinate (a) at (4, 2);
+    \coordinate (d) at (6, 2);
+    \coordinate (e) at (8, 2);
+
+    \coordinate (g) at (2, 0);
+    \coordinate (f) at (4, 0);
+    \coordinate (h) at (6, 0);
+    \coordinate (i) at (8, 0);
+
+    \coordinate (j) at (4, -2);
+
+
+    % --- 2. Draw Highlights (Purple Lines) ---
+    % Drawn first so they appear behind
+    \tikzstyle{highlight}=[line width=8pt, green!40, opacity=0.6, line cap=round]
+    
+    
+    \draw[highlight] (c) -- (g);
+    \draw[highlight] (d) -- (a);
+    \draw[highlight] (g) -- (f);
+    \draw[highlight] (h) -- (j);
+    \draw[highlight] (i) -- (e);
+
+
+    % --- 3. Draw Black Edges ---
+    % Horizontal
+    \draw (b) -- (c) -- (a) -- (d) -- (e);
+    \draw (g) -- (f) -- (h) -- (i);
+    
+    % Vertical
+    \draw (c) -- (g);
+    \draw (a) -- (f);
+    \draw (d) -- (h);
+    \draw (e) -- (i);
+    
+    % Triangle connections
+    \draw (g) -- (j);
+    \draw (f) -- (j);
+    \draw (h) -- (j);
+
+
+    % --- 4. Draw Nodes and Labels ---
+    \node[vertex, label=above left:$b$] at (b) {};
+    \node[vertex, label=above:$c$] at (c) {};
+    \node[vertex, label=above:$a$] at (a) {};
+    \node[vertex, label=above:$d$] at (d) {};
+    \node[vertex, label=above right:$e$] at (e) {};
+
+    \node[vertex, label=below left:$g$] at (g) {};
+    \node[vertex, label=below right:$f$] at (f) {};
+    \node[vertex, label=below:$h$] at (h) {};
+    \node[vertex, label=above right:$i$] at (i) {};
+
+    \node[vertex, label=below left:$j$] at (j) {};
+
+
+    % --- 5. Draw the Red Path (Fixed) ---
+    % Start point (Left of g)
+    \coordinate (start) at (1.2, 0);
+    
+    % Top boundary box (Above the graph)
+    \coordinate (top_left) at (1.2, 2.5);
+    \coordinate (top_right) at (8.5, 2.5);
+    
+    % Bottom boundary path
+    % Moved Y to -1.0 so it runs underneath h and f
+    \coordinate (btm_right) at (8.5, -1.0); 
+    \coordinate (extra) at (6, -1.0); 
+    % End point
+    % Moved X to 3.0 so it crosses the edge g-j
+    \coordinate (end) at (5.0, -2.0);     
+
+    \draw[red, thick] (start) -- (top_left) -- (top_right) -- (btm_right) -- (extra) -- (end);
+
+    \node[cut marker] at (start) {};
+    \node[cut marker] at (end) {};
+
+\end{tikzpicture}
+\end{center}
+
 For $p_1=(g,c,a,d,e,i,h,j)$ which was $M$-alternating, but not $M$-augmenting, we obtain an edge set which is \underline{not} a matching.
+
+\begin{center}
+    \begin{tikzpicture}[
+    scale=1,
+    node distance=2cm,
+    % Style for the black graph nodes
+    vertex/.style={circle, fill=black, inner sep=2pt, minimum size=6pt},
+    % Style for the crossed-out red markers
+    cut marker/.style={
+        circle, draw=red, thick, inner sep=3pt,
+        path picture={
+            \draw[red, thick] 
+            (path picture bounding box.south west) -- (path picture bounding box.north east)
+            (path picture bounding box.south east) -- (path picture bounding box.north west);
+        }
+    }
+]
+
+    % --- 1. Define Coordinates ---
+    \coordinate (b) at (0, 2);
+    \coordinate (c) at (2, 2);
+    \coordinate (a) at (4, 2);
+    \coordinate (d) at (6, 2);
+    \coordinate (e) at (8, 2);
+
+    \coordinate (g) at (2, 0);
+    \coordinate (f) at (4, 0);
+    \coordinate (h) at (6, 0);
+    \coordinate (i) at (8, 0);
+
+    \coordinate (j) at (4, -2);
+
+
+    % --- 2. Draw Highlights (Purple Lines) ---
+    % Drawn first so they appear behind
+    \tikzstyle{highlight}=[line width=8pt, green!40, opacity=0.6, line cap=round]
+    
+    
+    \draw[highlight] (c) -- (b);
+    \draw[highlight] (d) -- (a);
+    \draw[highlight] (g) -- (f);
+    \draw[highlight] (h) -- (j);
+    \draw[highlight] (i) -- (e);
+
+
+    % --- 3. Draw Black Edges ---
+    % Horizontal
+    \draw (b) -- (c) -- (a) -- (d) -- (e);
+    \draw (g) -- (f) -- (h) -- (i);
+    
+    % Vertical
+    \draw (c) -- (g);
+    \draw (a) -- (f);
+    \draw (d) -- (h);
+    \draw (e) -- (i);
+    
+    % Triangle connections
+    \draw (g) -- (j);
+    \draw (f) -- (j);
+    \draw (h) -- (j);
+
+
+    % --- 4. Draw Nodes and Labels ---
+    \node[vertex, label=above left:$b$] at (b) {};
+    \node[vertex, label=above:$c$] at (c) {};
+    \node[vertex, label=above:$a$] at (a) {};
+    \node[vertex, label=above:$d$] at (d) {};
+    \node[vertex, label=above right:$e$] at (e) {};
+
+    \node[vertex, label=below left:$g$] at (g) {};
+    \node[vertex, label=below right:$f$] at (f) {};
+    \node[vertex, label=below:$h$] at (h) {};
+    \node[vertex, label=above right:$i$] at (i) {};
+
+    \node[vertex, label=below left:$j$] at (j) {};
+
+\end{tikzpicture}    
+\end{center}
 For the $M$-augmenting path $p_2=(b,c,a,d,e,i,h,j)$, on the other hand, the set $M'$ is indeed a matching. Moreover, it contains more edges than $M$.
 Hence, $M$ was not a maximum matching for $G$.
 \end{example}
 
 % 7.8 Theorem
-\begin{theorem}
+\begin{theorem}[Berge's Theorem, 1957]
 Let $G$ be a graph and $M$ a matching for $G$. Then $M$ is a maximum matching iff there is \underline{no} $M$-augmenting path in $G$.
 \end{theorem}
 
@@ -298,56 +716,222 @@ Finding matchings becomes of special interest in bipartite graphs. Historically,
 % 7.9 Example
 \begin{example}
 Consider the bipartite graphs below with $V(G)=X \cup Y$, where $X$ represents a set of children and $Y$ a set of presents.
+How does the problem above translate to graph theory?
+
 \begin{center}
-\begin{tikzpicture}[scale=1]
-    % Case 1
-    \begin{scope}[xshift=0cm]
-        % X nodes (children)
-        \draw (0,0) ellipse (0.5 and 1); \node at (0,-1.5) {$X$};
-        \coordinate (x1) at (0, 0.5); \coordinate (x2) at (0, 0); \coordinate (x3) at (0, -0.5);
+\begin{tikzpicture}[
+    % Style for the small dots
+    vertex/.style={circle, fill=black, inner sep=1.5pt},
+    % Style for the enclosing sets (ellipses)
+    set boundary/.style={draw=black, thick, ellipse, inner sep=8pt, minimum width=1.2cm},
+    % Style for the connecting lines
+    connection/.style={draw=cyan, thick}
+]
+
+    % ==========================
+    % GRAPH 1 (Left Side)
+    % ==========================
+    \begin{scope}[local bounding box=graph1]
+        % Define X nodes (Left)
+        \foreach \i in {1,2,3,4} {
+            \node[vertex] (x1-\i) at (0, 5-\i) {};
+        }
+        % Define Y nodes (Right)
+        \foreach \i in {1,2,3,4} {
+            \node[vertex] (y1-\i) at (2.5, 5-\i) {};
+        }
+
+        % Draw Edges (Pattern based on the left image)
+        % x1 connects to y1, y2
+        \draw[connection] (x1-1) -- (y1-1);
+        \draw[connection] (x1-1) -- (y1-2);
         
-        % Y nodes (presents)
-        \draw (2,0) ellipse (0.5 and 1); \node at (2,-1.5) {$Y$};
-        \coordinate (y1) at (2, 0.5); \coordinate (y2) at (2, 0); \coordinate (y3) at (2, -0.5);
+        % x2 connects to y1, y2, y3
+        \draw[connection] (x1-2) -- (y1-1);
+        \draw[connection] (x1-2) -- (y1-2);
+        \draw[connection] (x1-2) -- (y1-3);
         
-        \foreach \p in {x1,x2,x3,y1,y2,y3} \filldraw (\p) circle (2pt);
+        % x3 connects to y2, y3, y4
+        \draw[connection] (x1-3) -- (y1-2);
+        \draw[connection] (x1-3) -- (y1-3);
+        \draw[connection] (x1-3) -- (y1-4);
         
-        % Edges
-        \draw[cyan!80!black] (x1)--(y1); \draw[cyan!80!black] (x1)--(y2);
-        \draw[cyan!80!black] (x2)--(y1); \draw[cyan!80!black] (x2)--(y3);
-        \draw[cyan!80!black] (x3)--(y2); \draw[cyan!80!black] (x3)--(y3);
+        % x4 connects to y3, y4
+        \draw[connection] (x1-4) -- (y1-3);
+        \draw[connection] (x1-4) -- (y1-4);
+
+        % Draw Ellipses around sets
+        \node[set boundary, fit=(x1-1) (x1-4)] {};
+        \node[set boundary, fit=(y1-1) (y1-4)] {};
         
-        % Matching highlights
-        \draw[line width=2pt, purple!50, opacity=0.5] (x1)--(y2);
-        \draw[line width=2pt, purple!50, opacity=0.5] (x2)--(y1);
-        \draw[line width=2pt, purple!50, opacity=0.5] (x3)--(y3);
+        % Labels
+        \node[font=\Large] at (-1, 1) {$X$};
+        \node[font=\Large] at (3.5, 1) {$Y$};
     \end{scope}
-    
-    % Case 2
-    \begin{scope}[xshift=5cm]
-        \draw (0,0) ellipse (0.5 and 1); \node at (0,-1.5) {$X$};
-        \coordinate (x1) at (0, 0.5); \coordinate (x2) at (0, 0); \coordinate (x3) at (0, -0.5);
+
+
+    % ==========================
+    % GRAPH 2 (Right Side)
+    % ==========================
+    \begin{scope}[xshift=7cm]
+        % Define X nodes
+        \foreach \i in {1,2,3,4} {
+            \node[vertex] (x2-\i) at (0, 5-\i) {};
+        }
+        % Define Y nodes
+        \foreach \i in {1,2,3,4} {
+            \node[vertex] (y2-\i) at (2.5, 5-\i) {};
+        }
+
+        % Draw Edges (Pattern based on the right image)
+        % x1 connects to y1
+        \draw[connection] (x2-1) -- (y2-1);
         
-        \draw (2,0) ellipse (0.5 and 1); \node at (2,-1.5) {$Y$};
-        \coordinate (y1) at (2, 0.5); \coordinate (y2) at (2, 0); \coordinate (y3) at (2, -0.5);
+        % x2 connects to y1
+        \draw[connection] (x2-2) -- (y2-1);
         
-        \foreach \p in {x1,x2,x3,y1,y2,y3} \filldraw (\p) circle (2pt);
+        % x3 connects to y1, y2, y3
+        \draw[connection] (x2-3) -- (y2-1);
+        \draw[connection] (x2-3) -- (y2-2);
+        \draw[connection] (x2-3) -- (y2-3);
         
-        % Edges
-        \draw[cyan!80!black] (x1)--(y1); 
-        \draw[cyan!80!black] (x2)--(y1); 
-        \draw[cyan!80!black] (x3)--(y2); 
-        
-        % Problem circle
-        \draw[red, thick] (0, 0.25) ellipse (0.3 and 0.8);
-        \draw[red, ->] (0.3, 0.25) -- (1.8, 0.5);
-        \node[red, scale=0.7] at (2.5, 0.5) {Problem};
+        % x4 connects to y3, y4 (and maybe y2 based on crossing)
+        \draw[connection] (x2-4) -- (y2-2);
+        \draw[connection] (x2-4) -- (y2-4);
+
+        % Draw Ellipses
+        \node[set boundary, fit=(x2-1) (x2-4)] {};
+        \node[set boundary, fit=(y2-1) (y2-4)] {};
+
+        % Labels
+        \node[font=\Large] at (-1, 1) {$X$};
+        \node[font=\Large] at (3.5, 1) {$Y$};
     \end{scope}
+
 \end{tikzpicture}
 \end{center}
-$\to$ There is a matching which makes all children happy. \\
-$\to$ There are two children which both only want the first present. Hence, there is no appropriate matching.
 
+We draw one edge between $x \in X$ and $y \in Y$ whenever child $x$ would be happy. To make all children happy, we need to choose edges, such that any $x \in X$ appears as exactly one end vertex (every child gets exactly one present), but all edges are disjoint (children don't have to share a present). I.e. we need to find a matching $M$ s.t. every $x \in X$ is $M$-saturated.
+
+For our graphs we observe the following:
+
+\begin{center}
+\begin{tikzpicture}[
+    % Style for the small dots
+    vertex/.style={circle, fill=black, inner sep=1.5pt},
+    % Style for the enclosing sets (ellipses)
+    set boundary/.style={draw=black, thick, ellipse, inner sep=8pt, minimum width=1.2cm},
+    % Style for the blue connecting lines
+    connection/.style={draw=cyan, thick},
+    % Style for the purple highlights (behind)
+    highlight/.style={line width=6pt, purple!50, opacity=0.6, line cap=round}
+]
+
+    % ==========================
+    % GRAPH 1 (Left Side - Valid Matches?)
+    % ==========================
+    \begin{scope}[local bounding box=graph1]
+        % Define X nodes (Left)
+        \foreach \i in {1,2,3,4} {
+            \node[vertex] (x1-\i) at (0, 5-\i) {};
+        }
+        % Define Y nodes (Right)
+        \foreach \i in {1,2,3,4} {
+            \node[vertex] (y1-\i) at (2.5, 5-\i) {};
+        }
+
+        % --- DRAW HIGHLIGHTS FIRST (So they are behind) ---
+        % Visually tracing the purple lines in the left image
+        \draw[highlight] (x1-1) -- (y1-1);
+        \draw[highlight] (x1-2) -- (y1-3);
+        \draw[highlight] (x1-3) -- (y1-2);
+        \draw[highlight] (x1-4) -- (y1-3); % Appears to converge with the second one
+
+        % --- DRAW BLUE CONNECTIONS ---
+        % Edges mimicking the structure
+        \draw[connection] (x1-1) -- (y1-1);
+        \draw[connection] (x1-1) -- (y1-2);
+        
+        \draw[connection] (x1-2) -- (y1-1);
+        \draw[connection] (x1-2) -- (y1-2);
+        \draw[connection] (x1-2) -- (y1-3);
+        
+        \draw[connection] (x1-3) -- (y1-2);
+        \draw[connection] (x1-3) -- (y1-3);
+        \draw[connection] (x1-3) -- (y1-4);
+        
+        \draw[connection] (x1-4) -- (y1-3);
+        \draw[connection] (x1-4) -- (y1-4);
+
+        % Draw Ellipses
+        \node[set boundary, fit=(x1-1) (x1-4)] {};
+        \node[set boundary, fit=(y1-1) (y1-4)] {};
+        
+        % Labels
+        \node[font=\Large] at (-1, 1) {$X$};
+        \node[font=\Large] at (3.5, 1) {$Y$};
+    \end{scope}
+
+
+    % ==========================
+    % GRAPH 2 (Right Side - Collision)
+    % ==========================
+    \begin{scope}[xshift=7cm]
+        % Define X nodes
+        \foreach \i in {1,2,3,4} {
+            \node[vertex] (x2-\i) at (0, 5-\i) {};
+        }
+        % Define Y nodes
+        \foreach \i in {1,2,3,4} {
+            \node[vertex] (y2-\i) at (2.5, 5-\i) {};
+        }
+
+        % --- DRAW HIGHLIGHTS ---
+        % The collision: Top two left nodes going to the top right node
+        \draw[highlight] (x2-1) -- (y2-1);
+        \draw[highlight] (x2-2) -- (y2-1);
+
+        % --- DRAW BLUE CONNECTIONS ---
+        \draw[connection] (x2-1) -- (y2-1);
+        
+        \draw[connection] (x2-2) -- (y2-1);
+        
+        \draw[connection] (x2-3) -- (y2-1);
+        \draw[connection] (x2-3) -- (y2-2);
+        \draw[connection] (x2-3) -- (y2-3);
+        
+        \draw[connection] (x2-4) -- (y2-2);
+        \draw[connection] (x2-4) -- (y2-4);
+
+        % Draw Ellipses
+        \node[set boundary, fit=(x2-1) (x2-4)] {};
+        \node[set boundary, fit=(y2-1) (y2-4)] {};
+
+        % --- ERROR INDICATORS ---
+        % Red circle around the top-right node
+        \draw[red, thick] (y2-1) circle (0.4cm);
+        
+        % Lightning bolt symbol
+        \draw[red, thick, line join=round] 
+            (3.2, 4.2) -- (3.0, 3.9) -- (3.2, 3.9) -- (3.0, 3.6);
+
+        % Labels
+        \node[font=\Large] at (-1, 1) {$X$};
+        \node[font=\Large] at (3.5, 1) {$Y$};
+    \end{scope}
+
+\end{tikzpicture}
+\end{center}
+
+\begin{minipage}[t]{0.45\textwidth}
+$\to$ There is a matching which makes all children happy.
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+$\to$ There are two children which both only want the first present. Hence, there is no appropriate matching.
+\end{minipage}
+
+\vspace{0.5cm}
 How can we know from the graph when an appropriate matching exists? This is solved in Philip Hall's marriage theorem.
 \end{example}
 
@@ -362,7 +946,7 @@ As above, $X$ is matched into $Y$ iff there is an injective function $f: X \to Y
 \end{remark}
 
 % 7.12 Theorem
-\begin{theorem}
+\begin{theorem}[Hall's Marriage Theorem, 1935]
 Let $G$ be a bipartite graph with parts $X$ and $Y$. Then $X$ is matched into $Y$ iff for all sets $S \subseteq X$ we have $|S| \le |N(S)|$.
 \end{theorem}
 
@@ -394,7 +978,11 @@ contradicting our assumptions.
 Thus, such a vertex $u$ cannot exist, whence all vertices in $X$ are $M$-saturated and $M$ matches $X$ into $Y$. \qedhere
 \end{proof}
 
-\topic{Application - System of Representatives}
+% Application - System of Representatives (Unnumbered)
+\par\vspace{0.5cm}\noindent
+\needspace{6\baselineskip} % Forces page break if near bottom
+{\large \underline{\textbf{Application - System of Representatives}}}
+\par\vspace{0.2cm}
 
 % 7.13 Definition
 \begin{definition}
@@ -450,7 +1038,7 @@ We want to finish the chapter on matchings by relating them to yet another very 
 
 % 7.16 Definition
 \begin{definition}
-Let $G$ be a graph. A \textbf{\color{red}vertex cover} for $G$ is a vertex set $C \subseteq V(G)$ s.t. every edge of $G$ has at least one endvertex in $C$, i.e. $\forall e \in E(G) \exists x \in C \text{ s.t. } x \in e$.
+Let $G$ be a graph. A \textbf{\color{red}vertex cover} for $G$ is a vertex set $C \subseteq V(G)$ s.t. every edge of $G$ has at least one endvertex in $C$, i.e. $\forall e \in E(G) \exists x \in C \text{ s.t. } x \in e$.\\
 A vertex cover is called a \textbf{\color{red}minimum vertex cover} if there is no vertex cover of smaller cardinality.
 \end{definition}
 
@@ -473,52 +1061,23 @@ Consider $G$ given by
 \begin{tikzpicture}[scale=0.8]
     \coordinate (c) at (0,0); \coordinate (d) at (2,0);
     \coordinate (a) at (0,1); \coordinate (b) at (2,1);
-    \coordinate (e) at (1, 0.5);
+    \coordinate (e) at (1, 0.5); \coordinate (f) at (2.5,0.5);
     
     \draw[cyan!80!black] (a)--(b)--(d)--(c)--(a);
     \draw[cyan!80!black] (a)--(e); \draw[cyan!80!black] (b)--(e); \draw[cyan!80!black] (c)--(e); \draw[cyan!80!black] (d)--(e);
-    
-    \foreach \p in {a,b,c,d,e} \filldraw (\p) circle (2pt);
+    \draw[cyan!80!black] (d)--(f);
+
+    \foreach \p in {a,b,c,d,e,f} \filldraw (\p) circle (2pt);
     
     \node[above left] at (a) {$a$}; \node[above right] at (b) {$b$};
     \node[below left] at (c) {$c$}; \node[below right] at (d) {$d$};
     \node[above] at (e) {$e$};
-    \node[right] at (2.5, 0.5) {$\cdot f$};
-    \filldraw (2.5, 0.5) circle (2pt);
+    \node[above] at (f) {$f$};
 \end{tikzpicture}
 \end{center}
 Then one vertex cover is given by $C_1 := \{a,b,c,d\}$. But also, $C_2 := \{a,e,d\}$ is a vertex cover of smaller cardinality. It is not hard to see that there is no vertex cover containing only two vertices, whence $C_2$ is minimal.
 \end{example}
 
-For each of the graphs below, find a maximum matching $M$ and a minimum vertex cover $C$. Can you conjecture a relation between $|M|$ and $|C|$ for arbitrary graphs $G$?
-
-\begin{center}
-\begin{tikzpicture}[scale=0.8]
-    % G1 (Square with center point)
-    \begin{scope}[xshift=0cm]
-        \coordinate (a) at (0,1); \coordinate (b) at (1,1);
-        \coordinate (c) at (0,0); \coordinate (d) at (1,0);
-        \coordinate (f) at (0.5, 0.5);
-        \draw[cyan!80!black] (a)--(b)--(d)--(c)--(a);
-        \draw[cyan!80!black] (a)--(f); \draw[cyan!80!black] (b)--(f);
-        \draw[cyan!80!black] (c)--(f); \draw[cyan!80!black] (d)--(f);
-        \foreach \p in {a,b,c,d,f} \filldraw (\p) circle (2pt);
-        \node[left] at (-0.5, 0.5) {$G_1=$};
-    \end{scope}
-
-    % G2 (Bipartite graph)
-    \begin{scope}[xshift=5cm]
-        \foreach \i in {1,2,3,4} \coordinate (u\i) at (\i, 0);
-        \coordinate (v1) at (1,1); \coordinate (v2) at (2,1); \coordinate (v3) at (3,1); \coordinate (v4) at (4,1);
-        \draw[cyan!80!black] (v1)--(u1); \draw[cyan!80!black] (v2)--(u2); \draw[cyan!80!black] (v3)--(u3); \draw[cyan!80!black] (v4)--(u4);
-        \draw[cyan!80!black] (v1)--(u2); \draw[cyan!80!black] (v4)--(u3);
-        \foreach \p in {u1,u2,u3,u4,v1,v2,v3,v4} \filldraw (\p) circle (2pt);
-        \node[left] at (0.5, 0.5) {$G_2=$};
-    \end{scope}
-\end{tikzpicture}
-\end{center}
-We see that in $G_1$, $|M|=3 < 4 = |C|$, while in $G_2$, $|M|=3 < |C|$ (Wait, notes say $|M|=3=|C|$ for G2).
-What is the difference in both graphs? We note that $G$ is bipartite.
 
 % 7.20 Lemma
 \begin{lemma}
@@ -532,26 +1091,43 @@ Let $M$ be any matching for $G$, say $M=\{e_1, e_2, \dots, e_k\}$, and $C$ any v
 Now, what changes if we restrict ourselves to bipartite graphs? Somehow we have more control over the relation between vertices and edges. Indeed, the Hungarian mathematicians D\'{e}nes K\"{o}nig and Jen\H{o} Egerv\'{a}ry independently discovered the following in 1931.
 
 % 7.21 Theorem (Konig-Egervary)
-\begin{theorem}
+\begin{theorem}[König-Egerváry]
 Let $G$ be a bipartite graph. Then any maximum matching has the same cardinality as any minimum vertex cover.
 \end{theorem}
 
 \begin{proof}
-Consider an arbitrary bipartite graph $G$ and a maximum matching $M$. We will show that there exists a vertex cover $C$ s.t. $|M|=|C|$. By Lemma 7.20, $C$ then is a minimum vertex cover. Let $X$ and $Y$ form a bipartition of $V_G$.
+Consider an arbitrary bipartite graph $G$ and a maximum matching $M$.
+We will show that there exists a vertex cover $C$ s.t. $|M|=|C|$.
+By Lemma 7.20, $C$ then is a minimum vertex cover. Let $X$ and $Y$ form a bipartition of $V_G$.
+
+\vspace{0.3cm}
 If every $x \in X$ is $M$-saturated, then $|X|=|M|$. Clearly, as $G$ is bipartite, the set $C:=X$ is a vertex cover for $G$, whence $|C|=|X|=|M|$ is as desired.
+
+\vspace{0.3cm}
 Now, assume \underline{not} every $x \in X$ is $M$ saturated.
 Let $U := \{x \in X \mid x \text{ is not } M\text{-saturated}\}$. Then $|M|+|U| = |X|$. (*)
+
 Similar to Hall's Lemma, set
-$A := \{ v \in V(G) \mid \text{ex. an } M\text{-alternating } uv\text{-path for some } u \in U \}$.
-Further, set $S := A \cap X$ and $T := A \cap Y$. We claim that $C := (X \setminus S) \cup UT$ is a vertex cover with $|C|=|M|$.
+\[ A := \{ v \in V(G) \mid \text{ex. an } M\text{-alternating } uv\text{-path for some } u \in U \}. \]
+Further, set $S := A \cap X$ and $T := A \cap Y$. We claim that
+\[ C := (X \setminus S) \cup T \text{ is a vertex cover with } |C|=|M|. \]
+
 Exactly as in the proof of 7.12, we can show that
-1) Every vertex in $(S \setminus U) \cup T$ is $M$-saturated.
-2) $|S \setminus U| = |T|$.
-3) $T = N(S)$.
+\begin{enumerate}
+    \item[1)] Every vertex in $(S \setminus U) \cup T$ is $M$-saturated.
+    \item[2)] $|S \setminus U| = |T|$.
+    \item[3)] $T = N(S)$.
+\end{enumerate}
 
 Thus, we immediately get that $|T| = |S| - |U|$ (**) and thus
-\[ |C| = |X \setminus S| \cup |T| = |X| \setminus |S| + |T| \overset{(**)}{=} |X| - |S| + |S| - |U| = |X| - |U| \overset{(*)}{=} |M|, \text{ as desired.} \]
+\begin{align*}
+    |C| = |X \setminus S| \cup |T| &\overset{X \cap T = \emptyset}{=} |X \setminus S| + |T| \\
+    &\overset{S \subseteq X}{=} |X| - |S| + |T| \\
+    &\overset{(**)}{=} |X| - |S| + |S| - |U| \\
+    &= |X| - |U| \overset{(*)}{=} |M|, \text{ as desired.}
+\end{align*}
+
 It remains to show that $C$ is a vertex cover for $G$.
 To this end, let $e=xy$ be an arbitrary edge with $x \in X, y \in Y$. We need to show that at least one of $x$ or $y$ is in $C=(X \setminus S) \cup T$.
-If $x \notin S$, i.e. $x \in X \setminus S$, we are done. Otherwise $x \in S$, whence $y \in N(S) = T$, as desired. This finishes the proof. \qedhere
+If $x \notin S$, i.e. $x \in X \setminus S$, we are done. Otherwise $x \in S$, whence $y \in N(S) = T$, as desired. This finishes the proof.
 \end{proof}
